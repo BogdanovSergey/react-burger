@@ -1,0 +1,19 @@
+.ingrediens_column{
+    border: 4px double green;
+    position: relative;
+    /*position: absolute;*/
+    width: 600px;
+    height: 912px;
+}
+.ingrediens_scrollzone {
+    overflow: auto;
+    height: 100%;
+}
+.ingrediens_scrollzone::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+    background-color: #0003; /* or add it to the track */
+}
+.ingrediens_scrollzone::-webkit-scrollbar-thumb {
+    background: #8585AD;
+}

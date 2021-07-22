@@ -1,0 +1,7 @@
+.product_list{
+    border: 4px double red;
+
+    display: flex;
+    flex-flow: row wrap;
+
+}

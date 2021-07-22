@@ -6,19 +6,21 @@ function AppHeader() {
     const [current, setCurrent] = React.useState('one')
     return (
         <div className={css.app_header}>
+            <div className={css.app_header_in}>
 
-            <div>
-                <BurgerIcon type="primary" />
-Конструктор
+                <div>
+                    <BurgerIcon type="primary" />
+    Конструктор
 
-            <ListIcon type="primary" />
-Лента Заказов
-            </div>
+                <ListIcon type="primary" />
+    Лента Заказов
+                </div>
 
-            <Logo/>
-            <div>
-            <ProfileIcon type="primary" />
-Личный кабинет
+                <Logo/>
+                <div>
+                <ProfileIcon type="primary" />
+    Личный кабинет
+                </div>
             </div>
         </div>
     );
