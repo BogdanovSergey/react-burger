@@ -1,24 +1,26 @@
 
 .app_header {
-    border: 4px double red;
-    /*display: flex;
-    flex-direction: row;
-    justify-content:center;
-
-    padding: 16px 20px;*/
-
-    /*position: absolute;*/
+    /*border: 4px double red;*/
     height: 88px;
-    left: 2%;
+    left: 20%;
     right: 2%;
     top: 40px;
 }
 .app_header_in {
-    border: 4px double blue;
+    /*border: 4px double blue;*/
 
     display: flex;
     flex-direction: row;
     justify-content:center;
-    padding: 16px 100px 0px 0px;
+    padding: 3px 5px 0px 0px;
     gap:300px;
+
 }
+
+.app_header_row {
+     display:flex;
+     flex-direction: row;
+     gap: 20px;
+     align-items: center;
+
+ }

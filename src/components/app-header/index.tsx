@@ -14,10 +14,7 @@ function AppHeader() {
         <div className={css.app_header}>
             <menu className={css.app_header_in}>
 
-
-                {/*<Button type="primary" size="large"><CurrencyIcon type="primary"/>Конструктор</Button>*/}
-
-                <div>
+                <div className={css.app_header_row}>
                     <BurgerIcon type="primary" />
                     Конструктор
 
@@ -25,11 +22,10 @@ function AppHeader() {
                     Лента Заказов
                 </div>
 
-
                 <Logo/>
-                <div>
+                <div className={css.app_header_row}>
                 <ProfileIcon type="primary" />
-    Личный кабинет
+                    Личный кабинет
                 </div>
             </menu>
         </div>

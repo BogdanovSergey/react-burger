@@ -1,5 +1,5 @@
 .column{
-    border: 4px double green;
+    /*border: 4px double green;*/
     position: relative;
     /*position: absolute;*/
     width: 600px;
@@ -10,9 +10,9 @@
     height: 100%;
 }
 .scrollzone::-webkit-scrollbar {
+    background-color: #2F2F37;
     width: 10px;
     height: 8px;
-    background-color: #0003; /* or add it to the track */
 }
 .scrollzone::-webkit-scrollbar-thumb {
     background: #8585AD;

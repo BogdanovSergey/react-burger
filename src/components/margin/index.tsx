@@ -7,7 +7,7 @@ interface MarginProps {
 export const Margin:React.FC<MarginProps> = ({height,width}) => {
     return (
         <div style={{
-            border: '4px double blue',
+            // border: '4px double blue',
             height: height,
             width: width
         }}/>

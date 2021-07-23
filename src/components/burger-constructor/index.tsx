@@ -24,7 +24,6 @@ function BurgerConstructor() {
                     return (itm.type === 'main' || itm.type === 'sauce') ?
                         <ConstructorElement
                             key={itm._id}
-                            isLocked={true}
                             text={itm.name}
                             price={itm.price}
                             thumbnail={itm.image}
@@ -45,7 +44,7 @@ function BurgerConstructor() {
             <div className={css.total}>
                 <p className="text text_type_digits-medium">610</p>
                 <CurrencyIcon type="primary"/>
-                <Button type="primary" size="large">Оформить заказ</Button>
+                <Button type="primary" size="medium">Оформить заказ</Button>
             </div>
         </div>
     );

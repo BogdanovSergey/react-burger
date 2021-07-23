@@ -13,7 +13,7 @@ export const Product: React.FC<ProductProps> = ({name,price,image}) => {
     return (
         <div className={css.product_some}>
             <img src={image} alt={""}/>
-            <span style={{border: '4px double red',display: 'inline-flex'}}>
+            <span style={{display: 'inline-flex'}}>
                 <span style={{marginRight:'8px'}}>{price}</span> <CurrencyIcon type="primary"/>
            </span>
             <span>

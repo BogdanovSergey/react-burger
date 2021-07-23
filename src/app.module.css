@@ -1,6 +1,14 @@
-.main_columns {
-    border: 4px double lightgreen;
+.main_rect {
+    /*border: 4px double yellow;*/
+    position: absolute;
+    left: 2%;
+    right: 2%;
+    top: 2%;
+    bottom: 2%;
+}
 
+.main_columns {
+    /*border: 4px double lightgreen;*/
     display: flex;
     flex-direction: row;
     justify-content:center;
@@ -8,11 +16,4 @@
     padding: 16px 20px;
 
 }
-.main_rect {
-    border: 4px double yellow;
-    position: absolute;
-    left: 2%;
-    right: 2%;
-    top: 2%;
-    bottom: 2%;
-}
+
