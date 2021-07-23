@@ -1,5 +1,5 @@
 import React from 'react';
-import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
+import {Tab,Button} from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './index.module.css';
 import Product from '../product';
 import ProductList from '../product-list';
@@ -9,7 +9,7 @@ function BurgerIngredients() {
     const [current, setCurrent] = React.useState('one')
     return (
         <>
-            <div className={css.ingrediens_column}>
+            <div className={css.column}>
                 <p className="text text_type_main-large">
                     Соберите бургер
                 </p>
@@ -25,13 +25,14 @@ function BurgerIngredients() {
                     </Tab>
                 </div>
 
-                <div className={css.ingrediens_scrollzone}>
+                <div className={css.scrollzone}>
                     <ProductList listType={'bun'}/>
 
                     <ProductList listType={'main'}/>
 
                     <ProductList listType={'sauce'}/>
                 </div>
+
             </div>
         </>
     );

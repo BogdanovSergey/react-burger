@@ -1,7 +1,41 @@
-.burgerconstructor_column{
+.column{
     border: 4px double purple;
-
+    position: relative;
     /*position: absolute;*/
     width: 600px;
-    height: 912px;
+    height: 500px;
+}
+
+.header_box {
+    width: 60px;
+    height: 100px;
+    border: 4px double purple;
+}
+.scrollzone {
+    overflow: auto;
+    height: 100%;
+}
+.scrollzone::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+    background-color: #0003; /* or add it to the track */
+}
+.scrollzone::-webkit-scrollbar-thumb {
+    background: #8585AD;
+}
+.column_list {
+    composes: scrollzone;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.total {
+    border: 4px double purple;
+
+    padding-top: 40px;
+    display:flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: flex-end;
 }
