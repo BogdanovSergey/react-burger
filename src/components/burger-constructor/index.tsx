@@ -2,7 +2,7 @@ import React from 'react';
 import css from './index.module.css';
 import {Button, ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import data from '../../utils/data.json';
-import Product from "../product";
+
 
 function BurgerConstructor() {
     const bunUp = data.find(item => item._id === '60666c42cc7b410027a1a9b1');
