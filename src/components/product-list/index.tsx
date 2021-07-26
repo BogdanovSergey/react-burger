@@ -1,16 +1,14 @@
 import React from 'react';
-import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import data from '../../utils/data.json';
 import css from './index.module.css';
 import Product from "../product";
-
 
 type listTypes = 'bun' | 'sauce' | 'main'
 const typeNames = {
     'bun':'Булки',
     'sauce':'Соусы',
     'main':'Начинки'
-}
+};
 
 interface ProductListProps {
     listType: listTypes;

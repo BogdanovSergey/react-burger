@@ -1,10 +1,6 @@
 import React from 'react';
 import {
-    Logo,
-    BurgerIcon,
-    ListIcon,
-    ProfileIcon,
-    CurrencyIcon, Button
+    Logo, BurgerIcon, ListIcon, ProfileIcon
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './index.module.css';
 
