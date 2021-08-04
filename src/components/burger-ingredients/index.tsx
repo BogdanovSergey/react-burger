@@ -3,8 +3,13 @@ import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './index.module.css';
 import ProductList from '../product-list';
 
-function BurgerIngredients() {
+interface p  {
+    apiData:()=>{}
+}
+
+const BurgerIngredients:React.FC<p> =  (apiData) => {
     const [current, setCurrent] = React.useState('one')
+    console.log(p.apiData);
     return (
         <div className={css.column}>
             <p className="text text_type_main-large">
