@@ -1,18 +1,18 @@
 import React, {useState} from 'react';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './burger.module.css';
-import ModalComp from './burger-modal';
+
 import ProductList from '../product-list';
 
 export const BurgerIngredients = (props) => {
-    const [modalActive, setModalActive] = useState(false);
+	//const [modalIsActive, setModalActive] = useState(false);
     const [current, setCurrent] = React.useState('one');
-
+    
     return (
         <div className={css.column}>
             <p className="text text_type_main-large">
                 Соберите бургер
-
+	       
             </p>
             <div style={{ display: 'flex' }}>
                 <Tab value="one" active={current === 'one'} onClick={setCurrent}>
@@ -26,20 +26,15 @@ export const BurgerIngredients = (props) => {
                 </Tab>
             </div>
             <div className={css.scrollzone}>
+	            
+                <ProductList listType={'bun'} apiData={props.apiData.filter((itm)=>itm.type==='bun' && itm)}/>
 
-                <button onClick={()=>setModalActive(true)}>open modal</button>
+                <ProductList listType={'main'} apiData={props.apiData.filter((itm)=>itm.type==='main'&& itm)}/>
 
-                <ModalComp active={modalActive} setActive={setModalActive}/>
-
-                <ProductList listType={'bun'} apiData={props.apiData.filter((i)=>i.type==='bun' && i)}/>
-
-                <ProductList listType={'main'} apiData={props.apiData.filter((i)=>i.type==='main'&& i)}/>
-
-                <ProductList listType={'sauce'} apiData={props.apiData.filter((i)=>i.type==='sauce' && i)}/>
-
+                <ProductList listType={'sauce'} apiData={props.apiData.filter((itm)=>itm.type==='sauce' && itm)}/>
+                
             </div>
 
         </div>
     );
 }
-

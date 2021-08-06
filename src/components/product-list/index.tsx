@@ -12,9 +12,11 @@ const typeNames = {
 
 interface ProductListProps {
     listType: listTypes;
+    apiData:    []
 }
 
-export const ProductList: React.FC<ProductListProps> = ({listType}) => {
+export const ProductList: React.FC<ProductListProps> = ({listType,apiData}) => {
+    console.log(apiData);
     return (
        <>
            <p className="text text_type_main-medium">

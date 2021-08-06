@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import css from './index.module.css';
 import {Button, ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import data from '../../utils/data.json';
+import {Portal} from "../portal";
 
-function BurgerConstructor() {
+const BurgerConstructor = () =>{
+    const [modalIsActive, setModalActive] = useState(false);
     const bunUp = data.find(item => item._id === '60666c42cc7b410027a1a9b1');
     const bunDown = data.find(item => item._id === '60666c42cc7b410027a1a9b2');
     return (
@@ -49,7 +51,9 @@ function BurgerConstructor() {
             <div className={css.total}>
                 <p className="text text_type_digits-medium">610</p>
                 <CurrencyIcon type="primary"/>
-                <Button type="primary" size="medium">Оформить заказ</Button>
+                <Button type="primary" size="medium" onClick={()=>setModalActive(true)}>Оформить заказ</Button>
+
+                {modalIsActive && <Portal setModalActive={setModalActive} type="order" content={<div>order</div>}/>}
             </div>
         </div>
     );

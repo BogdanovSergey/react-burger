@@ -1,13 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import css from './index.module.css';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import {Portal} from "../portal";
 
-/*
- > лучше пока типизировать с помощью propTypes, хотя можно и typescript, но тогда следите за правильностью типизации
-
-Здравствуйте, Геннадий!
-Благодарю Вас за совет. Однако наш тимлид (Dmitry Gorban) настаивает на typescript типизации.
-*/
 export interface ProductProps {
     name: string;
     price: number;
@@ -16,8 +11,10 @@ export interface ProductProps {
 
 //function Product(name:string,) {
 export const Product: React.FC<ProductProps> = ({name,price,image}) => {
-    return (
-        <div className={css.product_some}>
+    const [modalIsActive, setModalActive] = useState(false);
+
+    const productContent =
+        <div className={css.product_some} onClick={()=>setModalActive(true)}>
             <img src={image} alt={name}/>
             <span style={{display: 'inline-flex'}}>
                 <span style={{marginRight:'8px'}}>{price}</span> <CurrencyIcon type="primary"/>
@@ -25,6 +22,12 @@ export const Product: React.FC<ProductProps> = ({name,price,image}) => {
             <span>
                {name}
            </span>
+        </div>
+
+    return (
+        <div>
+            {productContent}
+            {modalIsActive && <Portal setModalActive={setModalActive} type="product" content={productContent}/>}
         </div>
     );
 }

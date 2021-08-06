@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
     padding: 0px;
-
+    cursor: pointer;
     height: 208px;
     width:272px;
 }

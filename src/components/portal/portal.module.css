@@ -1,7 +1,36 @@
-.column{
-    /*border: 4px double purple;*/
-    position: relative;
-    /*position: absolute;*/
-    width: 600px;
-    height: 500px;
+.modal {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(229,229,229, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    /*transform: scale(0);*/
+}
+.close_button {
+    /*position: relative ;*/
+    display:flex;
+    margin-left: 90%;
+    cursor: pointer;
+}
+.modal_content {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #000000;
+    height: 300px;
+    width: 350px;
+    z-index: 1000;
+    color: #FFFFFF;
+    /*transform: scale(1);*/
+}
+.order_details {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    /*justify-content: flex-end;*/
+
 }
