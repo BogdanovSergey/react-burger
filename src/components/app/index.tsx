@@ -2,7 +2,7 @@ import React,{useEffect} from 'react';
 import css from './index.module.css';
 import AppHeader from '../app-header';
 import Margin from '../margin';
-import BurgerIngredients from '../burger-ingredients';
+import {BurgerIngredients} from '../burger-ingredients';
 import BurgerConstructor from '../burger-constructor';
 
 function App() {
