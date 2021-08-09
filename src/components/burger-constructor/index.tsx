@@ -53,7 +53,7 @@ const BurgerConstructor = () =>{
                 <CurrencyIcon type="primary"/>
                 <Button type="primary" size="medium" onClick={()=>setModalActive(true)}>Оформить заказ</Button>
 
-                {modalIsActive && <Portal setModalActive={setModalActive} type="order" content={<div>order</div>}/>}
+                {modalIsActive && <Portal setModalActive={setModalActive} type="order" />}
             </div>
         </div>
     );

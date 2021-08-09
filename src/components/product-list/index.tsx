@@ -15,7 +15,7 @@ interface ProductListProps {
     apiData:    []
 }
 
-export const ProductList: React.FC<ProductListProps> = ({listType,apiData}) => {
+export const ProductList: React.FC<ProductListProps> = ({listType, apiData}) => {
     console.log(apiData);
     return (
        <>
@@ -25,7 +25,7 @@ export const ProductList: React.FC<ProductListProps> = ({listType,apiData}) => {
            <div className={css.product_list}>
                {data.map((itm) => {
                    return (itm.type === listType) ?
-                       <Product key={itm._id} image={itm.image} name={itm.name} price={itm.price}/> : null
+                       <Product key={itm._id} apiData={itm}/> : null
                })}
            </div>
        </>

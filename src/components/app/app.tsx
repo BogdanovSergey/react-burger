@@ -4,10 +4,11 @@ import AppHeader from '../app-header';
 import Margin from '../margin';
 import {BurgerIngredients} from '../burger-ingredients';
 import BurgerConstructor from '../burger-constructor';
-//import ModalComp from "../burger-ingredients/burger-modal";
+import * as config from '../../config';
+
 
 export const App = () => {
-    const apiUrl = 'https://norma.nomoreparties.space/api/ingredients ';
+    const apiUrl = config.apiUrl;
     const [apiData, setApiData] = React.useState([]);
 
     function getApiData() {
