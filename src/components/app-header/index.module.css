@@ -1,20 +1,21 @@
-
 .app_header {
-    /*border: 4px double red;*/
+    border: 10px double red;
     height: 88px;
-    left: 20%;
-    right: 2%;
+    /*left: 20%;
+    right: 2%;*/
     top: 40px;
-}
-.app_header_in {
-    /*border: 4px double blue;*/
+    width:1200px;
 
     display: flex;
     flex-direction: row;
     justify-content:center;
-    padding: 3px 5px 0px 0px;
+}
+.app_header_in {
+    /*border: 4px double blue;*/
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
     gap:300px;
-
 }
 
 .app_header_row {
@@ -22,5 +23,45 @@
      flex-direction: row;
      gap: 20px;
      align-items: center;
+}
 
- }
+.side {
+    /*border: 3px solid orange;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 1250px;
+    /*max-width: 1200px;*/
+    /*margin-bottom:20px;*/
+    margin:40px;
+}
+
+.centr {
+    /*border: 3px solid black;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position:absolute;
+    left:50%;
+    right:50%;
+
+}
+
+.box1 {
+    /*border: 1px solid green;*/
+    display: flex;
+    flex-direction: row;
+    width:350px;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.inmenu{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+}
+.box3 {
+    /*border: 1px solid red;*/
+}

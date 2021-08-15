@@ -2,8 +2,7 @@ import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import css from './portal.module.css';
 import closeImg from '../../images/close.svg';
-import {OrderDetails} from './order-details';
-import {IngredientDetails} from './ingredient-details';
+import PropTypes from 'prop-types';
 
 export const Portal = (props) => {
 	
@@ -17,23 +16,23 @@ export const Portal = (props) => {
 			document.removeEventListener('keydown', escFunc);
 		}
 	}, [props]);
-
-	console.log(props.productData);
+	
+	const chArr = React.Children.toArray(props.children);
+	const header = (typeof(chArr[0]) === 'string') ? chArr[0] : null;
+	const content = (chArr[1]) ? chArr[1] : chArr[0];
 
     const portalContent =
         <div className={css.modal} onClick={()=>{props.setModalActive(false)}}>
 	        <div className={css.modal_content} onClick={e=>e.stopPropagation()}>
-
+		       
 				{/*Заголовок портала*/}
 		        <div className={css.modal_content_caption}>
-					<span className="text text_type_main-medium" style={{paddingLeft:'20px',position:'relative',float:'left'}}>{props.type==='product' && 'Детали ингредиента'}</span>
+					<span className="text text_type_main-medium" style={{paddingLeft:'40px',paddingTop: '40px',position:'relative',float:'left'}}>{header}</span>
 			        <img src={closeImg} alt={"Закрыть"} className={css.close_button} onClick={()=>props.setModalActive(false)}/>
 		        </div>
 
 				{/*Компонент-содержание*/}
-		        {props.type==='order' && <OrderDetails/>}
-				{props.type==='product' && <IngredientDetails productData={props.productData}/>}
-
+		        {content}
 	        </div>
         </div>
 
@@ -42,4 +41,8 @@ export const Portal = (props) => {
         document.getElementById('portal')
     );
     
+}
+
+Portal.propTypes = {
+	setModalActive: PropTypes.func
 }

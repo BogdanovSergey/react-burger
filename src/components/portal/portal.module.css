@@ -1,7 +1,7 @@
 .modal {
     height: 100vh;
     width: 100vw;
-    background-color: rgba(229,229,229, 0.7);
+    background-color: rgba(19, 19, 19, 0.7);
     position: fixed;
     top: 0;
     left: 0;
@@ -15,14 +15,15 @@
 .close_button {
     /*position: relative ;*/
     display:flex;
-    padding-right: 20px;
+    padding-right: 50px;
+    padding-top: 40px;
     cursor: pointer;
 }
 .modal_content {
     border-radius: 12px;
-    background-color: #000000;
-    height: 350px;
-    width: 400px;
+    background-color: rgb(28, 28, 33);
+    height: 540px;
+    width: 700px;
     z-index: 1000;
     color: #FFFFFF;
 

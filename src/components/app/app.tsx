@@ -1,9 +1,8 @@
 import React,{useEffect} from 'react';
 import css from './app.module.css';
-import AppHeader from '../app-header';
-import Margin from '../margin';
+import {AppHeader} from '../app-header';
 import {BurgerIngredients} from '../burger-ingredients';
-import BurgerConstructor from '../burger-constructor';
+import {BurgerConstructor} from '../burger-constructor';
 import * as config from '../../config';
 import {getApiData} from '../../utils/norma-api';
 
@@ -20,9 +19,10 @@ export const App = () => {
             <AppHeader />
             <main className={css.main_columns}>
                 <BurgerIngredients apiData={apiData}/>
-                <Margin height={"40px"} width={"44px"}/>
                 <BurgerConstructor />
             </main>
         </div>
     );
 }
+
+export default App;

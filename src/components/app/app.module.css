@@ -1,19 +1,17 @@
 .main_rect {
-    /*border: 4px double yellow;*/
-    position: absolute;
-    left: 2%;
-    right: 2%;
-    top: 2%;
-    bottom: 2%;
+    /*border: 8px double yellow;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .main_columns {
-    /*border: 4px double lightgreen;*/
+    /*border: 4px dotted lightgreen;*/
     display: flex;
     flex-direction: row;
-    justify-content:center;
-
+    justify-content:space-between;
     padding: 16px 20px;
+    gap:40px;
 
 }
 
