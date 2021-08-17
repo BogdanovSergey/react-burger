@@ -1,11 +1,12 @@
 import React from 'react';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './burger.module.css';
+import {ingredientPropType} from '../../prop-types';
 import {ProductList} from '../product-list';
 
 export const BurgerIngredients = (props) => {
     const [current, setCurrent] = React.useState('bun');
-	
+	console.log(props.apiData);
 	const setTab = (tab) => {
 		console.log(tab);
 		setCurrent(tab);
@@ -35,3 +36,4 @@ export const BurgerIngredients = (props) => {
         </div>
     );
 }
+BurgerIngredients.propTypes = ingredientPropType;

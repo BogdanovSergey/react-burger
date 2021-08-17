@@ -1,6 +1,7 @@
 import React from 'react';
 import css from './index.module.css';
 import {Product} from "../product";
+import {productListPropTypes} from '../../prop-types';
 
 export const ProductList = (props) => {
     return (
@@ -17,4 +18,5 @@ export const ProductList = (props) => {
     );
 }
 
+ProductList.propTypes = productListPropTypes;
 export default ProductList;

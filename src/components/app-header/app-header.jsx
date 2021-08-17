@@ -18,11 +18,11 @@ export const AppHeader = () => {
 	                */}
 	                <a href="#" className={css.inmenu}>
 		                <BurgerIcon type="primary"/>
-                        <span style={{marginLeft:'8px'}} className="text text_type_main-default">Конструктор</span>
+                        <span className="menuText text text_type_main-default ">Конструктор</span>
 	                </a>
 	                <a href="#" className={css.inmenu}>
                         <ListIcon type="primary"/>
-                        <span style={{marginLeft:'8px'}} className="text text_type_main-default">Лента Заказов</span>
+                        <span className="menuText text text_type_main-default">Лента Заказов</span>
 	                </a>
                 </div>
 
@@ -35,7 +35,7 @@ export const AppHeader = () => {
                 <div className={css.box3}>
 	                <a href="#" className={css.inmenu}>
                         <ProfileIcon type="primary" />
-                        <span style={{marginLeft:'8px'}} className="text text_type_main-default">Личный кабинет</span>
+                        <span className="menuText text text_type_main-default">Личный кабинет</span>
 	                </a>
                 </div>
 

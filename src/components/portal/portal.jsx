@@ -2,10 +2,9 @@ import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import css from './portal.module.css';
 import closeImg from '../../images/close.svg';
-import PropTypes from 'prop-types';
+import {portalPropTypes} from '../../prop-types';
 
 export const Portal = (props) => {
-	
 	useEffect(() => {
 		// включаем обработчик нажатия Esc
 		const escFunc = (e) => (e.key === "Escape") && props.setModalActive(false);
@@ -17,22 +16,18 @@ export const Portal = (props) => {
 		}
 	}, [props]);
 	
-	const chArr = React.Children.toArray(props.children);
-	const header = (typeof(chArr[0]) === 'string') ? chArr[0] : null;
-	const content = (chArr[1]) ? chArr[1] : chArr[0];
-
     const portalContent =
         <div className={css.modal} onClick={()=>{props.setModalActive(false)}}>
 	        <div className={css.modal_content} onClick={e=>e.stopPropagation()}>
 		       
 				{/*Заголовок портала*/}
 		        <div className={css.modal_content_caption}>
-					<span className="text text_type_main-medium" style={{paddingLeft:'40px',paddingTop: '40px',position:'relative',float:'left'}}>{header}</span>
+					<span className="text text_type_main-medium portal_header">{props.header}</span>
 			        <img src={closeImg} alt={"Закрыть"} className={css.close_button} onClick={()=>props.setModalActive(false)}/>
 		        </div>
 
 				{/*Компонент-содержание*/}
-		        {content}
+		        {props.children}
 	        </div>
         </div>
 
@@ -43,6 +38,4 @@ export const Portal = (props) => {
     
 }
 
-Portal.propTypes = {
-	setModalActive: PropTypes.func
-}
+Portal.propTypes = portalPropTypes;
