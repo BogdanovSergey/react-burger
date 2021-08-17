@@ -62,15 +62,12 @@
     align-items: center;
     margin-top: 10px;
     text-decoration: none;
-
 }
-.box3 {
-    /*border: 1px solid red;*/
-}
-
-.menuText {
+.inmenu span {
     margin-left: 8px;
     color:  #FFFFFF;
     text-decoration: none;
-
+}
+.box3 {
+    /*border: 1px solid red;*/
 }

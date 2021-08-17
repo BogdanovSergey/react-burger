@@ -9,8 +9,6 @@
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    /*transform: scale(0);*/
-
 }
 .close_button {
     /*position: relative ;*/
@@ -30,17 +28,21 @@
     display: flex;
     flex-direction:column;
     align-items: center;
-    /*transform: scale(1);*/
 }
 
 .modal_content_caption {
     /*border: 4px double blue;*/
     width: 100%;
     margin: 10px;
-
     display: flex;
     flex-direction:row;
     justify-content: space-between;
+}
+.modal_content_caption span {
+    padding-left: 40px;
+    padding-top: 40px;
+    position: relative;
+    float: left;
 }
 
 .order_details {
@@ -49,4 +51,3 @@
     align-items: center;
     justify-content: space-between;
 }
-

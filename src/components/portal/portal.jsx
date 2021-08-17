@@ -22,7 +22,7 @@ export const Portal = (props) => {
 		       
 				{/*Заголовок портала*/}
 		        <div className={css.modal_content_caption}>
-					<span className="text text_type_main-medium portal_header">{props.header}</span>
+					<span className="text text_type_main-medium">{props.header}</span>
 			        <img src={closeImg} alt={"Закрыть"} className={css.close_button} onClick={()=>props.setModalActive(false)}/>
 		        </div>
 

@@ -11,17 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-
-/* изврат, не знаю как иначе? */
-.menuText { /* Не знаю как вписать стиль в span className (src/components/app-header/app-header.jsx:21), подскажите, пжл */
-    margin-left: 8px !important;
-    color: #FFFFFF !important;
-    text-decoration: none !important;
-}
-.portal_header {
-    padding-left: 40px !important;
-    padding-top: 40px !important;
-    position: relative !important;
-    float: left !important;
-}
