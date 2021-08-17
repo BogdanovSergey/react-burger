@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import css from './portal.module.css';
 import closeImg from '../../images/close.svg';
-import {portalPropTypes} from '../../prop-types';
+import PropTypes from "prop-types";
 
 export const Portal = (props) => {
 	useEffect(() => {
@@ -38,4 +38,6 @@ export const Portal = (props) => {
     
 }
 
-Portal.propTypes = portalPropTypes;
+Portal.propTypes = {
+	setModalActive: PropTypes.func.isRequired
+};

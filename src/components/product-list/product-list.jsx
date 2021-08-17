@@ -1,7 +1,8 @@
 import React from 'react';
 import css from './index.module.css';
 import {Product} from "../product";
-import {productListPropTypes} from '../../prop-types';
+import {ingredientType} from '../../prop-types';
+import PropTypes from "prop-types";
 
 export const ProductList = (props) => {
     return (
@@ -18,5 +19,8 @@ export const ProductList = (props) => {
     );
 }
 
-ProductList.propTypes = productListPropTypes;
+ProductList.propTypes = {
+	id : PropTypes.string,
+	apiData: PropTypes.arrayOf(ingredientType)
+};
 export default ProductList;

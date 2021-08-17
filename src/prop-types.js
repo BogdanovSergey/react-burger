@@ -15,20 +15,3 @@ export const ingredientType = PropTypes.shape({
 	"__v": PropTypes.number.isRequired
 });
 
-export const ingredientPropType = {
-	apiData: PropTypes.arrayOf(ingredientType)
-};
-
-export const portalPropTypes = {
-	setModalActive: PropTypes.func.isRequired
-};
-
-export const productPropTypes = {
-	name : PropTypes.string,
-	image: PropTypes.string,
-	price: PropTypes.number
-}
-export const productListPropTypes = {
-	id : PropTypes.string,
-	apiData: PropTypes.arrayOf(ingredientType)
-}

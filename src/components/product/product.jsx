@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import css from './index.module.css';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {IngredientDetails, Portal} from "../portal";
-import {productPropTypes} from '../../prop-types';
+import PropTypes from "prop-types";
 
 export const Product = ({apiData}) => {
     const [modalIsActive, setModalActive] = useState(false);
@@ -29,5 +29,9 @@ export const Product = ({apiData}) => {
     );
 }
 
-Product.propTypes = productPropTypes;
+Product.propTypes = {
+	name : PropTypes.string,
+	image: PropTypes.string,
+	price: PropTypes.number
+};
 export default Product;
