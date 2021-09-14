@@ -1,12 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import css from './index.module.css';
 import {Button, ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import data from '../../utils/data.json';
 import {OrderDetails, Portal} from "../portal";
+import {ApiDataContext} from '../../utils/context';
 
+/*  Конструктор - ПРАВЫЙ блок */
 export const BurgerConstructor = () => {
     const [modalIsActive, setModalActive] = useState(false);
-    const bun = data.find(item => item._id === '60666c42cc7b410027a1a9b1');
+	const apiData = useContext(ApiDataContext);
+    const bun = apiData.find(item => item.type === 'bun');
+    
+    
     //const bunDown = data.find(item => item._id === '60666c42cc7b410027a1a9b2');
     /* убираю нижнюю булку по просьбе SmilingJey (5 days ago):
     "по заданию следующего спринта должны быть одинаковые булки сверху и снизу, не нужно делать bunUp и bunDown , достаточно одной bun" */
@@ -27,7 +31,7 @@ export const BurgerConstructor = () => {
 
             {/*Содержание булки*/}
             <div className={css.column_list}>
-                {data.map((itm) => {
+                {apiData.map((itm) => {
                     return (itm.type === 'main' || itm.type === 'sauce') ?
                         <ConstructorElement
                             key={itm._id}

@@ -5,6 +5,7 @@ import {BurgerIngredients} from '../burger-ingredients';
 import {BurgerConstructor} from '../burger-constructor';
 import * as config from '../../config';
 import {getApiData} from '../../utils/norma-api';
+import {ApiDataContext} from '../../utils/context';
 
 export const App = () => {
     const apiUrl = config.apiUrl;
@@ -19,7 +20,9 @@ export const App = () => {
             <AppHeader />
             <main className={css.main_columns}>
                 <BurgerIngredients apiData={apiData}/>
-                <BurgerConstructor />
+                <ApiDataContext.Provider value={apiData}>
+                    <BurgerConstructor />
+                </ApiDataContext.Provider>
             </main>
         </div>
     );

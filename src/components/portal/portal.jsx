@@ -1,10 +1,13 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import ReactDOM from 'react-dom';
 import css from './portal.module.css';
 import closeImg from '../../images/close.svg';
 import PropTypes from "prop-types";
+import {ApiDataContext} from "../../utils/context";
 
 export const Portal = (props) => {
+	const apiData = useContext(ApiDataContext);
+	console.log(apiData)
 	useEffect(() => {
 		// включаем обработчик нажатия Esc
 		const escFunc = (e) => (e.key === "Escape") && props.setModalActive(false);
