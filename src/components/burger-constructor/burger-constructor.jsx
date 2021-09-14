@@ -2,18 +2,43 @@ import React, {useState, useContext} from 'react';
 import css from './index.module.css';
 import {Button, ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {OrderDetails, Portal} from "../portal";
-import {ApiDataContext} from '../../utils/context';
+import {ApiDataContext,OrderContext} from '../../utils/context';
+import {RandomKey} from '../../utils/random-key';
+import * as config from '../../config';
 
 /*  Конструктор - ПРАВЫЙ блок */
 export const BurgerConstructor = () => {
     const [modalIsActive, setModalActive] = useState(false);
 	const apiData = useContext(ApiDataContext);
+    const orderObj = useContext(OrderContext); // TODO .....................
     const bun = apiData.find(item => item.type === 'bun');
-    
-    
-    //const bunDown = data.find(item => item._id === '60666c42cc7b410027a1a9b2');
-    /* убираю нижнюю булку по просьбе SmilingJey (5 days ago):
-    "по заданию следующего спринта должны быть одинаковые булки сверху и снизу, не нужно делать bunUp и bunDown , достаточно одной bun" */
+    let orderSumm = 0;
+
+    let createOrder = function() {
+        let ingredientsArr = {'ingredients':['60d3b41abdacab0026a733c6','60d3b41abdacab0026a733cf']};
+        fetch(config.createOrderUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(ingredientsArr)}
+            )
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    console.log(result.order.number);
+                    setModalActive(true);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                alert('Error connecting to Api');
+            });
+
+
+    }
+
+
     return (
         <div className={css.column}>
             <div className={css.header_box}/>
@@ -32,20 +57,18 @@ export const BurgerConstructor = () => {
             {/*Содержание булки*/}
             <div className={css.column_list}>
                 {apiData.map((itm) => {
-                    return (itm.type === 'main' || itm.type === 'sauce') ?
-                        <ConstructorElement
-                            key={itm._id}
-                            /* SmilingJey:
-                            в бургере может быть несколько одинаковых ингредиентов, поэтому нельзя использовать _id ингредиента для key.
-                            Обратите на это внимание в следующем спринте, при добавлении ингредиента в бургер нужно будет генерировать
-                            уникальный id и добавлять его объекту ингредиента конструктора, что бы использовать как key
-                            */
+                    if(itm.type === 'main' || itm.type === 'sauce') {
+                        orderSumm += itm.price;
+                        return <ConstructorElement
+                            key={RandomKey()}
+                            /*key={itm._id}*/
                             text={itm.name}
                             price={itm.price}
                             thumbnail={itm.image}
-                        /> : null}
-                    )
+                        />
+                    }
                 }
+                )}
             </div>
 
             {/*Выделяем нижнюю булку вне скролла*/}
@@ -60,10 +83,10 @@ export const BurgerConstructor = () => {
                 /> : null}
 
             <div className={css.total}>
-                <p className="text text_type_digits-medium">610</p>
+                <p className="text text_type_digits-medium">{orderSumm}</p>
                 <CurrencyIcon type="primary"/>
-                <Button type="primary" size="medium" onClick={()=>setModalActive(true)}>Оформить заказ</Button>
-
+                <Button type="primary" size="medium" onClick={createOrder}>Оформить заказ</Button>
+                {/*    onClick={()=>setModalActive(true)}   */}
                 {modalIsActive && <Portal setModalActive={setModalActive}>
 	                <OrderDetails/>
                 </Portal>}

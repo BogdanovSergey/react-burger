@@ -5,12 +5,12 @@ import {BurgerIngredients} from '../burger-ingredients';
 import {BurgerConstructor} from '../burger-constructor';
 import * as config from '../../config';
 import {getApiData} from '../../utils/norma-api';
-import {ApiDataContext} from '../../utils/context';
+import {ApiDataContext,OrderContext} from '../../utils/context';
 
 export const App = () => {
     const apiUrl = config.apiUrl;
     const [apiData, setApiData] = React.useState([]);
-
+    const [orderObj, setOrderObj] = React.useState({number:0,items:[]});
     useEffect(()=>{
         getApiData(apiUrl, setApiData);
     },[apiUrl, setApiData]);
@@ -21,7 +21,11 @@ export const App = () => {
             <main className={css.main_columns}>
                 <BurgerIngredients apiData={apiData}/>
                 <ApiDataContext.Provider value={apiData}>
-                    <BurgerConstructor />
+
+                    <OrderContext.Provider value={orderObj}>
+                        <BurgerConstructor />
+                    </OrderContext.Provider>
+
                 </ApiDataContext.Provider>
             </main>
         </div>
