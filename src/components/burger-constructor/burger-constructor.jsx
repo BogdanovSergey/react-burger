@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react';
 import css from './index.module.css';
 import {Button, ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {OrderDetails, Portal} from "../portal";
-import {ApiDataContext,OrderContext} from '../../utils/context';
+import {ApiDataContext, SetOrderContext} from '../../utils/context';
 import {RandomKey} from '../../utils/random-key';
 import * as config from '../../config';
 
@@ -10,23 +10,26 @@ import * as config from '../../config';
 export const BurgerConstructor = () => {
     const [modalIsActive, setModalActive] = useState(false);
 	const apiData = useContext(ApiDataContext);
-    const orderObj = useContext(OrderContext); // TODO .....................
+    const setOrderObj = useContext(SetOrderContext);
     const bun = apiData.find(item => item.type === 'bun');
     let orderSumm = 0;
 
     let createOrder = function() {
-        let ingredientsArr = {'ingredients':['60d3b41abdacab0026a733c6','60d3b41abdacab0026a733cf']};
+        let ingredientsArr = [];
+        for(let itm of apiData) {ingredientsArr.push(itm._id) }
+
         fetch(config.createOrderUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
-            body: JSON.stringify(ingredientsArr)}
+            body: JSON.stringify({'ingredients':ingredientsArr})}
             )
             .then(response => response.json())
             .then(result => {
                 if (result.success) {
-                    console.log(result.order.number);
+                    let orderNumber = result.order.number;
+                    setOrderObj({number:orderNumber})
                     setModalActive(true);
                 }
             })
@@ -35,9 +38,7 @@ export const BurgerConstructor = () => {
                 alert('Error connecting to Api');
             });
 
-
     }
-
 
     return (
         <div className={css.column}>
@@ -86,7 +87,6 @@ export const BurgerConstructor = () => {
                 <p className="text text_type_digits-medium">{orderSumm}</p>
                 <CurrencyIcon type="primary"/>
                 <Button type="primary" size="medium" onClick={createOrder}>Оформить заказ</Button>
-                {/*    onClick={()=>setModalActive(true)}   */}
                 {modalIsActive && <Portal setModalActive={setModalActive}>
 	                <OrderDetails/>
                 </Portal>}

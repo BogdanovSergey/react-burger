@@ -1,4 +1,3 @@
-import React from 'react';
 
 export const RandomKey = function() {
     let length = 24,

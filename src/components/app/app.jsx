@@ -5,7 +5,7 @@ import {BurgerIngredients} from '../burger-ingredients';
 import {BurgerConstructor} from '../burger-constructor';
 import * as config from '../../config';
 import {getApiData} from '../../utils/norma-api';
-import {ApiDataContext,OrderContext} from '../../utils/context';
+import {ApiDataContext,OrderContext,SetOrderContext} from '../../utils/context';
 
 export const App = () => {
     const apiUrl = config.apiUrl;
@@ -23,7 +23,9 @@ export const App = () => {
                 <ApiDataContext.Provider value={apiData}>
 
                     <OrderContext.Provider value={orderObj}>
-                        <BurgerConstructor />
+                        <SetOrderContext.Provider value={setOrderObj}>
+                            <BurgerConstructor />
+                        </SetOrderContext.Provider>
                     </OrderContext.Provider>
 
                 </ApiDataContext.Provider>

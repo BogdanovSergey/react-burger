@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import css from './portal.module.css';
 import imgDone from '../../images/done.svg';
-import * as config from '../../config';
+import {OrderContext} from '../../utils/context';
 
 export const OrderDetails = () => {
+	const orderObj = useContext(OrderContext);
 	return(
 		<div className={css.order_details}>
+			<p className="text text_type_digits-large">{orderObj.number}</p>
 
-			<p className="text text_type_digits-large">{config.testOrderNo}</p>
-			
 			<p className="text text_type_main-medium" style={{padding:'15px',paddingBottom:'40px'}}>идентификатор заказа</p>
 			
 			<img src={imgDone} alt={"done"}/>
