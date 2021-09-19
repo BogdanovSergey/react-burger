@@ -19,9 +19,8 @@ export const App = () => {
         <div className={css.main_rect}>
             <AppHeader />
             <main className={css.main_columns}>
-                <BurgerIngredients apiData={apiData}/>
                 <ApiDataContext.Provider value={apiData}>
-
+                    <BurgerIngredients />
                     <OrderContext.Provider value={orderObj}>
                         <BurgerConstructor />
                     </OrderContext.Provider>

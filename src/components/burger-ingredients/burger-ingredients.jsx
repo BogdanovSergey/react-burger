@@ -1,22 +1,23 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './burger.module.css';
 import {ingredientType} from '../../prop-types';
 import {ProductList} from '../product-list';
 import PropTypes from "prop-types";
+import {ApiDataContext} from "../../utils/context";
 
-export const BurgerIngredients = (props) => {
+export const BurgerIngredients = () => {
     const [current, setCurrent] = React.useState('bun');
-	console.log(props.apiData);
+	const apiData = useContext(ApiDataContext);
 	const setTab = (tab) => {
 		console.log(tab);
 		setCurrent(tab);
 		const element = document.getElementById(tab);
 		if (element) element.scrollIntoView({ behavior: "smooth" });
 	};
-	const listBun = props.apiData.filter((itm)=>itm.type==='bun' && itm);
-	const listMain= props.apiData.filter((itm)=>itm.type==='main'&& itm);
-	const listSauce=props.apiData.filter((itm)=>itm.type==='sauce' && itm);
+	const listBun = apiData.filter((itm)=>itm.type==='bun' && itm);
+	const listMain= apiData.filter((itm)=>itm.type==='main'&& itm);
+	const listSauce=apiData.filter((itm)=>itm.type==='sauce' && itm);
     return (
         <div className={css.column}>
             <p className="text text_type_main-large">

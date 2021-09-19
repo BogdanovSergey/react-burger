@@ -23,7 +23,13 @@ export const BurgerConstructor = () => {
             },
             body: JSON.stringify(ingredientsArr)}
             )
-            .then(response => response.json())
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    return Promise.reject(response.status);
+                }
+            })
             .then(result => {
                 if (result.success) {
                     console.log(result.order.number);
@@ -32,7 +38,7 @@ export const BurgerConstructor = () => {
             })
             .catch(error => {
                 console.log(error);
-                alert('Error connecting to Api');
+                alert('Error ' + error + ' while connecting to Api');
             });
 
 

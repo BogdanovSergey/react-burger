@@ -5,7 +5,7 @@ export const getApiData = function(apiUrl, setApiData) {
             if (response.ok) {
                 return response.json();
             } else {
-                throw new Error("Can't get data from Api");
+                return Promise.reject(response.status);
             }
         })
         .then(result => {
@@ -14,6 +14,6 @@ export const getApiData = function(apiUrl, setApiData) {
         })
         .catch(error => {
             console.log(error);
-            alert('Error connecting to Api');
+            alert('Error ' + error + ' while connecting to Api');
         });
 }
