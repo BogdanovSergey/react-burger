@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const RandomKey = function() {
     let length = 24,
         charset = "abcdefghijklmnopqrstuvwxyz0123456789",
