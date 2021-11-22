@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useRef, useEffect, useContext} from 'react';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './burger.module.css';
 import {ingredientType} from '../../prop-types';
@@ -18,6 +18,26 @@ export const BurgerIngredients = () => {
 	const listBun = apiData.filter((itm)=>itm.type==='bun' && itm);
 	const listMain= apiData.filter((itm)=>itm.type==='main'&& itm);
 	const listSauce=apiData.filter((itm)=>itm.type==='sauce' && itm);
+	const primaryRef = useRef(null);
+	const bunRef = useRef(null);
+	const sauceRef = useRef(null);
+	const mainRef = useRef(null);
+
+	const handleScroll = () => {
+		//console.log(primaryRef.current.getBoundingClientRect().top);
+		//console.log(bunRef.current.getBoundingClientRect().top);
+		const bunDistance = Math.abs(primaryRef.current.getBoundingClientRect().top - bunRef.current.getBoundingClientRect().top)
+		const sauceDistance = Math.abs(primaryRef.current.getBoundingClientRect().top - sauceRef.current.getBoundingClientRect().top)
+		const mainDistance = Math.abs(primaryRef.current.getBoundingClientRect().top - mainRef.current.getBoundingClientRect().top)
+		const minDistance = Math.min(bunDistance, sauceDistance, mainDistance);
+		const currentHeader = minDistance === bunDistance ? 'bun' : minDistance === sauceDistance ? 'sauce' : 'main';
+		setCurrent(prevState => (currentHeader === prevState.current ? prevState.current : currentHeader))
+
+	}
+	useEffect(() => {
+		document.querySelector(`#${current}`).scrollIntoView();
+	},[current])
+
     return (
         <div className={css.column}>
             <p className="text text_type_main-large">
@@ -28,10 +48,10 @@ export const BurgerIngredients = () => {
 	            <Tab value="main" active={current === 'main'} onClick={setTab}>Начинки</Tab>
                 <Tab value="sauce" active={current === 'sauce'} onClick={setTab}>Соусы</Tab>
             </div>
-            <div className={css.scrollzone}>
-	            <ProductList apiData={listBun} id={'bun'}>Булки</ProductList>
-	            <ProductList apiData={listMain} id={'main'}>Начинки</ProductList>
-	            <ProductList apiData={listSauce} id={'sauce'}>Соусы</ProductList>
+            <div className={css.scrollzone} ref={primaryRef} onScroll={handleScroll} >
+	            <ProductList apiData={listBun} id={'bun'} subRef={bunRef}>Булки</ProductList>
+	            <ProductList apiData={listMain} id={'main'} subRef={mainRef}>Начинки</ProductList>
+	            <ProductList apiData={listSauce} id={'sauce'} subRef={sauceRef} >Соусы</ProductList>
                 
             </div>
 

@@ -1,6 +1,8 @@
 export const initialState = {
-	ingredients: [],
-	constructor: [],
-	ingredient: {},
-	order: {}
+	data: [],
+	burgerIngredients: {
+		bun: null,
+		contentItems: [],
+		counts: {}
+	}
 };

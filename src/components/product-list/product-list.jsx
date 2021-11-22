@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 export const ProductList = (props) => {
     return (
        <>
-           <p className="text text_type_main-medium" id={props.id}>
+           <p className="text text_type_main-medium" id={props.id} ref={props.subRef}>
 	           {props.children}
            </p>
            <div className={css.product_list}>
