@@ -1,10 +1,11 @@
-import React, {useContext} from 'react';
-import css from './portal.module.css';
+import React from 'react';
+import css from './modal.module.css';
 import imgDone from '../../images/done.svg';
-import {OrderContext} from '../../utils/context';
+import {useSelector} from "react-redux";
 
 export const OrderDetails = () => {
-	const orderObj = useContext(OrderContext);
+	const orderObj = useSelector(state => state.order);
+	
 	return(
 		<div className={css.order_details}>
 			<p className="text text_type_digits-large">{orderObj.number}</p>

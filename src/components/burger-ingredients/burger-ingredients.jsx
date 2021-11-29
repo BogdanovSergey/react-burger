@@ -1,14 +1,14 @@
-import React, {useRef, useEffect, useContext} from 'react';
+import React, {useRef, useEffect} from 'react';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './burger.module.css';
 import {ingredientType} from '../../prop-types';
 import {ProductList} from '../product-list';
 import PropTypes from "prop-types";
-import {ApiDataContext} from "../../utils/context";
+import {useSelector} from "react-redux";
 
 export const BurgerIngredients = () => {
     const [current, setCurrent] = React.useState('bun');
-	const apiData = useContext(ApiDataContext);
+	const apiData = useSelector(store => store.data);
 	const setTab = (tab) => {
 		console.log(tab);
 		setCurrent(tab);
@@ -24,15 +24,12 @@ export const BurgerIngredients = () => {
 	const mainRef = useRef(null);
 
 	const handleScroll = () => {
-		//console.log(primaryRef.current.getBoundingClientRect().top);
-		//console.log(bunRef.current.getBoundingClientRect().top);
 		const bunDistance = Math.abs(primaryRef.current.getBoundingClientRect().top - bunRef.current.getBoundingClientRect().top)
 		const sauceDistance = Math.abs(primaryRef.current.getBoundingClientRect().top - sauceRef.current.getBoundingClientRect().top)
 		const mainDistance = Math.abs(primaryRef.current.getBoundingClientRect().top - mainRef.current.getBoundingClientRect().top)
 		const minDistance = Math.min(bunDistance, sauceDistance, mainDistance);
 		const currentHeader = minDistance === bunDistance ? 'bun' : minDistance === sauceDistance ? 'sauce' : 'main';
 		setCurrent(prevState => (currentHeader === prevState.current ? prevState.current : currentHeader))
-
 	}
 	useEffect(() => {
 		document.querySelector(`#${current}`).scrollIntoView();

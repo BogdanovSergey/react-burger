@@ -4,5 +4,9 @@ export const initialState = {
 		bun: null,
 		contentItems: [],
 		counts: {}
+	},
+	portal: {},
+	order: {
+		number:0
 	}
 };

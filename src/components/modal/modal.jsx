@@ -1,13 +1,11 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom';
-import css from './portal.module.css';
+import css from './modal.module.css';
 import closeImg from '../../images/close.svg';
 import PropTypes from "prop-types";
-import {ApiDataContext} from "../../utils/context";
+import {ModalOverlay} from "../modal-overlay";
 
-export const Portal = (props) => {
-	const apiData = useContext(ApiDataContext);
-	console.log(apiData)
+export const Modal = (props) => {
 	useEffect(() => {
 		// включаем обработчик нажатия Esc
 		const escFunc = (e) => (e.key === "Escape") && props.setModalActive(false);
@@ -20,19 +18,18 @@ export const Portal = (props) => {
 	}, [props]);
 	
     const portalContent =
-        <div className={css.modal} onClick={()=>{props.setModalActive(false)}}>
+	    <>
+		    <ModalOverlay setModalActive={props.setModalActive}/>
 	        <div className={css.modal_content} onClick={e=>e.stopPropagation()}>
-		       
 				{/*Заголовок портала*/}
 		        <div className={css.modal_content_caption}>
 					<span className="text text_type_main-medium">{props.header}</span>
 			        <img src={closeImg} alt={"Закрыть"} className={css.close_button} onClick={()=>props.setModalActive(false)}/>
 		        </div>
-
 				{/*Компонент-содержание*/}
 		        {props.children}
 	        </div>
-        </div>
+	    </>;
 
     return ReactDOM.createPortal(
 	    portalContent,
@@ -41,6 +38,6 @@ export const Portal = (props) => {
     
 }
 
-Portal.propTypes = {
+Modal.propTypes = {
 	setModalActive: PropTypes.func.isRequired
 };

@@ -50,7 +50,6 @@ export const BurgerItem = ({item, index, isLocked, deleteFunc, moveFunc}) => {
     return (
         <li ref={ ref } className={ css.burger_item } style={{ opacity }}>
             <DragIcon type='primary' />
-            
             <ConstructorElement
                 text={item.name}
                 price={item.price}

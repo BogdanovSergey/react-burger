@@ -1,9 +1,9 @@
 import React from 'react';
-import css from "../product/index.module.css";
+import css from "../product/product.module.css";
 import PropTypes from 'prop-types';
 
 export const IngredientDetails = (props) => {
-	console.log(props.productData);
+	//console.log(props.productData);
 	return(
 		<div className={css.product_portal} > {/*onClick={()=>setModalActive(true)}*/}
 			<img src={props.productData.image} alt={props.productData.name} style={{width:'480px'}}/>
