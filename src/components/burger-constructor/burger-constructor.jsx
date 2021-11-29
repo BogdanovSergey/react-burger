@@ -23,8 +23,6 @@ export const BurgerConstructor = ({ onDropHandler }) => {
             canDrop: monitor.canDrop(),
         })
     });
-	//const active = canDrop && isHover;
-	//let constructorClass = active ? css.column_active : canDrop ? css.constructor_candrop : ''
 	let opacity,dropMsgCls,column;
 	if(canDrop) {
 		dropMsgCls = css.drop_msg;
@@ -56,7 +54,6 @@ export const BurgerConstructor = ({ onDropHandler }) => {
 		dispatch(createOrder(ingredientsArr)); // redux-thunk
 		setModalActive(true)
 	}
-	
     return (
         <div className={column} ref={dropTarget} style={{opacity}}>
 	        <div className={dropMsgCls}>
@@ -124,5 +121,4 @@ export const BurgerConstructor = ({ onDropHandler }) => {
         </div>
     );
 }
-
 export default BurgerConstructor;
