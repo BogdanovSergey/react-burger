@@ -4,7 +4,7 @@ import imgDone from '../../images/done.svg';
 import {useSelector} from "react-redux";
 
 export const OrderDetails = () => {
-	const orderObj = useSelector(state => state.order);
+	const orderObj = useSelector(store => store.ingr.order);
 	
 	return(
 		<div className={css.order_details}>

@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import css from './product.module.css';
 import {CurrencyIcon, Counter} from '@ya.praktikum/react-developer-burger-ui-components';
-import {IngredientDetails, Modal} from "../modal";
+import {Modal} from "../modal";
+import {IngredientDetails} from "../ingredient-details";
 import PropTypes from "prop-types";
 import {useDrag} from "react-dnd";
 import {useSelector} from "react-redux";
@@ -16,7 +17,7 @@ export const Product = ({apiData}) => {
 		})
 	})
 	const opacity = isDrag ? 0.5 : 1;
-	const { counts, bun } = useSelector(store => store.burgerIngredients);
+	const { counts, bun } = useSelector(store => store.ingr.burgerIngredients);
 	let count = (counts && typeof(counts[apiData._id]) !== 'undefined') ? counts[apiData._id] : 0;
 	count = (apiData.type==='bun' && count && apiData._id === bun._id) ? 2 : (apiData.type==='bun' ? 0 : count);
     const productContent =
@@ -35,7 +36,7 @@ export const Product = ({apiData}) => {
         <div>
             {productContent}
             {modalIsActive && <Modal header="Детали ингредиента" setModalActive={setModalActive}>
-	            <IngredientDetails productData={apiData}/>
+	            <IngredientDetails/>
             </Modal>
             }
         </div>

@@ -3,8 +3,10 @@ import css from './index.module.css';
 import {Product} from "../product";
 import {ingredientType} from '../../prop-types';
 import PropTypes from "prop-types";
+import { useLocation, Link } from "react-router-dom";
 
 export const ProductList = (props) => {
+    let location = useLocation();
     return (
        <>
            <p className="text text_type_main-medium" id={props.id} ref={props.subRef}>
@@ -12,7 +14,16 @@ export const ProductList = (props) => {
            </p>
            <div className={css.product_list}>
                {props.apiData.map((itm) => {
-                   return (<Product key={itm._id} apiData={itm}/>)
+                   return (
+                       <Link key={itm._id}
+                           to={{
+                               pathname: `ingredients/${itm._id}`,
+                               state: { background: location }
+                           }}
+                           className={css.product_link}
+                       >
+                           <Product apiData={itm}/>
+                       </Link>)
                })}
            </div>
        </>

@@ -8,7 +8,7 @@ import {useSelector} from "react-redux";
 
 export const BurgerIngredients = () => {
     const [current, setCurrent] = React.useState('bun');
-	const apiData = useSelector(store => store.data);
+	const apiData = useSelector(store => store.ingr.data);
 	const setTab = (tab) => {
 		console.log(tab);
 		setCurrent(tab);

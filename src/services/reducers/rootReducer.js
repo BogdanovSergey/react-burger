@@ -14,8 +14,10 @@ import {
 } from '../actions';
 import {initialState} from '../initialState';
 import {RandomKey} from '../../utils/random-key';
+import {authReducer} from './auth';
+import { combineReducers } from 'redux';
 
-export const rootReducer = (state = initialState, action) => {
+export const ingredientsReducer = (state = initialState, action) => {
 	switch(action.type) {
 		case INGREDIENTS_LOAD:
 			return {
@@ -101,12 +103,13 @@ export const rootReducer = (state = initialState, action) => {
 							[action.key] : state.burgerIngredients.counts[action.key] - 1
 						}
 					}
+
 				}
 			} else {
 				return state;
 			}
 		}
-		
+			
 		case COUNTER_UP:
 			if (action.typeItem === 'bun' && state.burgerIngredients.counts[action.key] >=2) {
 				return state; }
@@ -136,3 +139,8 @@ export const rootReducer = (state = initialState, action) => {
 			return state;
 	}
 }
+
+export const rootReducer = combineReducers({
+	ingr: ingredientsReducer,
+	auth: authReducer
+});

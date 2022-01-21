@@ -3,44 +3,40 @@ import {
     Logo, BurgerIcon, ListIcon, ProfileIcon
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './index.module.css';
+import { NavLink, useLocation } from 'react-router-dom';
 
 export const AppHeader = () => {
+    const { pathname } = useLocation();
     return (
+        <nav>
             <div className={css.side}>
-                <div className={css.box1}>
-	                {/*
-	                SmilingJey:
-	                Оберните иконку и текст в ссылку <a href="#">
-	                В следующих спринтах вместо ссылки будет компонент Link из библиотеки react router , а пока сделайте просто ссылкой
-	                
-	                SB:
-	                Благодарю за комментарий, в следующем спринте сделаю Link
-	                */}
-	                <a href="#" className={css.inmenu}>
-		                <BurgerIcon type="primary"/>
-                        <span className=" text text_type_main-default ">Конструктор</span>
-	                </a>
-	                <a href="#" className={css.inmenu}>
-                        <ListIcon type="primary"/>
-                        <span className="text text_type_main-default">Лента Заказов</span>
-	                </a>
-                </div>
+                    <div className={css.box1}>
+                            <NavLink exact to='/' className={css.inmenu}>
+                                <BurgerIcon type={pathname === '/' ? "primary" : "secondary"} />
+                                <span className=" text text_type_main-default ">Конструктор</span>
+                            </NavLink>
 
-                <div className={css.centr}>
-                    <a href="#">
-                        <Logo/>
-                    </a>
-                </div>
+                            <NavLink exact to='/feed' className={css.inmenu}>
+                                <BurgerIcon type={pathname === '/feed' ? "primary" : "secondary"} />
+                                <span className=" text text_type_main-default ">Лента Заказов</span>
+                            </NavLink>
+                    </div>
 
-                <div className={css.box3}>
-	                <a href="#" className={css.inmenu}>
-                        <ProfileIcon type="primary" />
-                        <span className="text text_type_main-default">Личный кабинет</span>
-	                </a>
-                </div>
+                    <div className={css.centr}>
+                        <a href="/">
+                            <Logo/>
+                        </a>
+                    </div>
+
+                    <div className={css.box3}>
+                        <NavLink exact to='/profile' className={css.inmenu}>
+                            <BurgerIcon type={pathname === '/profile' ? "primary" : "secondary"} />
+                            <span className="text text_type_main-default ">Личный кабинет</span>
+                        </NavLink>
+                    </div>
 
             </div>
-
+        </nav>
     );
 }
 

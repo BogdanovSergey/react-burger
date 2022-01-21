@@ -7,12 +7,15 @@ import { useDrop } from 'react-dnd';
 import { useSelector, useDispatch } from 'react-redux';
 import {MOVE_INGREDIENT, INGREDIENT_DELETE, COUNTER_DOWN} from '../../services/actions';
 import {createOrder} from '../../services/actions/order';
+import {useHistory} from 'react-router-dom';
 
 /*  Конструктор - ПРАВЫЙ блок */
 export const BurgerConstructor = ({ onDropHandler }) => {
 	const dispatch = useDispatch();
+	let history = useHistory();
     const [modalIsActive, setModalActive] = useState(false);
-	const { bun, contentItems } = useSelector(store => store.burgerIngredients);
+	const { bun, contentItems } = useSelector(store => store.ingr.burgerIngredients);
+	const hasToken = localStorage.getItem('refreshToken');
     const [{ canDrop }, dropTarget] = useDrop({
         accept : "ingredient",
         drop(itemId) {
@@ -42,18 +45,24 @@ export const BurgerConstructor = ({ onDropHandler }) => {
 	}, [dispatch])
 	
 	const orderSumm = (bun, items) => {
-		let summ = (bun)? bun.price*2 : 0
-		if(items) items.map((itm)=>{return summ += itm.price})
+		let summ = (bun)? bun.price*2 : 0;
+		if(items) items.map((itm)=>{return summ += itm.price});
 		return summ;
 	}
 	const handleClick = () => {
-		let ingredientsArr = [bun._id]; // пусть сервер знает id булки
-		for (let itm of contentItems) {
-			ingredientsArr.push(itm._id)
+		if (hasToken) {
+			let ingredientsArr = [bun._id]; // пусть сервер знает id булки
+			for (let itm of contentItems) {
+				ingredientsArr.push(itm._id)
+			}
+			dispatch(createOrder(ingredientsArr)); // redux-thunk
+			setModalActive(true)
+		} else {
+			history.replace({ pathname: '/login' })
 		}
-		dispatch(createOrder(ingredientsArr)); // redux-thunk
-		setModalActive(true)
 	}
+
+
     return (
         <div className={column} ref={dropTarget} style={{opacity}}>
 	        <div className={dropMsgCls}>
