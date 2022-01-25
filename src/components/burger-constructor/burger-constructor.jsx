@@ -12,7 +12,7 @@ import {useHistory} from 'react-router-dom';
 /*  Конструктор - ПРАВЫЙ блок */
 export const BurgerConstructor = ({ onDropHandler }) => {
 	const dispatch = useDispatch();
-	let history = useHistory();
+	const history = useHistory();
     const [modalIsActive, setModalActive] = useState(false);
 	const { bun, contentItems } = useSelector(store => store.ingr.burgerIngredients);
 	const hasToken = localStorage.getItem('refreshToken');

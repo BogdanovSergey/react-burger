@@ -17,7 +17,7 @@ export const ProductList = (props) => {
                    return (
                        <Link key={itm._id}
                            to={{
-                               pathname: `ingredients/${itm._id}`,
+                               pathname: `/ingredients/${itm._id}`,
                                state: { background: location }
                            }}
                            className={css.product_link}

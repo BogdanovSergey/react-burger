@@ -8,7 +8,7 @@ import {getIngredients} from '../../services/actions/ingredients';
 import {useDispatch} from "react-redux";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
-import {BrowserRouter as Router, Route, Switch, useLocation, useHistory } from 'react-router-dom';
+import {BrowserRouter, Route, Switch, useLocation, useHistory } from 'react-router-dom';
 import {LoginPage, RegisterPage, ForgotPasswordPage,ResetPasswordPage, ProfilePage} from '../../pages';
 import {ProtectedRoute} from '../protected-route';
 import {Modal} from "../modal";
@@ -19,9 +19,9 @@ export const App = () => {
         let location = useLocation();
         const history = useHistory();
         const dispatch = useDispatch();
+        let [modalActive, setModalActive] = useState(false);
         // Наличие клика по игредиенту
         let background = (history.action === 'PUSH' || history.action === 'REPLACE') && location.state && location.state.background;
-
         useEffect(() => {
             dispatch(getIngredients());
         }, [dispatch]);
@@ -41,15 +41,12 @@ export const App = () => {
                     <AppHeader/>
                     <Switch location={background || location}>
                         <Route path='/' exact={true}>
-                            {/*<MainPage />*/}
-
                             <main className={css.main_columns}>
                                 <DndProvider backend={HTML5Backend}>
                                     <BurgerIngredients/>
                                     <BurgerConstructor onDropHandler={handleDrop}/>
                                 </DndProvider>
                             </main>
-
                         </Route>
                         <Route path='/login' exact={true}>
                             <LoginPage/>
@@ -63,37 +60,29 @@ export const App = () => {
                         <Route path='/reset-password' exact={true}>
                             <ResetPasswordPage/>
                         </Route>
-                        {/*<Route path='/profile'>
-                        <ProfilePage />
-                    </Route>*/}
                         <ProtectedRoute path='/profile'>
                             <ProfilePage/>
                         </ProtectedRoute>
                         <Route path='/ingredients/:id' exact={true}>
                                 <IngredientDetails/>
                         </Route>
-
                         <Route>
                             <h1>Ошибка 404: страница не найдена</h1>
                         </Route>
-
-
                     </Switch>
-
-                {background &&
+                {background && modalActive &&
                 (<>
                         {/*заход по клику*/}
-                        <Route path='/ingredients/:id' children={<Modal header="Детали ингредиента"><IngredientDetails /></Modal>} />
+                        <Route path='/ingredients/:id' children={<Modal header="Детали ингредиента!" setModalActive={setModalActive}><IngredientDetails /></Modal>} />
                  </>
                 )}
-
             </div>
         );
     };
     return (
-        <Router>
+        <BrowserRouter>
             <ModalSwitch />
-        </Router>
+        </BrowserRouter>
     )
 
 }

@@ -69,15 +69,15 @@ export function  loginAction (state) {
                 }
             })
             .catch((err) => {
-                console.error(err);
-                return {m:'m2'};
+                console.error('Error: ', err);
             });
     };
 };
 
 export const refreshTokenAction = () => {
     return function (dispatch) {
-        refreshTokenRequest().then((res) => {
+        refreshTokenRequest()
+            .then((res) => {
             if (res && res.success) {
                 localStorage.setItem('refreshToken', res.refreshToken);
                 const authToken = res.accessToken.split('Bearer ')[1];
@@ -87,6 +87,9 @@ export const refreshTokenAction = () => {
                 });
             }
         })
+        .catch((err) => {
+            console.error('Error: ', err);
+        });
     };
 }
 
@@ -103,6 +106,9 @@ export const logoutAction = () => {
                     return true;
                 }
             })
+            .catch((err) => {
+                console.error('Error: ', err);
+            });
     };
 };
 
@@ -119,6 +125,9 @@ export const getUserAction = () => {
                     return res.user;
                 }
             })
+            .catch((err) => {
+                console.error('Error: ', err);
+            });
     };
 };
 export const updateUserAction = (state) => {

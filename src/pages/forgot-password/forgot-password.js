@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {AppHeader} from '../../components/app-header';
 import { Link, useHistory } from 'react-router-dom';
 import {Logo, Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -9,9 +9,10 @@ import {getCookie} from "../../utils/cookie";
 
 
 export const ForgotPasswordPage = () => {
-    const [email, setEmail] = React.useState('');
+    const [email, setEmail] = useState('');
     let history = useHistory();
-    const handleOnClick = (e) => {
+
+    const handleSubmit = (e) => {
         e.preventDefault();
         fetch(config.pwForgotUrl,{
             method: 'POST',
@@ -48,10 +49,10 @@ export const ForgotPasswordPage = () => {
         <>
             <div className={css.login_box}>
                 <Logo />
-                <form className={css.login_fields}>
+                <form className={css.login_fields} onSubmit={handleSubmit}>
                     <h3 className="text text_type_main-medium">Восстановление пароля</h3>
                     <Input type={"email"} placeholder={"Укажите e-mail"} onChange={(event)=>setEmail(event.target.value)} value={email}/>
-                    <Button type="primary" size="small" onClick={handleOnClick}>
+                    <Button type="primary" size="small" >
                         <p className="text text_type_main-default">Восстановить</p>
                     </Button>
                 </form>
