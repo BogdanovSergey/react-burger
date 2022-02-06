@@ -3,15 +3,18 @@ import {
     REGISTER_SUCCESS,
     REGISTER_FAILED,
     LOGOUT,
-    REFRESH_TOKEN,
-    GET_USER,
-    UPDATE_USER_SUCCESS,
-    UPDATE_USER_FAILED
+    REFRESH_TOKEN_REQUEST,
+    GET_USER_REQUEST,
+    GET_USER_SUCCESS,
+    GET_USER_FAILED, REFRESH_TOKEN_FAILED, REFRESH_TOKEN_SUCCESS
 } from '../actions/auth';
+import {getCookie} from "../../utils/cookie";
 
 const initialState =
     {
-        login: false,
+        login: false, // ???
+        authorized : !!getCookie('token'),
+        //authorized:false,
         user: {
             name:'',
             email:''
@@ -39,6 +42,7 @@ export const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 login: true,
+                authorized : true,
                 user: {
                     name : action?.user?.name,
                     email: action?.user?.email
@@ -49,6 +53,7 @@ export const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 login: false,
+                authorized : false,
                 user: {
                     name : '',
                     email: ''
@@ -56,26 +61,61 @@ export const authReducer = (state = initialState, action) => {
             };
         }
 
-        case GET_USER:
-        case UPDATE_USER_SUCCESS: {
-            console.log(action);
+        case GET_USER_REQUEST: {
             return {
                 ...state,
+                getUserRequest : true,
+                user: {
+                    name : '',
+                    email: ''
+                }
+            }
+        }
+        case GET_USER_SUCCESS: {
+            return {
+                ...state,
+                getUserRequest : false,
+                authorized : true,
                 user: {
                     name : action?.user?.name,
                     email: action?.user?.email
                 }
-            };
+            }
         }
-
-        case UPDATE_USER_FAILED: {
-            console.log(action);
+        case GET_USER_FAILED: {
             return {
                 ...state,
-                UPDATE_USER_FAILED : true
-            };
+                getUserRequest : false,
+                authorized: false,
+                user: {
+                    name : '',
+                    email: ''
+                }
+            }
         }
-
+        case REFRESH_TOKEN_REQUEST: {
+            return {
+                ...state,
+                refreshTokenRequest: true,
+                tokenIsGood : false
+            }
+        }
+        case REFRESH_TOKEN_SUCCESS: {
+            return {
+                ...state,
+                authorized : true,
+                refreshTokenRequest: false,
+                tokenIsGood : true
+            }
+        }
+        case REFRESH_TOKEN_FAILED: {
+            return {
+                ...state,
+                authorized : false,
+                refreshTokenRequest: false,
+                tokenIsGood : false
+            }
+        }
 
         default: {
             return state;

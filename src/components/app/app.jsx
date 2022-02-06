@@ -76,6 +76,7 @@ export const App = () => {
                         <Route path='/ingredients/:id' children={<Modal header="Детали ингредиента!" setModalActive={setModalActive}><IngredientDetails /></Modal>} />
                  </>
                 )}
+
             </div>
         );
     };

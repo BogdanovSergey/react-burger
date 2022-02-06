@@ -1,15 +1,14 @@
 import React,{useState,useEffect} from 'react';
-import {AppHeader} from '../../components/app-header';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Link, Redirect, useHistory,useLocation } from 'react-router-dom';
 import {Logo, Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './login.module.css';
 import {loginAction} from "../../services/actions/auth";
 import {useDispatch,useSelector} from "react-redux";
-import {setCookie,getCookie} from "../../utils/cookie";
 
 export const LoginPage = () => {
     const dispatch = useDispatch();
     let history = useHistory();
+    const location = useLocation();
     const userObj = useSelector(store => store.auth.user);
     const [state, setState] = useState({
         email:'',
@@ -25,14 +24,11 @@ export const LoginPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(loginAction(state))
-            .then(() => history.replace({ pathname: '/' }));
+            .then(() => {
+                console.log(location.state?.from?.pathname || '/')
+                history.replace({ pathname: location.state?.from?.pathname || '/' })
+            });
     };
-
-    useEffect(()=>{
-        if(localStorage.getItem('refreshToken') || getCookie('token')) {
-            history.replace({ pathname: '/' })
-        }
-    },[]);
 
     return (
         <>

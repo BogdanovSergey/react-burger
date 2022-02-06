@@ -5,8 +5,7 @@ import {Logo, Input, PasswordInput, Button } from "@ya.praktikum/react-developer
 import css from "./profile.module.css";
 import {Links} from "./links";
 import {useDispatch, useSelector} from "react-redux"
-import {registerRequest} from "../../utils/api-requests";
-import {getCookie} from "../../utils/cookie";
+
 import {registerAction, getUserAction,updateUserAction} from "../../services/actions/auth";
 
 export const ProfilePage = () => {
@@ -28,7 +27,6 @@ export const ProfilePage = () => {
             [ target.name]: target.value
         });
     }
-
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(updateUserAction(state))
@@ -40,28 +38,16 @@ export const ProfilePage = () => {
     }
 
     useEffect(()=>{
-        console.log(user)
-        let user2 = {
+        setState(user);
+        setDefaultState({
             ...user,
-            ...{password:'123'}
-        }
-        setState(user2);
+            ...{password:''}
+        });
     },[user]);
 
     useEffect(()=>{
-        if(!getCookie('token') || !localStorage.getItem('refreshToken')) {
-            //alert(2);
-            history.replace({ pathname: '/login' })
-            // TODO при ошибке не перенаправлять.
-        } else {
-            let response = dispatch(getUserAction())
-            console.log(response);
-
-            console.log(user);
-            setDefaultState(user);
-
-        }
-    },[dispatch]);
+        dispatch(getUserAction())
+    },[]);
 
     return(
         <>
@@ -99,7 +85,7 @@ export const ProfilePage = () => {
                                     onChange={handleInputChange}
                                     icon={"EditIcon"}
                                     name={"password"}
-                                    value={state.password}
+                                    value={state.password??''}
                                     size={"default"}
                                 />
                                 <Button type="primary" size="small" >

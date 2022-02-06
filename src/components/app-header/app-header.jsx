@@ -23,9 +23,9 @@ export const AppHeader = () => {
                     </div>
 
                     <div className={css.centr}>
-                        <a href="/">
+                        <NavLink exact to='/' className={css.inmenu_logo}>
                             <Logo/>
-                        </a>
+                        </NavLink>
                     </div>
 
                     <div className={css.box3}>

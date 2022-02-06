@@ -63,6 +63,12 @@
     margin-top: 10px;
     text-decoration: none;
 }
+.inmenu_logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+}
 .inmenu span {
     margin-left: 8px;
     color:  #FFFFFF;

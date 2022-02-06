@@ -3,13 +3,20 @@ import css from "./ingredient-details.module.css";
 import PropTypes from 'prop-types';
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import {useHistory} from 'react-router-dom';
 
 export const IngredientDetails = () => {
-	let { id } = useParams();
+	//let { id } = useParams();
+    const history = useHistory();
+    const id = history.location.pathname.slice(13);
+
 	let ingredients = useSelector(store => store.ingr.data);
 	let item = {};
 	let [ingredient, setIngredient] = useState({});
 
+    const ingredientId = history.location.pathname.slice(13);
+
+    console.log(ingredientId)
 	useEffect(()=>{
 		item = ingredients.find(el => el._id === id);  // id пустой!
 		setIngredient(item)
