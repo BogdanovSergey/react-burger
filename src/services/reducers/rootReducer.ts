@@ -3,8 +3,6 @@ import {
 	INGREDIENTS_LOAD_CONSTR,
 	INGREDIENTS_VIEW_DETAILS,
 	INGREDIENTS_DELETE_DETAILS,
-	ORDER_LOAD,
-	ORDER_NUMBER,
 	INGREDIENTS_CHOOSE,
 	INGREDIENT_DELETE,
 	MOVE_INGREDIENT,
@@ -12,12 +10,15 @@ import {
 	COUNTER_DOWN,
 	RESET_CONSTRUCTOR
 } from '../actions';
-import {initialState} from '../initialState';
+import {initialState, TInitialState} from '../initialState';
 import {RandomKey} from '../../utils/random-key';
 import {authReducer} from './auth';
+import {orderReducer} from './order';
 import { combineReducers } from 'redux';
+import { TIngredient, TOrder } from '../../types'
+import {Actions} from './burger-ingredient.types';
 
-export const ingredientsReducer = (state = initialState, action) => {
+export const ingredientsReducer = (state:TInitialState = initialState, action:Actions) => {
 	switch(action.type) {
 		case INGREDIENTS_LOAD:
 			return {
@@ -29,7 +30,7 @@ export const ingredientsReducer = (state = initialState, action) => {
 				...state,
 				burgerIngredients: initialState.burgerIngredients
 			};
-		case INGREDIENTS_LOAD_CONSTR:
+/*		case INGREDIENTS_LOAD_CONSTR:
 			return {
 				...state,
 				constructor: []
@@ -43,18 +44,7 @@ export const ingredientsReducer = (state = initialState, action) => {
 			return {
 				...state,
 				ingredients: []
-			};
-		case ORDER_LOAD:
-			return {
-				...state,
-				order: {number: action.number}
-			};
-			
-		case ORDER_NUMBER: // ?????
-			return {
-				...state,
-				order: {orderId: action.number}
-			};
+			};*/
 
 		case INGREDIENTS_CHOOSE:
 			const item = action.item;
@@ -87,13 +77,13 @@ export const ingredientsReducer = (state = initialState, action) => {
 				...state,
 				burgerIngredients: {
 					...state.burgerIngredients,
-					contentItems: [...state.burgerIngredients.contentItems].filter(el => el.productId !== action.id)
+					contentItems: [...state.burgerIngredients.contentItems].filter((el:TIngredient) => el.productId !== action.id)
 				}
 			};
 		}
 		case COUNTER_DOWN: {
 			console.log(action);
-			if (action.type !== 'bun') {
+			if (action.typeItem !== 'bun') {
 				return {
 					...state,
 					burgerIngredients: {
@@ -142,5 +132,6 @@ export const ingredientsReducer = (state = initialState, action) => {
 
 export const rootReducer = combineReducers({
 	ingr: ingredientsReducer,
-	auth: authReducer
+	auth: authReducer,
+	order:orderReducer
 });

@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback,FC} from 'react';
 import css from './index.module.css';
 import {Button, ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {OrderDetails, Modal} from "../modal";
@@ -8,17 +8,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import {MOVE_INGREDIENT, INGREDIENT_DELETE, COUNTER_DOWN} from '../../services/actions';
 import {createOrder} from '../../services/actions/order';
 import {useHistory} from 'react-router-dom';
+import { TProps, TIngredientWithProductId,TIngredient } from '../../types'
+import {ReduxStore} from "../../services/store.types";
 
 /*  Конструктор - ПРАВЫЙ блок */
-export const BurgerConstructor = ({ onDropHandler }) => {
+export const BurgerConstructor: FC<TProps> = ({ onDropHandler }) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
     const [modalIsActive, setModalActive] = useState(false);
-	const { bun, contentItems } = useSelector(store => store.ingr.burgerIngredients);
+	const { bun, contentItems } = useSelector((store:ReduxStore) => store.ingr.burgerIngredients);
 	const hasToken = localStorage.getItem('refreshToken');
     const [{ canDrop }, dropTarget] = useDrop({
         accept : "ingredient",
-        drop(itemId) {
+        drop(itemId: TIngredient) {
             onDropHandler(itemId);
         },
         collect: monitor => ({
@@ -44,7 +46,7 @@ export const BurgerConstructor = ({ onDropHandler }) => {
 		})
 	}, [dispatch])
 	
-	const orderSumm = (bun, items) => {
+	const orderSumm = (bun:TIngredient, items:TIngredient[]) => {
 		let summ = (bun)? bun.price*2 : 0;
 		if(items) items.map((itm)=>{return summ += itm.price});
 		return summ;
@@ -130,4 +132,5 @@ export const BurgerConstructor = ({ onDropHandler }) => {
         </div>
     );
 }
-export default BurgerConstructor;
+//
+// export default BurgerConstructor;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Logo, BurgerIcon, ListIcon, ProfileIcon
+    Logo, BurgerIcon
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './index.module.css';
 import { NavLink, useLocation } from 'react-router-dom';

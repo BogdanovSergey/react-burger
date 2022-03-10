@@ -1,41 +1,39 @@
-import React,{useEffect} from "react";
-import {AppHeader} from "../../components/app-header";
-import {NavLink, Route, Switch, Link,useLocation,useHistory} from "react-router-dom";
-import {Logo, Input, PasswordInput, Button } from "@ya.praktikum/react-developer-burger-ui-components";
+import React,{useEffect, SyntheticEvent} from "react";
+import { Route, Switch} from "react-router-dom";
+import { Input, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import css from "./profile.module.css";
 import {Links} from "./links";
 import {useDispatch, useSelector} from "react-redux"
-
-import {registerAction, getUserAction,updateUserAction} from "../../services/actions/auth";
+import { TUser } from '../../types'
+import { getUserAction,updateUserAction} from "../../services/actions/auth";
+import {ReduxStore} from "../../services/store.types";
 
 export const ProfilePage = () => {
     const dispatch = useDispatch();
-    let history = useHistory();
     const emptyState = {
         name    : "",
         email   : "",
         password: ""
-    }
+    };
     const [defaultState, setDefaultState] = React.useState(emptyState);
     const [state, setState] = React.useState(emptyState);
-    const { user } = useSelector(store => store.auth);
+    const  user:TUser  = useSelector((store:ReduxStore) => store.auth.user);
 
-    const handleInputChange = (e) => {
+    const handleInputChange = (e:any ) => {
         const target = e.target;
         setState({
             ...state,
             [ target.name]: target.value
         });
-    }
-    const handleSubmit = (e) => {
+    };
+    const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
         dispatch(updateUserAction(state))
-
-    }
-    const handleReset = (e) => {
+    };
+    const handleReset = (e: SyntheticEvent) => {
         e.preventDefault();
         setState(defaultState);
-    }
+    };
 
     useEffect(()=>{
         setState(user);
@@ -62,7 +60,6 @@ export const ProfilePage = () => {
                                 <Input
                                     type={"text"}
                                     placeholder={"Имя"}
-                                    className="pt-5 pb-20"
                                     onChange={handleInputChange}
                                     icon={"EditIcon"}
                                     value={state.name}
@@ -72,7 +69,6 @@ export const ProfilePage = () => {
                                 <Input
                                     type={"text"}
                                     placeholder={"Email"}
-                                    className="pt-5 pb-5"
                                     onChange={handleInputChange}
                                     icon={"EditIcon"}
                                     name={"email"}
@@ -85,7 +81,7 @@ export const ProfilePage = () => {
                                     onChange={handleInputChange}
                                     icon={"EditIcon"}
                                     name={"password"}
-                                    value={state.password??''}
+                                    value={state.password||''}
                                     size={"default"}
                                 />
                                 <Button type="primary" size="small" >

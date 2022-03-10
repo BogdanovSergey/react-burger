@@ -1,22 +1,20 @@
-import React, {useState} from 'react';
+import React, {SyntheticEvent, useState} from 'react';
 import {useDispatch} from 'react-redux';
-import { Link,useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {Logo, Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import {registerAction} from '../../services/actions/auth';
-import {AppHeader} from '../../components/app-header';
 import css from './register.module.css';
 
 export const RegisterPage = () => {
     const dispatch = useDispatch();
-    let history = useHistory();
     const [formData, setFormData] = useState({name:'',email:'',password:''});
-    const fieldChange = (e) => {
+    const fieldChange = (e:any) => {
         setFormData({
             ...formData,
             [e.target.name] : e.target.value
         })
     };
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
         dispatch(registerAction(formData))
             //.then(() => history.replace({ pathname: '/login' }));
@@ -32,7 +30,7 @@ export const RegisterPage = () => {
                     <Input name={'name'} value={formData.name} onChange={fieldChange} type={"text"} placeholder={"Имя"}/>
                     <Input name={'email'} value={formData.email} onChange={fieldChange} type={"email"} placeholder={"E-mail"}/>
                     <PasswordInput onChange={fieldChange} value={formData.password} name={'password'}/>
-                    <Button type="primary" size="small" className="mt-10">
+                    <Button type="primary" size="small">
                         <p className="text text_type_main-default">Зарегистрироваться</p>
                     </Button>
                 </form>

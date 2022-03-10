@@ -1,29 +1,42 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,SyntheticEvent} from 'react';
 import { Link, Redirect, useHistory,useLocation } from 'react-router-dom';
 import {Logo, Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './login.module.css';
 import {loginAction} from "../../services/actions/auth";
 import {useDispatch,useSelector} from "react-redux";
+import { ReduxStore } from '../../services/store.types'
 
 export const LoginPage = () => {
     const dispatch = useDispatch();
     let history = useHistory();
     const location = useLocation();
-    const userObj = useSelector(store => store.auth.user);
+    const userObj = useSelector<ReduxStore>(store => store.auth.user);
     const [state, setState] = useState({
         email:'',
         password:''
     });
-    const handleChange = (e) =>{
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
         setState({
             ...state,
             [e.target.name]:e.target.value
         });
     };
 
-    const handleSubmit = (e) => {
+
+
+    type TResponse = {
+        success: boolean
+        user: {
+            email:string
+            name: string
+        }
+    } & Response
+
+
+
+    const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
-        dispatch(loginAction(state))
+        dispatch(loginAction(state) as any)
             .then(() => {
                 console.log(location.state?.from?.pathname || '/')
                 history.replace({ pathname: location.state?.from?.pathname || '/' })

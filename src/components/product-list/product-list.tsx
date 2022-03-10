@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 import css from './index.module.css';
 import {Product} from "../product";
 import {ingredientType} from '../../prop-types';
-import PropTypes from "prop-types";
 import { useLocation, Link } from "react-router-dom";
+import { TIngredient } from '../../types'
 
-export const ProductList = (props) => {
+interface IProductListProps {
+    id:string,
+    apiData:TIngredient[],
+    subRef:string
+}
+
+export const ProductList:FunctionComponent<IProductListProps> = (props) => {
     let location = useLocation();
     return (
        <>
@@ -13,7 +19,7 @@ export const ProductList = (props) => {
 	           {props.children}
            </p>
            <div className={css.product_list}>
-               {props.apiData.map((itm) => {
+               {props.apiData.map((itm:TIngredient) => {
                    return (
                        <Link key={itm._id}
                            to={{
@@ -30,8 +36,4 @@ export const ProductList = (props) => {
     );
 }
 
-ProductList.propTypes = {
-	id : PropTypes.string,
-	apiData: PropTypes.arrayOf(ingredientType)
-};
 export default ProductList;

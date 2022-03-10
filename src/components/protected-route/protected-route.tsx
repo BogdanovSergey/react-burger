@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { FC } from 'react';
 import { Redirect, Route, useLocation } from 'react-router-dom';
-import { refreshTokenAction } from '../../services/actions/auth'
-import { useSelector, useDispatch } from 'react-redux';
-import { getCookie } from '../../utils/cookie';
+import { useSelector} from 'react-redux';
+import {ReduxStore} from "../../services/store.types";
+interface Props {
+    path?:string
+}
 
-export const ProtectedRoute = ({ children, ...rest }) => {
-    const authorized = useSelector(store=>store.auth.authorized);
+export const ProtectedRoute: FC<Props> = ({ children, ...rest }: React.PropsWithChildren<{ [key: string]: any }>) => {
+    const authorized = useSelector((store:ReduxStore)=>store.auth.authorized);
     const location = useLocation();
-
     if (authorized) {
         return (
             <Route {...rest}>
@@ -21,6 +22,5 @@ export const ProtectedRoute = ({ children, ...rest }) => {
                 state: {from: location}
             }}
         />)
-
     }
 }

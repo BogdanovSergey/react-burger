@@ -13,7 +13,7 @@ import {LoginPage, RegisterPage, ForgotPasswordPage,ResetPasswordPage, ProfilePa
 import {ProtectedRoute} from '../protected-route';
 import {Modal} from "../modal";
 import {IngredientDetails} from "../ingredient-details";
-
+import { TIngredient } from '../../types'
 export const App = () => {
     const ModalSwitch = () => { // Сделано для возможности использования useLocation. Немного некрасиво, подскажите, пожалуйста, как сделать лучше?
         let location = useLocation();
@@ -25,7 +25,7 @@ export const App = () => {
         useEffect(() => {
             dispatch(getIngredients());
         }, [dispatch]);
-        const handleDrop = (item) => {
+        const handleDrop = (item:TIngredient) => {
             dispatch({
                 type: INGREDIENTS_CHOOSE,
                 item: item
@@ -60,7 +60,7 @@ export const App = () => {
                         <Route path='/reset-password' exact={true}>
                             <ResetPasswordPage/>
                         </Route>
-                        <ProtectedRoute path='/profile'>
+                        <ProtectedRoute path={`/profile`}>
                             <ProfilePage/>
                         </ProtectedRoute>
                         <Route path='/ingredients/:id' exact={true}>

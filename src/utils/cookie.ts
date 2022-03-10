@@ -9,7 +9,7 @@ export const deleteAllCookies =() => {
     }
 
 }
-export const setCookie = (name, value, options) => {
+export const setCookie = (name:string, value:string, options:any) => {
     options = options || {};
     var expires = options.expires;
     if (typeof expires === "number" && expires) {
@@ -32,13 +32,13 @@ export const setCookie = (name, value, options) => {
     document.cookie = updatedCookie;
 }
 
-export const delCookie = (name) =>{
+export const delCookie = (name:string) =>{
     setCookie(name, '', { expires: -1 });
 }
 
-export const getCookie = (name) => {
+export const getCookie = (name:string) => {
     var value = "; " + document.cookie;
-    var parts = value.split("; " + name + "=");
+    var parts:any = value.split("; " + name + "=");
     if (parts.length === 2) {
         return parts.pop().split(";").shift();
     } else { return false; }

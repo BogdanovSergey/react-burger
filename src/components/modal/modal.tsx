@@ -2,12 +2,17 @@ import React, {useEffect,useState} from 'react';
 import ReactDOM from 'react-dom';
 import css from './modal.module.css';
 import closeImg from '../../images/close.svg';
-import PropTypes from "prop-types";
 import {ModalOverlay} from "../modal-overlay";
+import { FunctionComponent } from 'react'
 
-export const Modal = (props) => {
+interface IModalProps {
+	setModalActive: (e: any) => void,
+	header?: string
+}
+
+export const Modal : FunctionComponent<IModalProps> = (props) => {
 	useEffect(() => {
-		const escFunc = (e) => (e.key === "Escape") && props.setModalActive(false);
+		const escFunc = (e:any) => (e.key === "Escape") && props.setModalActive(false);
 		document.addEventListener('keydown', escFunc);
 		return () => {
 			document.removeEventListener('keydown', escFunc);
@@ -35,10 +40,7 @@ export const Modal = (props) => {
 
     return ReactDOM.createPortal(
 	    portalContent,
-        document.getElementById('portal')
+        document.getElementById('portal') as HTMLElement
     );
     
 }
-
-Modal.propTypes = {
-};

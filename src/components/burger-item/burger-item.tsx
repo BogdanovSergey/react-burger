@@ -1,12 +1,20 @@
-import React from 'react';
+import React, {FC} from 'react';
 import css from './item.module.css'
 import {ConstructorElement, DragIcon} from  '@ya.praktikum/react-developer-burger-ui-components';
 import { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
+import { TIngredient } from '../../types'
+interface Props {
+    item:TIngredient,
+    index:number,
+    isLocked:boolean,
+    deleteFunc:any,
+    moveFunc:any
+}
 
-export const BurgerItem = ({item, index, isLocked, deleteFunc, moveFunc}) => {
+export const BurgerItem: FC<Props> = ({item, index, isLocked, deleteFunc, moveFunc}) => {
     const id    = item._id
-    const ref = useRef(null)
+    const ref = useRef<HTMLLIElement>(null)
     const [, drop] = useDrop({
         accept: 'item',
 	    
@@ -15,7 +23,7 @@ export const BurgerItem = ({item, index, isLocked, deleteFunc, moveFunc}) => {
                 handlerId: monitor.getHandlerId(),
             };
         },
-        hover(el, monitor) {
+        hover(el:{ index: number}, monitor) {
             if (!ref.current) return;
             const dragIndex = el.index;
             const hoverIndex = index;
@@ -23,10 +31,12 @@ export const BurgerItem = ({item, index, isLocked, deleteFunc, moveFunc}) => {
             const hoverRect = ref.current?.getBoundingClientRect();
             const hoverMidY = (hoverRect.bottom - hoverRect.top)/2;
             const clientOffset = monitor.getClientOffset();
-            const hoverClientY = clientOffset.y - hoverRect.top;
-            
-            if (dragIndex < hoverIndex && hoverClientY < hoverMidY) return;
-            if (dragIndex > hoverIndex && hoverClientY > hoverMidY) return;
+            if(clientOffset != null) {
+                const hoverClientY = clientOffset.y - hoverRect.top;
+                if (dragIndex < hoverIndex && hoverClientY < hoverMidY) return;
+                if (dragIndex > hoverIndex && hoverClientY > hoverMidY) return;
+            }
+
             
             moveFunc(dragIndex, hoverIndex);
             el.index = hoverIndex;

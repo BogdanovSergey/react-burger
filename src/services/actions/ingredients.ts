@@ -1,8 +1,12 @@
 import * as config from '../../config';
+import {Dispatch} from "redux";
 import {INGREDIENTS_LOAD} from '../actions';
+import {TIngredient} from "../../types";
+
+type GetIngredientsAction = { type: typeof INGREDIENTS_LOAD, data:TIngredient }
 
 export function getIngredients() {
-	return function(dispatch) {
+	return function(dispatch:Dispatch) {
 		fetch(config.getIngredientsUrl)
 			.then(response => {
 				if (response.ok) {
