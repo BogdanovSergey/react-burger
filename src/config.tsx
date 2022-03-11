@@ -4,12 +4,20 @@ export const getIngredientsUrl:string = apiUrl + '/ingredients';
 export const pwForgotUrl:string = apiUrl + '/password-reset';
 export const pwResetUrl:string = apiUrl + '/password-reset/reset';
 
-export const config:object = {
+export type TObject = {
+    loginUrl:string,
+    registerUrl:string,
+    logoutUrl:string,
+    tokenUrl:string,
+    userUrl:string
+}
+
+export const config:TObject = {
     loginUrl : apiUrl + '/auth/login',
     registerUrl : apiUrl + '/auth/register',
     logoutUrl : apiUrl + '/auth/logout',
     tokenUrl : apiUrl + '/auth/token',
-    userUrl : apiUrl + '/auth/user',
+    userUrl : apiUrl + '/auth/user'
 }
 
 

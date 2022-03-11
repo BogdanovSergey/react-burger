@@ -20,9 +20,14 @@ export type TOrder = {
     number: number
 }
 export type TUser = {
-    name: string;
+    name?: string;
     email: string;
     password:string;
+}
+export type TUserRequest = {
+    name: string;
+    email: string;
+    token: string;
 }
 
 export type TProps = {

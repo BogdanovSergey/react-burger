@@ -62,3 +62,6 @@
     flex-direction: row;
     justify-content: space-between;
 }
+.w480 {
+    width: 480px
+}

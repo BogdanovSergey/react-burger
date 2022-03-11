@@ -8,7 +8,7 @@ import css from './register.module.css';
 export const RegisterPage = () => {
     const dispatch = useDispatch();
     const [formData, setFormData] = useState({name:'',email:'',password:''});
-    const fieldChange = (e:any) => {
+    const fieldChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
             ...formData,
             [e.target.name] : e.target.value

@@ -26,8 +26,8 @@ export const Product = (props:{apiData:TIngredient}) => {
     const productContent =
         <div className={css.product} onClick={()=>setModalActive(true)} ref={dragRef} style={{ opacity }}>
             <img src={props.apiData.image} alt={props.apiData.name}/>
-            <span style={{display: 'inline-flex'}}>
-                <span style={{marginRight:'8px'}}>{props.apiData.price}</span> <CurrencyIcon type="primary"/>
+            <span className={css.inn_flex}>
+                <span className="mr-3">{props.apiData.price}</span> <CurrencyIcon type="primary"/>
            </span>
             <span className="text text_type_main-small">
                {props.apiData.name}

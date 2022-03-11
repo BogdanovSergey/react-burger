@@ -17,3 +17,7 @@
 .scrollzone::-webkit-scrollbar-thumb {
     background: #8585AD;
 }
+
+.fl {
+    display: flex;
+}

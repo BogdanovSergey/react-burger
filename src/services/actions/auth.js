@@ -152,7 +152,10 @@ export const updateUserAction = (state) => {
         dispatch({
             type: GET_USER_REQUEST
         });
-        updateUserRequest(state.email, state.name, getCookie('token'))
+        updateUserRequest({
+                    email : state.email,
+                    name : state.name,
+                    token : getCookie('token')})
             .then((res) => {
                 if (res && res.success) {
                     dispatch({

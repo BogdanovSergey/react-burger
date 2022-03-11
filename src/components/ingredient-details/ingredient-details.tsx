@@ -29,12 +29,11 @@ export const IngredientDetails = () => {
 		)
 	} else {
 		return (
-			<div className={css.product_portal}> {/*onClick={()=>setModalActive(true)}*/}
-				<img src={ingredient?.image} alt={ingredient?.name} style={{width: '480px'}}/>
+			<div className={css.product_portal}>
+				<img src={ingredient?.image} alt={ingredient?.name} className={css.w480}/>
 				<span className="text text_type_main-medium">{ingredient?.name}</span>
 				<div className={css.product_energy}>
-					<span
-						className="text text_type_main-small text_color_inactive">Калории, ккал<br/>{ingredient?.calories}</span>
+					<span className="text text_type_main-small text_color_inactive">Калории, ккал<br/>{ingredient?.calories}</span>
 					<span className="text text_type_main-small text_color_inactive">Белки, г<br/>{ingredient?.proteins}</span>
 					<span className="text text_type_main-small text_color_inactive">Жиры, г<br/>{ingredient?.fat}</span>
 					<span className="text text_type_main-small text_color_inactive">Углеводы, г<br/>{ingredient?.carbohydrates}</span>

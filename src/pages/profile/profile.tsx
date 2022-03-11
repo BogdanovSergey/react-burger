@@ -10,7 +10,7 @@ import {ReduxStore} from "../../services/store.types";
 
 export const ProfilePage = () => {
     const dispatch = useDispatch();
-    const emptyState = {
+    const emptyState:TUser = {
         name    : "",
         email   : "",
         password: ""
@@ -19,7 +19,7 @@ export const ProfilePage = () => {
     const [state, setState] = React.useState(emptyState);
     const  user:TUser  = useSelector((store:ReduxStore) => store.auth.user);
 
-    const handleInputChange = (e:any ) => {
+    const handleInputChange = (e:React.ChangeEvent<HTMLInputElement> ) => {
         const target = e.target;
         setState({
             ...state,
@@ -62,7 +62,7 @@ export const ProfilePage = () => {
                                     placeholder={"Имя"}
                                     onChange={handleInputChange}
                                     icon={"EditIcon"}
-                                    value={state.name}
+                                    value={state.name||''}
                                     name={"name"}
                                     size={"default"}
                                 />

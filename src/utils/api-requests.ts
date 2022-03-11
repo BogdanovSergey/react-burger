@@ -1,7 +1,7 @@
 import {config} from '../config';
-import {getCookie} from "./cookie";
+import {TUser,TUserRequest} from '../types'
 
-export const registerRequest = ({ email, password, name }) => {
+export const registerRequest = ({ email, password, name }:TUser) => {
     return fetch(config.registerUrl, {
             method: 'POST',
             headers: {
@@ -19,7 +19,7 @@ export const registerRequest = ({ email, password, name }) => {
     });
 };
 
-export const loginRequest = ({ email, password }) => {
+export const loginRequest = ({ email, password }:TUser) => {
     return fetch(config.loginUrl, {
         method: 'POST',
         headers: {
@@ -75,7 +75,7 @@ export const logoutRequest = () => {
 };
 
 
-export const getUserRequest = (token) => {
+export const getUserRequest = (token:string) => {
     return fetch(config.userUrl, {
         method : 'GET',
         headers: {
@@ -91,7 +91,7 @@ export const getUserRequest = (token) => {
             }
         });
 };
-export const updateUserRequest = (email, name, token) => {
+export const updateUserRequest = ({email, name, token}:TUserRequest) => {
     return fetch(config.userUrl, {
         method : 'PATCH',
         headers: {

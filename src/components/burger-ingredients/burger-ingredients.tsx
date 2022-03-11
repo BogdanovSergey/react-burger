@@ -45,7 +45,7 @@ export const BurgerIngredients = () => {
             <p className="text text_type_main-large">
                 Соберите бургер
             </p>
-            <div style={{ display: 'flex' }}>
+            <div className={css.fl}>
                 <Tab value="bun" active={current === 'bun'} onClick={setTab}>Булки</Tab>
 	            <Tab value="main" active={current === 'main'} onClick={setTab}>Начинки</Tab>
                 <Tab value="sauce" active={current === 'sauce'} onClick={setTab}>Соусы</Tab>

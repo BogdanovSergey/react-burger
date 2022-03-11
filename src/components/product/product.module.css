@@ -10,3 +10,6 @@
     text-align: center;
 }
 
+.inn_flex {
+    display: inline-flex
+}

@@ -6,13 +6,13 @@ import {ModalOverlay} from "../modal-overlay";
 import { FunctionComponent } from 'react'
 
 interface IModalProps {
-	setModalActive: (e: any) => void,
+	setModalActive: (e: boolean) => void,
 	header?: string
 }
 
 export const Modal : FunctionComponent<IModalProps> = (props) => {
 	useEffect(() => {
-		const escFunc = (e:any) => (e.key === "Escape") && props.setModalActive(false);
+		const escFunc = (e:KeyboardEvent) => (e.key === "Escape") && props.setModalActive(false);
 		document.addEventListener('keydown', escFunc);
 		return () => {
 			document.removeEventListener('keydown', escFunc);
