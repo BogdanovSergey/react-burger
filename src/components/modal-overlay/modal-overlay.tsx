@@ -5,7 +5,7 @@ type IModalOverlayProps = {
 	setModalActive : (e: boolean) => void
 }
 
-export const ModalOverlay : FunctionComponent<IModalOverlayProps> = (props:any) => {
+export const ModalOverlay : FunctionComponent<IModalOverlayProps> = (props) => {
 	return <div className={css.modal_overlay} onClick={()=>{props.setModalActive(false);}} />
 }
 
