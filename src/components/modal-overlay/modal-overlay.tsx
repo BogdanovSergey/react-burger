@@ -1,7 +1,11 @@
 import css from "./modal-overlay.module.css";
-import React from "react";
+import React, {FunctionComponent} from "react";
 
-export const ModalOverlay = (props:any) => {
+type IModalOverlayProps = {
+	setModalActive : (e: boolean) => void
+}
+
+export const ModalOverlay : FunctionComponent<IModalOverlayProps> = (props:any) => {
 	return <div className={css.modal_overlay} onClick={()=>{props.setModalActive(false);}} />
 }
 
