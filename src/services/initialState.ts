@@ -1,4 +1,4 @@
-import { TIngredient, TOrder } from '../types'
+import { TIngredient } from '../types'
 
 
 export type TInitialState = {

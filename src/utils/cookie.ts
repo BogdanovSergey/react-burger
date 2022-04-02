@@ -1,15 +1,14 @@
 export const deleteAllCookies =() => {
     var cookies = document.cookie.split(";");
-
     for (var i = 0; i < cookies.length; i++) {
         var cookie = cookies[i];
         var eqPos = cookie.indexOf("=");
         var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
         document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
     }
+};
 
-}
-export const setCookie = (name:string, value:string, options:any) => {
+export const setCookie = (name:string, value:string, options?:any) => {
     options = options || {};
     var expires = options.expires;
     if (typeof expires === "number" && expires) {
@@ -30,16 +29,15 @@ export const setCookie = (name:string, value:string, options:any) => {
         }
     }
     document.cookie = updatedCookie;
-}
+};
 
 export const delCookie = (name:string) =>{
     setCookie(name, '', { expires: -1 });
-}
+};
 
-export const getCookie = (name:string) => {
-    var value = "; " + document.cookie;
-    var parts:any = value.split("; " + name + "=");
-    if (parts.length === 2) {
-        return parts.pop().split(";").shift();
-    } else { return false; }
+export function getCookie(name: string) {
+    const matches = document.cookie.match(
+        new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)')
+    );
+    return matches ? decodeURIComponent(matches[1]) : '';//undefined
 }

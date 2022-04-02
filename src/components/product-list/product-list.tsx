@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react';
 import css from './index.module.css';
 import {Product} from "../product";
-import {ingredientType} from '../../prop-types';
+//import {ingredientType} from '../../prop-types';
 import { useLocation, Link } from "react-router-dom";
 import { TIngredient } from '../../types'
 

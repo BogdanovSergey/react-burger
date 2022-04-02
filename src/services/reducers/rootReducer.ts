@@ -1,8 +1,8 @@
 import {
 	INGREDIENTS_LOAD,
-	INGREDIENTS_LOAD_CONSTR,
+/*	INGREDIENTS_LOAD_CONSTR,
 	INGREDIENTS_VIEW_DETAILS,
-	INGREDIENTS_DELETE_DETAILS,
+	INGREDIENTS_DELETE_DETAILS,*/
 	INGREDIENTS_CHOOSE,
 	INGREDIENT_DELETE,
 	MOVE_INGREDIENT,
@@ -15,7 +15,8 @@ import {RandomKey} from '../../utils/random-key';
 import {authReducer} from './auth';
 import {orderReducer} from './order';
 import { combineReducers } from 'redux';
-import { TIngredient, TOrder } from '../../types'
+import { wsReducer } from './wsReducer'
+import { TIngredient } from '../../types'
 import {Actions} from './burger-ingredient.types';
 
 export const ingredientsReducer = (state:TInitialState = initialState, action:Actions) => {
@@ -133,5 +134,6 @@ export const ingredientsReducer = (state:TInitialState = initialState, action:Ac
 export const rootReducer = combineReducers({
 	ingr: ingredientsReducer,
 	auth: authReducer,
-	order:orderReducer
+	order:orderReducer,
+	messages: wsReducer,
 });

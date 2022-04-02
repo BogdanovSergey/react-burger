@@ -1,4 +1,4 @@
-import React, {useEffect,useState} from 'react';
+import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import css from './modal.module.css';
 import closeImg from '../../images/close.svg';
@@ -7,6 +7,7 @@ import { FunctionComponent } from 'react'
 
 interface IModalProps {
 	setModalActive: (e: boolean) => void,
+	onClose?: any,
 	header?: string
 }
 
@@ -19,9 +20,6 @@ export const Modal : FunctionComponent<IModalProps> = (props) => {
 		}
 	}, [props]);
 
-	const closeModal = () => {
-		props.setModalActive(false);
-	};
     const portalContent = (
 	    <>
 			<div>
@@ -30,7 +28,7 @@ export const Modal : FunctionComponent<IModalProps> = (props) => {
 					{/*Заголовок портала*/}
 					<div className={css.modal_content_caption}>
 						<span className="text text_type_main-medium">{props.header}</span>
-						<img src={closeImg} alt={"Закрыть"} className={css.close_button} onClick={closeModal}/>
+						<img src={closeImg} alt={"Закрыть"} className={css.close_button} onClick={props.onClose}/>
 					</div>
 					{/*Компонент-содержание*/}
 					{props.children}

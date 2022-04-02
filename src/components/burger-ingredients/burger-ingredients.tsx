@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, MutableRefObject} from 'react';
+import React, {useRef, useEffect} from 'react';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './burger.module.css';
 import {ingredientType} from '../../prop-types';

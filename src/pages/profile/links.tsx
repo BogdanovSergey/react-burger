@@ -3,15 +3,16 @@ import { NavLink, useLocation } from "react-router-dom";
 import React from "react";
 import {useDispatch} from 'react-redux';
 import {logoutAction} from '../../services/actions/auth';
-import {useHistory} from 'react-router-dom';
+//import {useHistory} from 'react-router-dom';
 
 export function Links() {
     const { pathname } = useLocation();
     const dispatch = useDispatch();
-    let history = useHistory();
+    //let history = useHistory();
 
     const handleExit = () => {
-        let res = dispatch(logoutAction());
+        //let res = dispatch(logoutAction());
+        dispatch(logoutAction());
         //console.log(res)
         //res && history.replace({ pathname: '/login' }) // как правильно привязать переадресацию к успешному действию? 8-(
     }
@@ -39,7 +40,12 @@ export function Links() {
 
             {pathname === '/profile' ? (
                 <div className="pt-20">
-                    <span className="text text_type_main-default text_color_inactive">В этом разделе вы можете изменить свои персональные данные</span>
+                    <span className="text text_type_main-default text_color_inactive">В этом разделе Вы можете изменить свои персональные данные</span>
+                </div>
+            ) : null }
+            {pathname === '/profile/orders' ? (
+                <div className="pt-20">
+                    <span className="text text_type_main-default text_color_inactive">В этом разделе Вы можете просмотреть свою историю заказов</span>
                 </div>
             ) : null }
         </nav>

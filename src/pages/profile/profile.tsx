@@ -7,7 +7,8 @@ import {useDispatch, useSelector} from "react-redux"
 import { TUser } from '../../types'
 import { getUserAction,updateUserAction} from "../../services/actions/auth";
 import {ReduxStore} from "../../services/store.types";
-
+import {ProtectedRoute} from '../../components/protected-route';
+import {Orders} from '../../components/orders/orders';
 export const ProfilePage = () => {
     const dispatch = useDispatch();
     const emptyState:TUser = {
@@ -92,6 +93,9 @@ export const ProfilePage = () => {
                                 </Button>
                             </form>
                         </Route>
+                        <ProtectedRoute path="/profile/orders" exact={true}>
+                            <Orders/>
+                        </ProtectedRoute>
                     </Switch>
                 </div>
             </div>

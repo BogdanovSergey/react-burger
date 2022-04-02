@@ -1,11 +1,12 @@
-import React, {useEffect} from 'react';
-import {AppHeader} from '../../components/app-header';
+import React, {SyntheticEvent} from 'react';
+//import {AppHeader} from '../../components/app-header';
 import { Link, useHistory} from 'react-router-dom';
 import {Logo, Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './reset-password.module.css';
 import * as config from "../../config";
-import {getCookie} from "../../utils/cookie";
+//import {getCookie} from "../../utils/cookie";
 import { useSelector } from 'react-redux';
+import {ReduxStore} from "../../services/store.types";
 
 /*
 Для реализации этой функциональности потребуется создать пользователя.
@@ -16,10 +17,10 @@ https://norma.nomoreparties.space/api/auth/register.
 export const ResetPasswordPage = () => {
     const [password, setPassword] = React.useState('');
     const [token, setToken] = React.useState('');
-    const loggedIn = useSelector(store=>store.auth.login);
-    const authorized = useSelector(store=>store.auth.authorized);
+    //const loggedIn = useSelector(store=>store.auth.login);
+    const authorized = useSelector((store: ReduxStore)=>store.auth.authorized);
     let history = useHistory();
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
         fetch(config.pwResetUrl,{
             method: 'POST',

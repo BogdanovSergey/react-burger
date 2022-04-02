@@ -13,12 +13,29 @@ export type TIngredient = {
     image_large: string;
     __v?: number;
     productId:string
+    count?: number
 }
+
 
 
 export type TOrder = {
+    ingredients: Array<string>
+    _id: string
+    status: string
     number: number
+    price: number
+    createdAt: Date
+    updatedAt: Date
+    name: string
+    owner?: {
+        createdAt: Date
+        updatedAt: Date
+        email: string
+        name: string
+    }
+    __v: number
 }
+
 export type TUser = {
     name?: string;
     email: string;
@@ -35,3 +52,22 @@ export type TProps = {
         => void;
 }
 export type TIngredientWithProductId = TIngredient & { productId: string }
+
+export type TMessage = {
+    success: boolean
+    orders: [
+        {
+            ingredients: string[]
+            _id: string
+            name: string
+            status: string
+            number: number
+            createdAt: Date
+            updatedAt: Date
+            price: number
+            __v: number
+        }
+        ],
+    total: number
+    totalToday: number
+}

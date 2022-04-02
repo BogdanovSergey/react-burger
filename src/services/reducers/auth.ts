@@ -9,6 +9,7 @@ import {
     GET_USER_FAILED, REFRESH_TOKEN_FAILED, REFRESH_TOKEN_SUCCESS
 } from '../actions/auth';
 import {getCookie} from "../../utils/cookie";
+import {AuthActions} from "./auth.types";
 
 const initialState =
     {
@@ -21,12 +22,11 @@ const initialState =
         }
 };
 
-export const authReducer = (state = initialState, action) => {
+export const authReducer = (state = initialState, action:AuthActions) => {
     switch (action.type) {
 
         case REGISTER_SUCCESS: {
-            const userObj = action.user;
-            console.log(userObj)
+            //const userObj = action.user;
             return {
                 ...state
             };
@@ -38,7 +38,7 @@ export const authReducer = (state = initialState, action) => {
         }
 
         case LOGIN: {
-            console.log(action.user)
+            //console.log(action.user)
             return {
                 ...state,
                 login: true,

@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {MOVE_INGREDIENT, INGREDIENT_DELETE, COUNTER_DOWN} from '../../services/actions';
 import {createOrder} from '../../services/actions/order';
 import {useHistory} from 'react-router-dom';
-import { TProps, TIngredientWithProductId,TIngredient } from '../../types'
+import { TProps, TIngredient } from '../../types'
 import {ReduxStore} from "../../services/store.types";
 
 /*  Конструктор - ПРАВЫЙ блок */
@@ -53,7 +53,7 @@ export const BurgerConstructor: FC<TProps> = ({ onDropHandler }) => {
 	}
 	const handleClick = () => {
 		if (hasToken) {
-			let ingredientsArr = [bun._id]; // пусть сервер знает id булки
+			let ingredientsArr:string[] = [bun._id]; // пусть сервер знает id булки
 			for (let itm of contentItems) {
 				ingredientsArr.push(itm._id)
 			}

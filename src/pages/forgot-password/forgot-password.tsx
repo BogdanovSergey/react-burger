@@ -1,5 +1,5 @@
-import React, {SyntheticEvent, useEffect, useState} from 'react';
-import {AppHeader} from '../../components/app-header';
+import React, {SyntheticEvent, useState} from 'react';
+//import {AppHeader} from '../../components/app-header';
 import { Link, useHistory } from 'react-router-dom';
 import {Logo, Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './forgot-password.module.css';

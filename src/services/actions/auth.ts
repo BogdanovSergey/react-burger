@@ -6,6 +6,7 @@ import {
     getUserRequest,
     updateUserRequest} from '../../utils/api-requests';
 import {setCookie, delCookie, getCookie} from "../../utils/cookie";
+import {Dispatch} from "redux";
 //import {useHistory} from "react-router-dom";
 export const LOGIN = 'LOGIN';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
@@ -20,8 +21,8 @@ export const GET_USER_REQUEST = 'GET_USER_REQUEST';
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
 export const GET_USER_FAILED = 'GET_USER_FAILED';
 
-export const registerAction = (state) => {
-    return function (dispatch) {
+export const registerAction = (state:any) => {
+    return function (dispatch:Dispatch) {
         registerRequest(state)
             .then((res) => {
                 if (res && res.success) {
@@ -50,8 +51,8 @@ export const registerAction = (state) => {
     }
 }
 
-export function  loginAction (state) {
-    return function (dispatch) {
+export function  loginAction (state:any) {
+    return function (dispatch:Dispatch) {
         /*dispatch({
             type: LOGIN,
         });*/
@@ -79,7 +80,7 @@ export function  loginAction (state) {
 };
 
 export const refreshTokenAction = () => {
-    return function (dispatch) {
+    return function (dispatch:Dispatch) {
         dispatch({
             type: REFRESH_TOKEN_REQUEST
         });
@@ -104,7 +105,7 @@ export const refreshTokenAction = () => {
 }
 
 export const logoutAction = () => {
-    return function (dispatch) {
+    return function (dispatch:Dispatch) {
         logoutRequest()
             .then((res) => {
                 if (res && res.success) {
@@ -123,7 +124,7 @@ export const logoutAction = () => {
 };
 
 export const getUserAction = () => {
-    return function (dispatch) {
+    return function (dispatch:Dispatch) {
         dispatch({
             type: GET_USER_REQUEST
         });
@@ -147,8 +148,8 @@ export const getUserAction = () => {
             });
     };
 };
-export const updateUserAction = (state) => {
-    return function (dispatch) {
+export const updateUserAction = (state:any) => {
+    return function (dispatch:Dispatch) {
         dispatch({
             type: GET_USER_REQUEST
         });

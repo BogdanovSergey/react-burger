@@ -1,4 +1,4 @@
-import React, { FC ,useState} from 'react';
+import React, { useState} from 'react';
 import css from './product.module.css';
 import {CurrencyIcon, Counter} from '@ya.praktikum/react-developer-burger-ui-components';
 import {Modal} from "../modal";
@@ -7,9 +7,11 @@ import {useDrag} from "react-dnd";
 import {useSelector} from "react-redux";
 import { TIngredient } from '../../types'
 import  { ReduxStore } from '../../services/store.types';
-import { BurgerIngredientStore } from '../../services/reducers/burger-ingredient.types'
+import {Route, useHistory} from "react-router";
+//import { BurgerIngredientStore } from '../../services/reducers/burger-ingredient.types'
 
 export const Product = (props:{apiData:TIngredient}) => {
+    const history = useHistory();
     const [modalIsActive, setModalActive] = useState(false);
 	const [{ isDrag }, dragRef] = useDrag({
 		type: 'ingredient',
@@ -17,7 +19,14 @@ export const Product = (props:{apiData:TIngredient}) => {
 		collect: monitor => ({
 			isDrag: monitor.isDragging()
 		})
-	})
+	});
+
+    const onClose = (e: Event) => {
+        if(e) e.stopPropagation();
+        setModalActive(false);
+        history.goBack()
+    }
+
 	const opacity = isDrag ? 0.5 : 1;
     const { counts, bun } = useSelector((store:ReduxStore) => store.ingr.burgerIngredients);
 
@@ -38,7 +47,7 @@ export const Product = (props:{apiData:TIngredient}) => {
     return (
         <div>
             {productContent}
-            {modalIsActive && <Modal header="Детали ингредиента" setModalActive={setModalActive}>
+            {modalIsActive && <Modal header="Детали ингредиента" setModalActive={setModalActive} onClose={onClose}>
 	            <IngredientDetails/>
             </Modal>
             }

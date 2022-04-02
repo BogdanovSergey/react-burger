@@ -9,17 +9,23 @@ import {useDispatch} from "react-redux";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {BrowserRouter, Route, Switch, useLocation, useHistory } from 'react-router-dom';
-import {LoginPage, RegisterPage, ForgotPasswordPage,ResetPasswordPage, ProfilePage} from '../../pages';
+import {LoginPage, RegisterPage, ForgotPasswordPage,ResetPasswordPage, ProfilePage, FeedPage, OrderPage} from '../../pages';
 import {ProtectedRoute} from '../protected-route';
 import {Modal} from "../modal";
 import {IngredientDetails} from "../ingredient-details";
-import { TIngredient } from '../../types'
+import {Order} from '../order/order';
+import { TIngredient } from '../../types';
+
 export const App = () => {
     const ModalSwitch = () => { // Сделано для возможности использования useLocation. Немного некрасиво, подскажите, пожалуйста, как сделать лучше?
         let location = useLocation();
         const history = useHistory();
         const dispatch = useDispatch();
         let [modalActive, setModalActive] = useState(false);
+        const onClose = (e: Event) => {
+            if(e) e.stopPropagation()
+            history.goBack()
+        }
         // Наличие клика по игредиенту
         let background = (history.action === 'PUSH' || history.action === 'REPLACE') && location.state && location.state.background;
         useEffect(() => {
@@ -60,9 +66,22 @@ export const App = () => {
                         <Route path='/reset-password' exact={true}>
                             <ResetPasswordPage/>
                         </Route>
+
+                        <Route path='/feed' exact >
+                            <FeedPage />
+                        </Route>
+                        <Route path='/feed/:id' exact={true} >
+                            <OrderPage />
+                        </Route>
+{/*
+                        <ProtectedRoute path='/profile/orders/:id' exact >
+                            <OrderPage />
+                        </ProtectedRoute>*/}
+
                         <ProtectedRoute path={`/profile`}>
                             <ProfilePage/>
                         </ProtectedRoute>
+
                         <Route path='/ingredients/:id' exact={true}>
                                 <IngredientDetails/>
                         </Route>
@@ -72,9 +91,39 @@ export const App = () => {
                     </Switch>
                 {background && modalActive &&
                 (<>
-                        {/*заход по клику*/}
-                        <Route path='/ingredients/:id' children={<Modal header="Детали ингредиента!" setModalActive={setModalActive}><IngredientDetails /></Modal>} />
+                    <Route
+                        path='/ingredients/:id'
+                        children={
+                            <Modal header="Детали ингредиента" setModalActive={setModalActive} onClose={onClose}>
+                                <IngredientDetails />
+                            </Modal>
+                        }
+                    />
                  </>
+                )}
+                {background && (
+                <>
+                    <Route
+                        path='/feed/:id'
+                        children={
+                            <Modal setModalActive={setModalActive} onClose={onClose}>
+                               <Order/>
+                            </Modal>
+                        }
+                    />
+                </>
+                )}
+                {background && (
+                    <>
+                        <Route
+                            path='/profile/orders/:id'
+                            children={
+                                <Modal setModalActive={setModalActive} onClose={onClose}>
+                                    <Order/>
+                                </Modal>
+                            }
+                        />
+                    </>
                 )}
 
             </div>

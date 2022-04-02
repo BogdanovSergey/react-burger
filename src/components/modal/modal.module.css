@@ -4,12 +4,13 @@
     padding-right: 50px;
     padding-top: 40px;
     cursor: pointer;
+    z-index: 5000;
 }
 .modal_content {
     border-radius: 12px;
     background-color: rgb(28, 28, 33);
-    height: 540px;
-    width: 700px;
+    min-height: 540px;
+    width: 750px;
     z-index: 1000;
     color: #FFFFFF;
 
@@ -22,7 +23,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
 .modal_content_caption {
     /*border: 4px double blue;*/
     width: 100%;
@@ -37,7 +37,6 @@
     position: relative;
     float: left;
 }
-
 .order_details {
     display: flex;
     flex-direction:column;
@@ -48,7 +47,6 @@
     padding: 15px;
     padding-bottom: 40px;
 }
-
 .bottom_text {
     padding: 15px;
     text-align: center;

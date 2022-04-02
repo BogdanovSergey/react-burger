@@ -1,10 +1,15 @@
 import * as config from '../../config';
 import {Dispatch} from "redux";
 import {INGREDIENTS_LOAD} from '../actions';
-import {TIngredient} from "../../types";
+//import {TIngredient} from "../../types";
 
-type GetIngredientsAction = { type: typeof INGREDIENTS_LOAD, data:TIngredient }
 
+export interface IGetIngredientsAction {
+	//readonly type: typeof INGREDIENTS_LOAD;
+	//type: typeof INGREDIENTS_LOAD, data:TIngredient
+}
+
+//export const getIngredients:IGetIngredientsAction = () => {
 export function getIngredients() {
 	return function(dispatch:Dispatch) {
 		fetch(config.getIngredientsUrl)
