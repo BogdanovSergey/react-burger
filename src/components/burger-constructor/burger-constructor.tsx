@@ -4,7 +4,8 @@ import {Button, ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-deve
 import {OrderDetails, Modal} from "../modal";
 import { BurgerItem } from '../burger-item/burger-item';
 import { useDrop } from 'react-dnd';
-import { useSelector, useDispatch } from 'react-redux';
+//import {  useDispatch } from 'react-redux';
+import {useSelector, useDispatch} from '../../hooks/hooks'
 import {MOVE_INGREDIENT, INGREDIENT_DELETE, COUNTER_DOWN} from '../../services/actions';
 import {createOrder} from '../../services/actions/order';
 import {useHistory} from 'react-router-dom';
@@ -16,7 +17,7 @@ export const BurgerConstructor: FC<TProps> = ({ onDropHandler }) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
     const [modalIsActive, setModalActive] = useState(false);
-	const { bun, contentItems } = useSelector((store:ReduxStore) => store.ingr.burgerIngredients);
+	const { bun, contentItems } = useSelector(store => store.ingr.burgerIngredients);
 	const hasToken = localStorage.getItem('refreshToken');
     const [{ canDrop }, dropTarget] = useDrop({
         accept : "ingredient",

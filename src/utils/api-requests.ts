@@ -1,6 +1,10 @@
 import {config} from '../config';
 import {TUser,TUserRequest} from '../types'
 
+export const checkResponse = (response: Response) => {
+    return (response.ok) ? response.json() : Promise.reject(response.status);
+};
+
 export const registerRequest = ({ email, password, name }:TUser) => {
     return fetch(config.registerUrl, {
             method: 'POST',
@@ -10,13 +14,7 @@ export const registerRequest = ({ email, password, name }:TUser) => {
             body: JSON.stringify({email, password, name})
         }
     )
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            return Promise.reject(response.status);
-        }
-    });
+    .then(checkResponse);
 };
 
 export const loginRequest = ({ email, password }:TUser) => {
@@ -27,13 +25,7 @@ export const loginRequest = ({ email, password }:TUser) => {
         },
         body: JSON.stringify({ email: email, password }),
     })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            return Promise.reject(response.status);
-        }
-    });
+    .then( checkResponse );
 };
 
 export const refreshTokenRequest = () => {
@@ -46,13 +38,7 @@ export const refreshTokenRequest = () => {
             token : localStorage.getItem('refreshToken')
         }),
     })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            return Promise.reject(response.status);
-        }
-    });
+    .then(checkResponse);
 };
 
 export const logoutRequest = () => {
@@ -65,13 +51,7 @@ export const logoutRequest = () => {
             token: localStorage.getItem('refreshToken')
         }),
     })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            return Promise.reject(response.status);
-        }
-    });
+    .then(checkResponse);
 };
 
 
@@ -83,13 +63,7 @@ export const getUserRequest = (token:string) => {
             Authorization: 'Bearer ' + token
         }
     })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                return Promise.reject(response.status);
-            }
-        });
+        .then(checkResponse);
 };
 export const updateUserRequest = ({email, name, token}:TUserRequest) => {
     return fetch(config.userUrl, {
@@ -100,11 +74,5 @@ export const updateUserRequest = ({email, name, token}:TUserRequest) => {
         },
         body: JSON.stringify({email, name})
     })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                return Promise.reject(response.status);
-            }
-        });
+        .then(checkResponse);
 };

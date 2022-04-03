@@ -83,7 +83,7 @@ export function FeedItem(props: { order: TOrder; showStatus: boolean }) {
                     {order.name}<br/>
                     {showStatus && <span className="text text_type_main-default" style={{color: (order.status=== 'done')?'#00CCCC':'#FFFFFF'}}>{getStatus(order.status)}</span>}
                 </p>
-                <footer className={styles.footer}>
+                <div className={styles.footer}>
                     <div className={styles.images}>
                         {
                             images.map((image, i) => {
@@ -102,10 +102,10 @@ export function FeedItem(props: { order: TOrder; showStatus: boolean }) {
                         }
                     </div>
                     <div className={styles.coast}>
-                        <span className='text text_type_digits-default pr-2'>{price}</span>
+                        <span className='text text_type_digits-default pr-2'>1{price}</span>
                         <CurrencyIcon type="primary"/>
                     </div>
-                </footer>
+                </div>
             </section>
         </Link>
     )

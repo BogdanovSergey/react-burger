@@ -12,7 +12,7 @@ interface IProductListProps {
 }
 
 export const ProductList:FunctionComponent<IProductListProps> = (props) => {
-    let location = useLocation();
+    const location = useLocation();
     return (
        <>
            <p className="text text_type_main-medium" id={props.id} ref={props.subRef}>

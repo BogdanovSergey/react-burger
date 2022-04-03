@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux'
 import {
-    Actions,
+    TWSActions,
     WS_CONNECTION_SUCCESS,
     WS_CONNECTION_ERROR,
     WS_CONNECTION_CLOSED,
@@ -10,7 +10,7 @@ import {
 } from '../actions/wsActions'
 
 export const socketMiddleware = () => {
-    return (store: { dispatch: Dispatch<Actions> }) => {
+    return (store: { dispatch: Dispatch<TWSActions> }) => {
         let socket: any = null;
 
         return (next: any) => (action: any) => {

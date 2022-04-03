@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { FeedItem } from '../../components/feed-item/feed-item'
@@ -5,6 +6,7 @@ import styles from './feed.module.css'
 import { config } from '../../config'
 import { ReduxStore } from '../../services/store.types'
 import { TOrder } from '../../types'
+import {WS_CONNECTION_START, WS_CONNECTION_CLOSED} from '../../services/actions/wsActions';
 
 export function FeedPage() {
     const dispatch = useDispatch();
@@ -16,9 +18,9 @@ export function FeedPage() {
     const [doneNumbers, setDoneNumbers] = useState<TOrder[][]>([]);
 
     useEffect(() => {
-        dispatch({type: 'WS_CONNECTION_START', payload: config.feedsUrl});
+        dispatch({type: WS_CONNECTION_START, payload: config.feedsUrl});
         return () => {
-            dispatch({type: 'WS_CONNECTION_CLOSED'})
+            dispatch({type: WS_CONNECTION_CLOSED})
         }
     }, [dispatch]);
 
@@ -47,9 +49,9 @@ export function FeedPage() {
 
     return (
         <div>
-            <header className={ styles.header }>
-                <h1 className='text text_type_main-large pt-8 pb-6'>Лента заказов</h1>
-            </header>
+            <p className="text text_type_main-large pt-4 pb-6">
+                Лента заказов
+            </p>
             <section className={ styles.content }>
                 <div className={ styles.feed }>
                     { Boolean(orders.length) && orders.map(item => item?.ingredients?.length ? <FeedItem key={item['_id']} order={item} showStatus={false} /> : false) }

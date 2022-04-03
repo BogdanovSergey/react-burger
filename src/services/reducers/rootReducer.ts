@@ -135,5 +135,5 @@ export const rootReducer = combineReducers({
 	ingr: ingredientsReducer,
 	auth: authReducer,
 	order:orderReducer,
-	messages: wsReducer,
+	messages: wsReducer
 });

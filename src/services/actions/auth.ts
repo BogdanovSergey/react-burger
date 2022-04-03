@@ -176,4 +176,27 @@ export const updateUserAction = (state:any) => {
             });
     }
 }
+export interface ILoginAction { readonly type: typeof LOGIN; }
+export interface IRegSuccessAction { readonly type: typeof REGISTER_SUCCESS; }
+export interface IRegFailedAction { readonly type: typeof REGISTER_FAILED; }
+export interface ILogoutAction { readonly type: typeof LOGOUT; }
+export interface IRefTokenRequestAction { readonly type: typeof REFRESH_TOKEN_REQUEST; }
+export interface IRefTokenSuccessAction { readonly type: typeof REFRESH_TOKEN_SUCCESS; }
+export interface IRefTokenFailedAction { readonly type: typeof REFRESH_TOKEN_FAILED; }
+export interface IGetUserRequestAction { readonly type: typeof GET_USER_REQUEST; }
+export interface IGetUserSuccessAction { readonly type: typeof GET_USER_SUCCESS; }
+export interface IGetUserFailedAction { readonly type: typeof GET_USER_FAILED; }
 
+
+
+export type TAuthActions =
+    | ILoginAction
+    | IRegSuccessAction
+    | IRegFailedAction
+    | ILogoutAction
+    | IRefTokenRequestAction
+    | IRefTokenSuccessAction
+    | IGetUserRequestAction
+    | IGetUserFailedAction
+    | IGetUserSuccessAction
+    | IRefTokenFailedAction;

@@ -1,25 +1,13 @@
 import * as config from '../../config';
 import {Dispatch} from "redux";
 import {INGREDIENTS_LOAD} from '../actions';
-//import {TIngredient} from "../../types";
-
-
-export interface IGetIngredientsAction {
-	//readonly type: typeof INGREDIENTS_LOAD;
-	//type: typeof INGREDIENTS_LOAD, data:TIngredient
-}
+import {checkResponse} from "../../utils/api-requests";
 
 //export const getIngredients:IGetIngredientsAction = () => {
 export function getIngredients() {
 	return function(dispatch:Dispatch) {
 		fetch(config.getIngredientsUrl)
-			.then(response => {
-				if (response.ok) {
-					return response.json();
-				} else {
-					return Promise.reject(response.status);
-				}
-			})
+			.then(checkResponse)
 			.then(result => {
 				dispatch({
 					type: INGREDIENTS_LOAD,
@@ -30,7 +18,12 @@ export function getIngredients() {
 				console.log(error);
 				alert('Error ' + error + ' while connecting to Api');
 			});
-		
-		
 	}
 }
+
+export interface IGetIngredientsAction {
+	readonly type: typeof INGREDIENTS_LOAD;
+	//type: typeof INGREDIENTS_LOAD, data:TIngredient
+}
+export type TIngredientsActions =
+	| IGetIngredientsAction;

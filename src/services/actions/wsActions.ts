@@ -33,10 +33,10 @@ export type SendAction = {
     type: typeof WS_SEND_MESSAGE
 }
 
-export type Actions =
+export type TWSActions =
     | StartAction
     | SuccessAction
     | ErrorAction
     | ClosedAction
     | GetAction
-    | SendAction
+    | SendAction;

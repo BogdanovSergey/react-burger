@@ -21,7 +21,6 @@ export const Modal : FunctionComponent<IModalProps> = (props) => {
 	}, [props]);
 
     const portalContent = (
-	    <>
 			<div>
 				<ModalOverlay setModalActive={props.setModalActive} />
 				<div className={css.modal_content} onClick={e=>e.stopPropagation()}>
@@ -33,8 +32,7 @@ export const Modal : FunctionComponent<IModalProps> = (props) => {
 					{/*Компонент-содержание*/}
 					{props.children}
 				</div>
-			</div>
-	    </>);
+			</div>);
 
     return ReactDOM.createPortal(
 	    portalContent,

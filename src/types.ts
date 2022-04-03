@@ -1,3 +1,16 @@
+import { ThunkAction } from 'redux-thunk';
+import { Action, ActionCreator } from 'redux';
+import { store } from './services/store';
+import { TAuthActions } from './services/actions/auth';
+import { TIngredientsActions }from './services/actions/ingredients';
+import { TWSActions } from './services/actions/wsActions';
+
+type TApplicationActions = TAuthActions | TIngredientsActions | TWSActions;
+
+
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppThunk<ReturnType = void> = ActionCreator <ThunkAction <ReturnType, Action, RootState, TApplicationActions>>;
 
 export type TIngredient = {
     _id: string;
@@ -71,3 +84,4 @@ export type TMessage = {
     total: number
     totalToday: number
 }
+

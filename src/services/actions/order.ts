@@ -4,6 +4,7 @@ import {Dispatch} from "redux";
 import {TIngredient, TOrder} from "../../types";
 import {OrderActions,TGetOrderResponse} from "../reducers/order.types"
 import {getCookie} from "../../utils/cookie";
+import {checkResponse} from "../../utils/api-requests";
 
 export interface IGetIngredientsAction {
 	type?: TIngredient[]
@@ -23,13 +24,7 @@ export const createOrder = (ingredientsIdsArr : string[]) =>{
 				body: JSON.stringify({'ingredients': ingredientsIdsArr})
 			}
 		)
-			.then(response => {
-				if (response.ok) {
-					return response.json();
-				} else {
-					return Promise.reject(response.status);
-				}
-			})
+			.then(checkResponse)
 			.then(result => {
 				if (result.success) {
 					let orderNumber = result.order.number;
@@ -52,7 +47,6 @@ export const createOrder = (ingredientsIdsArr : string[]) =>{
 export function getOrder (id: string) {
 	return function(dispatch: Dispatch<OrderActions>) {
 		dispatch({type: GET_ORDER});
-
 		fetch(config.orderUrl + id, {
 				method: 'GET',
 				headers: {
@@ -60,13 +54,7 @@ export function getOrder (id: string) {
 				}
 			}
 		)
-		.then(response => {
-			if (response.ok) {
-				return response.json();
-			} else {
-				return Promise.reject(response.status);
-			}
-		})
+		.then(checkResponse)
 		.then((response:any) => {
 			console.log(response);
 			dispatch({
@@ -74,7 +62,6 @@ export function getOrder (id: string) {
 				order: response.orders[0]
 			});
 			return response.data;
-
 		})
 		.catch(() => {
 			console.log('errr');
@@ -82,6 +69,5 @@ export function getOrder (id: string) {
 				type: GET_ORDER_FAILED
 			})
 		})
-
 	}
 }

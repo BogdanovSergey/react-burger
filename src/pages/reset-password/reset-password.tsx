@@ -7,6 +7,7 @@ import * as config from "../../config";
 //import {getCookie} from "../../utils/cookie";
 import { useSelector } from 'react-redux';
 import {ReduxStore} from "../../services/store.types";
+import {checkResponse} from "../../utils/api-requests";
 
 /*
 Для реализации этой функциональности потребуется создать пользователя.
@@ -29,13 +30,7 @@ export const ResetPasswordPage = () => {
             },
             body: JSON.stringify({'password': password, 'token':token})
         })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    return Promise.reject(response.status);
-                }
-            })
+            .then(checkResponse)
             .then(result => {
                 console.log(result)
             })
