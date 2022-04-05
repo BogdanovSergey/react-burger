@@ -9,11 +9,11 @@ import {
 
 const initialState: WsStore = {
   wsConnected: false,
-  messages: [],
+  messages: null,
   error: ''
 };
 
-export const wsReducer = (state = initialState, action: TWSActions) => {
+export const wsReducer = (state = initialState, action: TWSActions):WsStore  => {
   switch (action.type) {
     case WS_CONNECTION_SUCCESS:
       return {
@@ -31,7 +31,7 @@ export const wsReducer = (state = initialState, action: TWSActions) => {
 
     case WS_CONNECTION_CLOSED:
       return {
-        messages: [],
+        messages: null,
         error: null,
         wsConnected: false
       };
@@ -40,7 +40,7 @@ export const wsReducer = (state = initialState, action: TWSActions) => {
       return {
         ...state,
         error: null,
-        messages: [action.payload]
+        messages: action.payload
       };
     default:
       return state

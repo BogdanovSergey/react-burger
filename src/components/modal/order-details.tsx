@@ -1,11 +1,10 @@
 import React from 'react';
 import css from './modal.module.css';
 import imgDone from '../../images/done.svg';
-import {useSelector} from "react-redux";
-import { ReduxStore } from '../../services/store.types';
+import { useSelector } from '../../hooks/hooks';
 
 export const OrderDetails = () => {
-	const orderObj = useSelector((store:ReduxStore) => store.order);
+	const orderObj = useSelector((store) => store.order);
 	
 	return(
 		<div className={css.order_details}>

@@ -1,23 +1,21 @@
 import React, {useState, useCallback,FC} from 'react';
-import css from './index.module.css';
-import {Button, ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import {OrderDetails, Modal} from "../modal";
-import { BurgerItem } from '../burger-item/burger-item';
 import { useDrop } from 'react-dnd';
-//import {  useDispatch } from 'react-redux';
-import {useSelector, useDispatch} from '../../hooks/hooks'
-import {MOVE_INGREDIENT, INGREDIENT_DELETE, COUNTER_DOWN} from '../../services/actions';
-import {createOrder} from '../../services/actions/order';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { Button, ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import css from './index.module.css';
+import { OrderDetails, Modal } from "../modal";
+import { BurgerItem } from '../burger-item/burger-item';
+import { useSelector, useDispatch } from '../../hooks/hooks'
+import { MOVE_INGREDIENT, INGREDIENT_DELETE, COUNTER_DOWN } from '../../services/actions';
+import { createOrder } from '../../services/actions/order';
 import { TProps, TIngredient } from '../../types'
-import {ReduxStore} from "../../services/store.types";
 
 /*  Конструктор - ПРАВЫЙ блок */
 export const BurgerConstructor: FC<TProps> = ({ onDropHandler }) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
     const [modalIsActive, setModalActive] = useState(false);
-	const { bun, contentItems } = useSelector(store => store.ingr.burgerIngredients);
+	const { bun, contentItems } = useSelector((store) => store.ingr.burgerIngredients);
 	const hasToken = localStorage.getItem('refreshToken');
     const [{ canDrop }, dropTarget] = useDrop({
         accept : "ingredient",
@@ -47,13 +45,13 @@ export const BurgerConstructor: FC<TProps> = ({ onDropHandler }) => {
 		})
 	}, [dispatch])
 	
-	const orderSumm = (bun:TIngredient, items:TIngredient[]) => {
+	const orderSumm = (bun:TIngredient|null, items:TIngredient[]) => {
 		let summ = (bun)? bun.price*2 : 0;
 		if(items) items.map((itm)=>{return summ += itm.price});
 		return summ;
 	}
 	const handleClick = () => {
-		if (hasToken) {
+		if (hasToken && bun) {
 			let ingredientsArr:string[] = [bun._id]; // пусть сервер знает id булки
 			for (let itm of contentItems) {
 				ingredientsArr.push(itm._id)

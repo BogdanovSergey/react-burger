@@ -3,10 +3,9 @@ import { Route, Switch} from "react-router-dom";
 import { Input, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import css from "./profile.module.css";
 import {Links} from "./links";
-import {useDispatch, useSelector} from "react-redux"
+import {useSelector, useDispatch} from '../../hooks/hooks';
 import { TUser } from '../../types'
 import { getUserAction,updateUserAction} from "../../services/actions/auth";
-import {ReduxStore} from "../../services/store.types";
 import {ProtectedRoute} from '../../components/protected-route';
 import {Orders} from '../../components/orders/orders';
 export const ProfilePage = () => {
@@ -18,7 +17,7 @@ export const ProfilePage = () => {
     };
     const [defaultState, setDefaultState] = React.useState(emptyState);
     const [state, setState] = React.useState(emptyState);
-    const  user:TUser  = useSelector((store:ReduxStore) => store.auth.user);
+    const user = useSelector((store) => store.auth.user);
 
     const handleInputChange = (e:React.ChangeEvent<HTMLInputElement> ) => {
         const target = e.target;
@@ -100,5 +99,4 @@ export const ProfilePage = () => {
                 </div>
             </div>
         </>);
-
 }

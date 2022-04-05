@@ -14,7 +14,6 @@ export type TInitialState = {
 };
 
 
-
 export const initialState:TInitialState = {
 	data: [],
 	burgerIngredients: {

@@ -3,14 +3,12 @@ import { Link, useHistory,useLocation } from 'react-router-dom';
 import {Logo, Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './login.module.css';
 import {loginAction} from "../../services/actions/auth";
-import {useDispatch} from "react-redux";
-//import { ReduxStore } from '../../services/store.types'
+import { useDispatch } from '../../hooks/hooks';
 
 export const LoginPage = () => {
     const dispatch = useDispatch();
     let history = useHistory();
     const location = useLocation();
-    //const userObj = useSelector<ReduxStore>(store => store.auth.user);
     const [state, setState] = useState({
         email:'',
         password:''
@@ -32,9 +30,9 @@ export const LoginPage = () => {
 
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
-        dispatch(loginAction(state) as any)
+        dispatch<any>(loginAction(state)) // Поясните, пожалуйста, как можно обойтись здесь без any?
             .then(() => {
-                console.log(location.state?.from?.pathname || '/')
+                console.log(location.state?.from?.pathname || '/');
                 history.replace({ pathname: location.state?.from?.pathname || '/' })
             });
     };

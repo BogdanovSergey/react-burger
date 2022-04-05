@@ -83,5 +83,6 @@ export type TMessage = {
         ],
     total: number
     totalToday: number
+
 }
 

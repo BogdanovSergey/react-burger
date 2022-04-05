@@ -1,9 +1,8 @@
 import s from "./profile.module.css"
 import { NavLink, useLocation } from "react-router-dom";
 import React from "react";
-import {useDispatch} from 'react-redux';
+import {useDispatch} from '../../hooks/hooks';
 import {logoutAction} from '../../services/actions/auth';
-//import {useHistory} from 'react-router-dom';
 
 export function Links() {
     const { pathname } = useLocation();

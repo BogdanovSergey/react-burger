@@ -1,18 +1,14 @@
 import React, {SyntheticEvent, useState} from 'react';
-//import {AppHeader} from '../../components/app-header';
 import { Link, useHistory } from 'react-router-dom';
 import {Logo, Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './forgot-password.module.css';
 import * as config from "../../config";
-import {useSelector} from "react-redux";
-import { ReduxStore } from '../../services/store.types'
+import { useSelector } from '../../hooks/hooks';
 
 export const ForgotPasswordPage = () => {
     const [email, setEmail] = useState('');
     let history = useHistory();
-    const authorized = useSelector<ReduxStore>(store=>store.auth.authorized);
-    console.log(authorized);
-
+    const authorized = useSelector(store => store.auth.authorized);
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
         fetch(config.pwForgotUrl,{

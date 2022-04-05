@@ -1,14 +1,12 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
+import { useHistory } from "react-router";
+import { useDrag } from "react-dnd";
 import css from './product.module.css';
-import {CurrencyIcon, Counter} from '@ya.praktikum/react-developer-burger-ui-components';
-import {Modal} from "../modal";
-import {IngredientDetails} from "../ingredient-details";
-import {useDrag} from "react-dnd";
-import {useSelector} from "react-redux";
+import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Modal } from "../modal";
+import { IngredientDetails } from "../ingredient-details";
+import { useSelector } from '../../hooks/hooks'
 import { TIngredient } from '../../types'
-import  { ReduxStore } from '../../services/store.types';
-import {Route, useHistory} from "react-router";
-//import { BurgerIngredientStore } from '../../services/reducers/burger-ingredient.types'
 
 export const Product = (props:{apiData:TIngredient}) => {
     const history = useHistory();
@@ -20,18 +18,16 @@ export const Product = (props:{apiData:TIngredient}) => {
 			isDrag: monitor.isDragging()
 		})
 	});
-
     const onClose = (e: Event) => {
         if(e) e.stopPropagation();
         setModalActive(false);
         history.goBack()
-    }
-
+    };
 	const opacity = isDrag ? 0.5 : 1;
-    const { counts, bun } = useSelector((store:ReduxStore) => store.ingr.burgerIngredients);
+    const { counts, bun } = useSelector((store) => store.ingr.burgerIngredients);
 
 	let count = (counts && typeof(counts[props.apiData._id]) !== 'undefined') ? counts[props.apiData._id] : 0;
-	count = (props.apiData.type==='bun' && count && props.apiData._id === bun._id) ? 2 : (props.apiData.type==='bun' ? 0 : count);
+	count = (props.apiData.type==='bun' && count && bun && props.apiData._id === bun._id) ? 2 : (props.apiData.type==='bun' ? 0 : count);
     const productContent =
         <div className={css.product} onClick={()=>setModalActive(true)} ref={dragRef} style={{ opacity }}>
             <img src={props.apiData.image} alt={props.apiData.name}/>

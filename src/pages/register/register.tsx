@@ -1,8 +1,8 @@
-import React, {SyntheticEvent, useState} from 'react';
-import {useDispatch} from 'react-redux';
+import React, { SyntheticEvent, useState } from 'react';
+import { useDispatch } from '../../hooks/hooks';
 import { Link } from 'react-router-dom';
-import {Logo, Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import {registerAction} from '../../services/actions/auth';
+import { Logo, Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import { registerAction } from '../../services/actions/auth';
 import css from './register.module.css';
 
 export const RegisterPage = () => {

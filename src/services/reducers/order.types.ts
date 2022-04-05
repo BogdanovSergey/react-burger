@@ -44,7 +44,7 @@ export type TGetOrderResponse = {
     success: boolean
 } & Response
 
-export type OrderStore = {
+export type TOrderStore = {
     number?: number
     orderRequest: boolean
     orderFailed: boolean

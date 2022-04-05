@@ -26,7 +26,7 @@ export type ClosedAction = {
 
 export type GetAction = {
     type: typeof WS_GET_MESSAGE
-    payload: TMessage[]
+    payload: TMessage
 }
 
 export type SendAction = {

@@ -5,7 +5,7 @@ import {BurgerIngredients} from '../burger-ingredients';
 import {BurgerConstructor} from '../burger-constructor';
 import {INGREDIENTS_CHOOSE, COUNTER_UP} from '../../services/actions';
 import {getIngredients} from '../../services/actions/ingredients';
-import {useDispatch} from "react-redux";
+import { useDispatch} from '../../hooks/hooks'
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {BrowserRouter, Route, Switch, useLocation, useHistory } from 'react-router-dom';

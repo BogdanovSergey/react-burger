@@ -1,11 +1,10 @@
 import React from "react";
-import { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { FeedItem } from '../../components/feed-item/feed-item'
-import styles from './feed.module.css'
-import { config } from '../../config'
-import { ReduxStore } from '../../services/store.types'
-import { TOrder } from '../../types'
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from '../../hooks/hooks';
+import { FeedItem } from '../../components/feed-item/feed-item';
+import styles from './feed.module.css';
+import { config } from '../../config';
+import { TOrder } from '../../types';
 import {WS_CONNECTION_START, WS_CONNECTION_CLOSED} from '../../services/actions/wsActions';
 
 export function FeedPage() {
@@ -13,7 +12,7 @@ export function FeedPage() {
     const [total, setTotal] = useState(0);
     const [totalToday, setTotalToday] = useState(0);
     const [orders, setOrders] = useState<TOrder[]>([]);
-    const { messages } = useSelector((store: ReduxStore) => store.messages);
+    const { messages } = useSelector((store) => store.messages);
     const [createdNumbers, setCreatedNumbers] = useState<TOrder[][]>([]);
     const [doneNumbers, setDoneNumbers] = useState<TOrder[][]>([]);
 
@@ -25,10 +24,10 @@ export function FeedPage() {
     }, [dispatch]);
 
     useEffect(() => {
-        if (messages[0]?.orders) {
-            setOrders(messages[0].orders);
-            setTotal(messages[0].total);
-            setTotalToday(messages[0].totalToday)
+        if (messages?.orders) {
+            setOrders(messages.orders);
+            setTotal(messages.total);
+            setTotalToday(messages.totalToday)
         }
     }, [messages]);
 

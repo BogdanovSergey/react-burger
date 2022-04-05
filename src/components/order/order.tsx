@@ -1,23 +1,20 @@
 import React from 'react';
-import css from './order.module.css'
-import { useState, useEffect }  from 'react'
-import { useParams } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { ReduxStore } from '../../services/store.types';
+import css from './order.module.css';
+import { useState, useEffect }  from 'react';
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch} from '../../hooks/hooks';
+import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { TIngredient } from '../../types';
-import { formatDate } from '../../utils/fdate'
-import { getOrder } from '../../services/actions/order'
+import { formatDate } from '../../utils/fdate';
+import { getOrder } from '../../services/actions/order';
 
 export function Order() {
     const dispatch = useDispatch();
-      const { order, orderRequest, orderFailed } = useSelector((store: ReduxStore) => store.order);
-      const { data } = useSelector((store: ReduxStore) => store.ingr);
-console.log(order);
+      const { order, orderRequest, orderFailed } = useSelector((store) => store.order);
+      const { data } = useSelector((store) => store.ingr);
       const { id } = useParams<{ id: string }>();
       const [orderIngredients, setOrderIngredients] = useState<TIngredient[] | null>(null);
       const [price, setPrice] = useState(0);
-
 
     const getStatusColor = (status:string) => status === 'done' ? '#00CCCC' : '#FFFFFF';
     useEffect(() => {
@@ -40,7 +37,7 @@ console.log(order);
         if (data.length) {
             let totalPrice = 0;
             let bun = 0;
-            order?.ingredients?.forEach(ingredient => {
+            order?.ingredients?.forEach((ingredient:string) => {
                 let targetIngredient = data.filter(item => item['_id'] === ingredient)[0];
                 if (targetIngredient.type === 'bun' && !bun) {
                     totalPrice += 2 * targetIngredient.price;

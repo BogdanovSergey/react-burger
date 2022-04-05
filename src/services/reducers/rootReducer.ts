@@ -19,7 +19,7 @@ import { wsReducer } from './wsReducer'
 import { TIngredient } from '../../types'
 import {Actions} from './burger-ingredient.types';
 
-export const ingredientsReducer = (state:TInitialState = initialState, action:Actions) => {
+export const ingredientsReducer = (state = initialState, action:Actions):TInitialState => {
 	switch(action.type) {
 		case INGREDIENTS_LOAD:
 			return {
@@ -134,6 +134,6 @@ export const ingredientsReducer = (state:TInitialState = initialState, action:Ac
 export const rootReducer = combineReducers({
 	ingr: ingredientsReducer,
 	auth: authReducer,
-	order:orderReducer,
+	order: orderReducer,
 	messages: wsReducer
 });

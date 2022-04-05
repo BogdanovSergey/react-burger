@@ -29,7 +29,7 @@ export type BurgerIngredientStore = {
 
 }
 
-export type GetIngredientsAction = { type: typeof INGREDIENTS_LOAD, data:TIngredient }
+export type GetIngredientsAction = { type: typeof INGREDIENTS_LOAD, data:TIngredient[] }
 export type ResetConstructorAction = { type: typeof RESET_CONSTRUCTOR }
 export type IngredientsChooseAction = { type: typeof INGREDIENTS_CHOOSE,item:TIngredient }
 export type IngredientsDeleteAction = { type: typeof INGREDIENT_DELETE, id:string }

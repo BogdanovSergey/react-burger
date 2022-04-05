@@ -1,15 +1,14 @@
 import React, {useRef, useEffect} from 'react';
+import PropTypes from "prop-types";
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './burger.module.css';
 import {ingredientType} from '../../prop-types';
 import {ProductList} from '../product-list';
-import PropTypes from "prop-types";
-import {useSelector} from "react-redux";
-import {ReduxStore} from "../../services/store.types";
+import {useSelector} from '../../hooks/hooks';
 
 export const BurgerIngredients = () => {
     const [current, setCurrent] = React.useState<string>('bun');
-	const apiData = useSelector((store:ReduxStore) => store.ingr.data);
+	const apiData = useSelector((store) => store.ingr.data);
 	const setTab = (tab:any) => {
 		console.log(tab);
 		setCurrent(tab);

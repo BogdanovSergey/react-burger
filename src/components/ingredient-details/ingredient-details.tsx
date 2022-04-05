@@ -1,8 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import css from "./ingredient-details.module.css";
-import { useSelector } from "react-redux";
+import { useSelector } from '../../hooks/hooks';
 import {useHistory} from 'react-router-dom';
-import { ReduxStore } from '../../services/store.types'
 import { TIngredient } from '../../types'
 
 export const IngredientDetails = () => {
@@ -11,7 +10,7 @@ export const IngredientDetails = () => {
     const id = history.location.pathname.slice(13);
 	type EmptyObject = Record<any, never>|undefined;
 
-	let ingredients = useSelector((store:ReduxStore) => store.ingr.data);
+	let ingredients = useSelector((store) => store.ingr.data);
 	let item:TIngredient|EmptyObject = {};
 	let [ingredient, setIngredient] = useState<TIngredient| EmptyObject>({});
 

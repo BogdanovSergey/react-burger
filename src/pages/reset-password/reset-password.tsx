@@ -1,25 +1,15 @@
 import React, {SyntheticEvent} from 'react';
-//import {AppHeader} from '../../components/app-header';
 import { Link, useHistory} from 'react-router-dom';
 import {Logo, Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './reset-password.module.css';
 import * as config from "../../config";
-//import {getCookie} from "../../utils/cookie";
-import { useSelector } from 'react-redux';
-import {ReduxStore} from "../../services/store.types";
+import {useSelector} from '../../hooks/hooks'
 import {checkResponse} from "../../utils/api-requests";
-
-/*
-Для реализации этой функциональности потребуется создать пользователя.
-Вы можете сделать это, отправив POST запрос к эндпоинту
-https://norma.nomoreparties.space/api/auth/register.
-*/
 
 export const ResetPasswordPage = () => {
     const [password, setPassword] = React.useState('');
     const [token, setToken] = React.useState('');
-    //const loggedIn = useSelector(store=>store.auth.login);
-    const authorized = useSelector((store: ReduxStore)=>store.auth.authorized);
+    const authorized = useSelector(store => store.auth.authorized);
     let history = useHistory();
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();

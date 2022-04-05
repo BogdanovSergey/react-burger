@@ -1,4 +1,4 @@
-import {OrderActions} from './order.types';
+import {OrderActions,TOrderStore} from './order.types';
 import {
     ORDER_LOAD,
     GET_ORDER,
@@ -7,7 +7,7 @@ import {
     CLEAR_ORDER
 } from '../actions/index'
 
-const initialState =
+const initialState:TOrderStore =
     {
         number: 0,
         order: null,
@@ -15,7 +15,7 @@ const initialState =
         orderFailed: false,
     };
 
-export const orderReducer = (state = initialState, action:OrderActions) => {
+export const orderReducer = (state = initialState, action:OrderActions):TOrderStore => {
     switch (action.type) {
 
         case ORDER_LOAD:

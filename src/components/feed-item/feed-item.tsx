@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import {useSelector} from '../../hooks/hooks'
 import styles from './feed-item.module.css'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { formatDate } from '../../utils/fdate'
 import { useLocation, Link } from 'react-router-dom'
-import { ReduxStore } from '../../services/store.types'
 import { TIngredient, TOrder } from '../../types'
 
 export function FeedItem(props: { order: TOrder; showStatus: boolean }) {
@@ -12,7 +11,7 @@ export function FeedItem(props: { order: TOrder; showStatus: boolean }) {
     const location = useLocation();
     const {order, showStatus} = props;
     const orderNumber = order.number;
-    const { data } = useSelector((store:ReduxStore) => store.ingr);
+    const { data } = useSelector((store) => store.ingr);
     const [orderIngredients, setOrderIngredients] = useState<TIngredient[]>([]);
     const [price, setPrice] = useState(0);
     const [images, setImages] = useState<string[]>([]);

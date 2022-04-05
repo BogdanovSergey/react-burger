@@ -9,20 +9,24 @@ import {
     GET_USER_FAILED, REFRESH_TOKEN_FAILED, REFRESH_TOKEN_SUCCESS
 } from '../actions/auth';
 import {getCookie} from "../../utils/cookie";
-import {AuthActions} from "./auth.types";
+import {AuthActions, AuthStore} from "./auth.types";
 
-const initialState =
+const initialState:AuthStore =
     {
         login: false, // ???
         authorized : !!getCookie('token'),
         //authorized:false,
         user: {
             name:'',
-            email:''
-        }
+            email:'',
+            password:''
+        },
+        getUserRequest:false,
+        refreshTokenRequest:false,
+        tokenIsGood:false
 };
 
-export const authReducer = (state = initialState, action:AuthActions) => {
+export const authReducer = (state = initialState, action:AuthActions):AuthStore => {
     switch (action.type) {
 
         case REGISTER_SUCCESS: {
@@ -38,12 +42,12 @@ export const authReducer = (state = initialState, action:AuthActions) => {
         }
 
         case LOGIN: {
-            //console.log(action.user)
             return {
                 ...state,
                 login: true,
                 authorized : true,
                 user: {
+                    ...state.user,
                     name : action?.user?.name,
                     email: action?.user?.email
                 }
@@ -55,6 +59,7 @@ export const authReducer = (state = initialState, action:AuthActions) => {
                 login: false,
                 authorized : false,
                 user: {
+                    ...state.user,
                     name : '',
                     email: ''
                 }
@@ -66,6 +71,7 @@ export const authReducer = (state = initialState, action:AuthActions) => {
                 ...state,
                 getUserRequest : true,
                 user: {
+                    ...state.user,
                     name : '',
                     email: ''
                 }
@@ -77,6 +83,7 @@ export const authReducer = (state = initialState, action:AuthActions) => {
                 getUserRequest : false,
                 authorized : true,
                 user: {
+                    ...state.user,
                     name : action?.user?.name,
                     email: action?.user?.email
                 }
@@ -88,6 +95,7 @@ export const authReducer = (state = initialState, action:AuthActions) => {
                 getUserRequest : false,
                 authorized: false,
                 user: {
+                    ...state.user,
                     name : '',
                     email: ''
                 }

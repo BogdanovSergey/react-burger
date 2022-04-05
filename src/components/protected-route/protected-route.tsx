@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
 import { Redirect, Route, useLocation, RouteProps } from 'react-router-dom';
-import { useSelector} from 'react-redux';
-import {ReduxStore} from "../../services/store.types";
+import {useSelector} from '../../hooks/hooks'
 
 export const ProtectedRoute: FC<RouteProps> = ({ children, ...rest }) => {
-    const authorized = useSelector((store:ReduxStore)=>store.auth.authorized);
+    const authorized = useSelector(store => store.auth.authorized);
     const location = useLocation();
     if (authorized) {
         return (
@@ -20,4 +19,4 @@ export const ProtectedRoute: FC<RouteProps> = ({ children, ...rest }) => {
             }}
         />)
     }
-}
+};
