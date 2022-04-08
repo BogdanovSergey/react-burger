@@ -11,7 +11,7 @@ import {
 import {getCookie} from '../../utils/cookie';
 import { AnyAction, MiddlewareAPI } from 'redux';
 
-export const socketMiddleware = (feedsUrl:string, auth:boolean/*wsActions?: TWSActions*/) => {
+export const socketMiddleware = (feedsUrl:string, /*auth:boolean,   wsActions?: TWSActions*/) => {
     return (store: { dispatch: Dispatch<TWSActions> }) => {
         let socket: any = null;
 

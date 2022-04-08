@@ -14,6 +14,6 @@ const enhancer = composeEnhancers(
 	applyMiddleware(thunk),
 	applyMiddleware(
 		//socketMiddleware(config.feedsUrl, false/*TWSActions*/),
-		socketMiddleware(config.feedsUrl, true))
+		socketMiddleware(config.feedsUrl))
 );
 export const store = createStore(rootReducer, enhancer);
