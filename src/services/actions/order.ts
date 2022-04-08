@@ -1,20 +1,11 @@
 import * as config from '../../config';
 import {ORDER_LOAD, RESET_CONSTRUCTOR,GET_ORDER,GET_ORDER_SUCCESS,GET_ORDER_FAILED} from "./index";
 import {Dispatch} from "redux";
-import {TIngredient, TOrder} from "../../types";
-import {OrderActions,TGetOrderResponse} from "../reducers/order.types"
 import {getCookie} from "../../utils/cookie";
 import {checkResponse} from "../../utils/api-requests";
 
-export interface IGetIngredientsAction {
-	type?: TIngredient[]
-	ingredientsIdsArr: string[]
-	//readonly type: typeof INGREDIENTS_LOAD;
-}
-
 export const createOrder = (ingredientsIdsArr : string[]) =>{
 	return function (dispatch:Dispatch) {
-
 		fetch(config.createOrderUrl, {
 				method: 'POST',
 				headers: {
@@ -45,7 +36,7 @@ export const createOrder = (ingredientsIdsArr : string[]) =>{
 }
 
 export function getOrder (id: string) {
-	return function(dispatch: Dispatch<OrderActions>) {
+	return function(dispatch: Dispatch) {
 		dispatch({type: GET_ORDER});
 		fetch(config.orderUrl + id, {
 				method: 'GET',

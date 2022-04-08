@@ -3,7 +3,6 @@ import {Dispatch} from "redux";
 import {INGREDIENTS_LOAD} from '../actions';
 import {checkResponse} from "../../utils/api-requests";
 
-//export const getIngredients:IGetIngredientsAction = () => {
 export function getIngredients() {
 	return function(dispatch:Dispatch) {
 		fetch(config.getIngredientsUrl)
@@ -23,7 +22,6 @@ export function getIngredients() {
 
 export interface IGetIngredientsAction {
 	readonly type: typeof INGREDIENTS_LOAD;
-	//type: typeof INGREDIENTS_LOAD, data:TIngredient
 }
 export type TIngredientsActions =
 	| IGetIngredientsAction;

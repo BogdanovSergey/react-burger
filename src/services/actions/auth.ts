@@ -7,7 +7,8 @@ import {
     updateUserRequest} from '../../utils/api-requests';
 import {setCookie, delCookie, getCookie} from "../../utils/cookie";
 import {Dispatch} from "redux";
-//import {useHistory} from "react-router-dom";
+import { PayloadAction } from '@reduxjs/toolkit';
+
 export const LOGIN = 'LOGIN';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAILED = 'REGISTER_FAILED';

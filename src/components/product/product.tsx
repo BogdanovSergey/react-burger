@@ -43,7 +43,7 @@ export const Product = (props:{apiData:TIngredient}) => {
     return (
         <div>
             {productContent}
-            {modalIsActive && <Modal header="Детали ингредиента" setModalActive={setModalActive} onClose={onClose}>
+            {modalIsActive && <Modal header="Детали ингредиента" onClose={onClose}>
 	            <IngredientDetails/>
             </Modal>
             }

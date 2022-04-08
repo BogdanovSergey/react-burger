@@ -61,8 +61,11 @@ export const BurgerConstructor: FC<TProps> = ({ onDropHandler }) => {
 		} else {
 			history.replace({ pathname: '/login' })
 		}
-	}
-
+	};
+	const onClose = (e: Event) => {
+		if(e) e.stopPropagation();
+		history.goBack()
+	};
 
     return (
         <div className={column} ref={dropTarget} style={{opacity}}>
@@ -123,7 +126,7 @@ export const BurgerConstructor: FC<TProps> = ({ onDropHandler }) => {
                 <p className="text text_type_digits-medium">{orderSumm(bun, contentItems)}</p>
                 <CurrencyIcon type="primary"/>
 	            {bun && <Button type="primary" size="medium" onClick={handleClick}>Оформить заказ</Button>}
-                {modalIsActive && <Modal setModalActive={setModalActive}>
+                {modalIsActive && <Modal onClose={onClose}>
                     <OrderDetails/>
                 </Modal>}
             </div>

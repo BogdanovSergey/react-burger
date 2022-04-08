@@ -23,7 +23,7 @@ export const App = () => {
         const dispatch = useDispatch();
         let [modalActive, setModalActive] = useState(false);
         const onClose = (e: Event) => {
-            if(e) e.stopPropagation()
+            if(e) e.stopPropagation();
             history.goBack()
         }
         // Наличие клика по игредиенту
@@ -94,7 +94,7 @@ export const App = () => {
                     <Route
                         path='/ingredients/:id'
                         children={
-                            <Modal header="Детали ингредиента" setModalActive={setModalActive} onClose={onClose}>
+                            <Modal header="Детали ингредиента" onClose={onClose}>
                                 <IngredientDetails />
                             </Modal>
                         }
@@ -106,7 +106,7 @@ export const App = () => {
                     <Route
                         path='/feed/:id'
                         children={
-                            <Modal setModalActive={setModalActive} onClose={onClose}>
+                            <Modal onClose={onClose}>
                                <Order/>
                             </Modal>
                         }
@@ -118,7 +118,7 @@ export const App = () => {
                         <Route
                             path='/profile/orders/:id'
                             children={
-                                <Modal setModalActive={setModalActive} onClose={onClose}>
+                                <Modal onClose={onClose}>
                                     <Order/>
                                 </Modal>
                             }

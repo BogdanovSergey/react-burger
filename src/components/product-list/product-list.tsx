@@ -19,7 +19,7 @@ export const ProductList:FunctionComponent<IProductListProps> = (props) => {
 	           {props.children}
            </p>
            <div className={css.product_list}>
-               {props.apiData.map((itm:TIngredient) => {
+               {props.apiData.map((itm) => {
                    return (
                        <Link key={itm._id}
                            to={{

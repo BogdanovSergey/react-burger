@@ -37,16 +37,17 @@ export function Links() {
                 <span className='ml-2 pu-5 pb-5' onClick={handleExit}>Выход</span>
             </NavLink>
 
-            {pathname === '/profile' ? (
-                <div className="pt-20">
-                    <span className="text text_type_main-default text_color_inactive">В этом разделе Вы можете изменить свои персональные данные</span>
-                </div>
-            ) : null }
-            {pathname === '/profile/orders' ? (
-                <div className="pt-20">
-                    <span className="text text_type_main-default text_color_inactive">В этом разделе Вы можете просмотреть свою историю заказов</span>
-                </div>
-            ) : null }
+            <div className="pt-20">
+                <p className="text text_type_main-default text_color_inactive">В этом разделе Вы можете</p>
+                {pathname === '/profile' && (
+                    <p className="text text_type_main-default text_color_inactive">изменить свои персональные данные</p>
+                ) }
+                {pathname === '/profile/orders' && (
+                    <p className="text text_type_main-default text_color_inactive">просмотреть свою историю заказов</p>
+                ) }
+            </div>
+
+
         </nav>
     )
 }

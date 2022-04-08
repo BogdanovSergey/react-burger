@@ -7,18 +7,24 @@ import {
     WS_GET_MESSAGE,
     WS_CONNECTION_START,
     WS_SEND_MESSAGE
-} from '../actions/wsActions'
+} from '../actions/wsActions';
+import {getCookie} from '../../utils/cookie';
+import { AnyAction, MiddlewareAPI } from 'redux';
 
-export const socketMiddleware = () => {
+export const socketMiddleware = (feedsUrl:string, auth:boolean/*wsActions?: TWSActions*/) => {
     return (store: { dispatch: Dispatch<TWSActions> }) => {
         let socket: any = null;
 
-        return (next: any) => (action: any) => {
+        return (next : (i: AnyAction) => void) => (action: AnyAction) => {
             const { dispatch } = store;
+            //console.log(action);
             const { type, payload } = action;
-
+            const token =getCookie('token');
+            //(`${feedsUrl}?token=${token}`)
             if (type === WS_CONNECTION_START) {
                 socket = new WebSocket(payload)
+                //console.log(payload)
+                //socket = new WebSocket(`${feedsUrl}?token=${payload}`);
             }
             if (socket) {
                 socket.onopen = (event: WebSocketEventMap) => {

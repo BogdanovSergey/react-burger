@@ -16,8 +16,8 @@ export function Orders() {
     if (accessToken) token = accessToken.split(' ')[1];
 
     useEffect(() => {
-        console.log(accessToken);
-        console.log(config.feedsUserUrl);
+        //console.log(accessToken);
+        //console.log(config.feedsUserUrl);
         dispatch({
             type: WS_CONNECTION_START,
             payload: config.feedsUserUrl + accessToken
@@ -29,13 +29,12 @@ export function Orders() {
 
     useEffect(() => {
         if (messages?.orders) {
-            console.log(messages.orders);
             setOrders(messages.orders);
         }
     }, [messages]);
 
     return (
-        <div className={ styles.userFeed }>
+        <div className={ styles.feed }>
             {
                 Boolean(orders.length)
                     ? orders.map(item => item?.ingredients?.length ? <FeedItem key={item['_id']} order={item} showStatus={true}/> : false)
