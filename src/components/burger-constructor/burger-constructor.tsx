@@ -64,7 +64,7 @@ export const BurgerConstructor: FC<TProps> = ({ onDropHandler }) => {
 	};
 	const onClose = (e: Event) => {
 		if(e) e.stopPropagation();
-		history.goBack()
+		setModalActive(false)
 	};
 
     return (

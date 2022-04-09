@@ -45,7 +45,7 @@ export const ProfilePage = () => {
 
     useEffect(()=>{
         dispatch(getUserAction())
-    },[]);
+    },[dispatch]);
 
     return(
         <>

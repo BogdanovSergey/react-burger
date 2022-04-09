@@ -29,7 +29,7 @@ export const registerAction = (state:any) => {
                 if (res && res.success) {
                     const authToken = res.accessToken.split('Bearer ')[1];
                     const refreshToken = res.refreshToken;
-                    delCookie('token')
+                    delCookie('token');
                     setCookie('token', authToken);
                     localStorage.setItem('refreshToken', refreshToken);
                     dispatch({
@@ -142,7 +142,7 @@ export const getUserAction = () => {
                 }
             })
             .catch((err) => {
-                console.error('Error: ', err);
+                console.log('Error: ');
                 dispatch({
                     type: GET_USER_FAILED
                 });
