@@ -1,6 +1,6 @@
 import * as config from '../../config';
 import {ORDER_LOAD, RESET_CONSTRUCTOR,GET_ORDER,GET_ORDER_SUCCESS,GET_ORDER_FAILED} from "./index";
-import {Dispatch} from "redux";
+import {AppDispatch as Dispatch} from '../../types';
 import {getCookie} from "../../utils/cookie";
 import {checkResponse} from "../../utils/api-requests";
 

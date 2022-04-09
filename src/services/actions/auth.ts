@@ -6,7 +6,7 @@ import {
     getUserRequest,
     updateUserRequest} from '../../utils/api-requests';
 import {setCookie, delCookie, getCookie} from "../../utils/cookie";
-import {Dispatch} from "redux";
+import {AppDispatch as Dispatch} from '../../types';
 import { PayloadAction } from '@reduxjs/toolkit';
 
 export const LOGIN = 'LOGIN';

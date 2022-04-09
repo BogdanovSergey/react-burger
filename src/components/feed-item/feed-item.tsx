@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useState } from 'react'
 import {useSelector} from '../../hooks/hooks'
 import styles from './feed-item.module.css'
@@ -74,10 +75,10 @@ export function FeedItem(props: { order: TOrder; showStatus: boolean }) {
             className={styles.link}
         >
             <section className={styles.order}>
-                <header className={styles.header}>
+                <div className={styles.header}>
                     <p className="text text_type_digits-default">{'#' + order.number}</p>
                     <p className="text text_type_main-default text_color_inactive">{formatDate(order.createdAt)}</p>
-                </header>
+                </div>
                 <p className={styles.name + ' text text_type_main-medium pb-6 pt-6'}>
                     {order.name}<br/>
                     {showStatus && <span className="text text_type_main-default" style={{color: (order.status=== 'done')?'#00CCCC':'#FFFFFF'}}>{getStatus(order.status)}</span>}
@@ -101,7 +102,7 @@ export function FeedItem(props: { order: TOrder; showStatus: boolean }) {
                         }
                     </div>
                     <div className={styles.coast}>
-                        <span className='text text_type_digits-default pr-2'>1{price}</span>
+                        <span className='text text_type_digits-default pr-2'>{price}</span>
                         <CurrencyIcon type="primary"/>
                     </div>
                 </div>

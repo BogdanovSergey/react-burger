@@ -83,7 +83,6 @@ export type TMessage = {
         ],
     total: number
     totalToday: number
-
 }
 
 export type TError = {

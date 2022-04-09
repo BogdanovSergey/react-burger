@@ -1,5 +1,5 @@
 import * as config from '../../config';
-import {Dispatch} from "redux";
+import {AppDispatch as Dispatch} from '../../types';
 import {INGREDIENTS_LOAD} from '../actions';
 import {checkResponse} from "../../utils/api-requests";
 

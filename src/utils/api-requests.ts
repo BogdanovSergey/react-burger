@@ -1,7 +1,8 @@
 import {config} from '../config';
 import {TUser,TUserRequest,TError} from '../types'
 import {setCookie,delCookie} from '../utils/cookie';
-export const checkResponse = (response: Response) => {
+
+export const checkResponse = (response: Response ) => {
     return (response.ok) ? response.json() : Promise.reject(response.status);
 };
 

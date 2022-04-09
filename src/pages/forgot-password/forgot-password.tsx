@@ -4,6 +4,7 @@ import {Logo, Input, Button } from '@ya.praktikum/react-developer-burger-ui-comp
 import css from './forgot-password.module.css';
 import * as config from "../../config";
 import { useSelector } from '../../hooks/hooks';
+import {checkResponse} from "../../utils/api-requests";
 
 export const ForgotPasswordPage = () => {
     const [email, setEmail] = useState('');
@@ -18,17 +19,9 @@ export const ForgotPasswordPage = () => {
             },
             body: JSON.stringify({'email': email})
         })
-            .then(response => {
-                if (response.ok) {
-                    history.replace({ pathname: '/reset-password' });
-                    return response.json();
-                } else {
-                    return Promise.reject(response.status);
-                }
-            })
-            .then(result => {
-                console.log(result)
-
+            .then((res) => {
+                history.replace({ pathname: '/reset-password' });
+                return checkResponse(res);
             })
             .catch(error => {
                 console.log(error);

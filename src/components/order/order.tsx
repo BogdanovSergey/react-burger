@@ -70,7 +70,7 @@ export function Order() {
         return (
             (order) &&
                 <section className={css.orderInfo}>
-                    <header className={css.orderHeader +" text text_type_digits-default pt-4"}>#{order.number}</header>
+                    <p className={css.orderHeader +" text text_type_digits-default pt-4"}>#{order.number}</p>
                     <p className="text text_type_main-medium pt-10">{order.name}</p>
                     <p className="text text_type_main-default pt-2">
                         <span style={{color: getStatusColor('done')}}>{getStatus(order.status)}</span>
@@ -101,7 +101,7 @@ export function Order() {
                     })
             }
                     </div>
-                    <footer className={css.footer + ' mt-10 pr-2 pb-10'}>
+                    <div className={css.footer + ' mt-10 pr-2 pb-10'}>
                         <p className="text text_type_main-default text_color_inactive">{formatDate(order.createdAt)}</p>
                         <div className={css.price + ' text text_type_digits-default'}>
                             <span className="pr-2">
@@ -109,7 +109,7 @@ export function Order() {
                             </span>
                         <CurrencyIcon type="primary"/>
                         </div>
-                    </footer>
+                    </div>
                 </section>
         )
     }

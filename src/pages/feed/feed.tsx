@@ -59,7 +59,7 @@ export function FeedPage() {
                 <div className={ styles.feedInfo + ' pl-8'}>
                     <div className={ styles.statusesWrapper }>
                         <section className={ styles.statuses }>
-                            <header className="text text_type_main-medium pb-6">Готовы:</header>
+                            <p className="text text_type_main-medium pb-6">Готовы:</p>
                             <div className={ styles.statusesColumns }>
                                 {
                                     doneNumbers.length && doneNumbers[0].length
@@ -72,7 +72,7 @@ export function FeedPage() {
                             </div>
                         </section>
                         <section>
-                            <header className="text text_type_main-medium pb-6">В работе:</header>
+                            <p className="text text_type_main-medium pb-6">В работе:</p>
                             <div className={ styles.statusesColumns }>
                                 {
                                     createdNumbers.length && createdNumbers[0].length
