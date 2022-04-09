@@ -15,6 +15,7 @@ import {Modal} from "../modal";
 import {IngredientDetails} from "../ingredient-details";
 import {Order} from '../order/order';
 import { TIngredient } from '../../types';
+import {delCookie} from "../../utils/cookie";
 
 export const App = () => {
     const ModalSwitch = () => { // Сделано для возможности использования useLocation. Немного некрасиво, подскажите, пожалуйста, как сделать лучше?

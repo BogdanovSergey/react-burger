@@ -29,7 +29,7 @@ export const registerAction = (state:any) => {
                 if (res && res.success) {
                     const authToken = res.accessToken.split('Bearer ')[1];
                     const refreshToken = res.refreshToken;
-
+                    delCookie('token')
                     setCookie('token', authToken);
                     localStorage.setItem('refreshToken', refreshToken);
                     dispatch({
@@ -63,6 +63,7 @@ export function  loginAction (state:any) {
                     const authToken = res.accessToken.split('Bearer ')[1];
                     const refreshToken = res.refreshToken;
                     console.log('loginAction ok');
+                    delCookie('token')
                     setCookie('token', authToken);
                     localStorage.setItem('refreshToken', refreshToken);
                     dispatch({
@@ -91,6 +92,7 @@ export const refreshTokenAction = () => {
             if (res && res.success) {
                 localStorage.setItem('refreshToken', res.refreshToken);
                 const authToken = res.accessToken.split('Bearer ')[1];
+                delCookie('token')
                 setCookie('token', authToken);
                 dispatch({
                     type: REFRESH_TOKEN_SUCCESS
