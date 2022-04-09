@@ -67,16 +67,16 @@ export const App = () => {
                             <ResetPasswordPage/>
                         </Route>
 
-                        <Route path='/feed' exact >
+                        <Route path='/feed' exact={true} >
                             <FeedPage />
                         </Route>
                         <Route path='/feed/:id' exact={true} >
                             <OrderPage />
                         </Route>
-{/*
-                        <ProtectedRoute path='/profile/orders/:id' exact >
+
+                        <ProtectedRoute path='/profile/orders/:id' exact={true} >
                             <OrderPage />
-                        </ProtectedRoute>*/}
+                        </ProtectedRoute>
 
                         <ProtectedRoute path={`/profile`}>
                             <ProfilePage/>
