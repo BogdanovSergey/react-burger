@@ -7,7 +7,7 @@ import { OrderDetails, Modal } from "../modal";
 import { BurgerItem } from '../burger-item/burger-item';
 import { useSelector, useDispatch } from '../../hooks/hooks'
 import { MOVE_INGREDIENT, INGREDIENT_DELETE, COUNTER_DOWN } from '../../services/actions';
-import { createOrder } from '../../services/actions/order';
+import { createOrder,clearOrder } from '../../services/actions/order';
 import { TProps, TIngredient } from '../../types'
 
 /*  Конструктор - ПРАВЫЙ блок */
@@ -64,7 +64,8 @@ export const BurgerConstructor: FC<TProps> = ({ onDropHandler }) => {
 	};
 	const onClose = (e: Event) => {
 		if(e) e.stopPropagation();
-		setModalActive(false)
+		setModalActive(false);
+		dispatch(clearOrder());
 	};
 
     return (

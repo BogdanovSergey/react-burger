@@ -47,6 +47,7 @@ export const orderReducer = (state = initialState, action:OrderActions):TOrderSt
         case CLEAR_ORDER: {
             return {
                 ...state,
+                number: 0,
                 order: null
             }
         }

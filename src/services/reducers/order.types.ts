@@ -28,7 +28,6 @@ export type GetOrderActionFailed = {
 
 export type ClearOrderAction = {
     type: typeof CLEAR_ORDER
-    order: null
 }
 
 export type OrderActions =

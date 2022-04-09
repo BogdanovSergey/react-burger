@@ -1,5 +1,5 @@
 import * as config from '../../config';
-import {ORDER_LOAD, RESET_CONSTRUCTOR,GET_ORDER,GET_ORDER_SUCCESS,GET_ORDER_FAILED} from "./index";
+import {ORDER_LOAD, RESET_CONSTRUCTOR, GET_ORDER, GET_ORDER_SUCCESS, GET_ORDER_FAILED, CLEAR_ORDER} from "./index";
 import {AppDispatch as Dispatch} from '../../types';
 import {getCookie} from "../../utils/cookie";
 import {checkResponse} from "../../utils/api-requests";
@@ -60,5 +60,10 @@ export function getOrder (id: string) {
 				type: GET_ORDER_FAILED
 			})
 		})
+	}
+}
+export function clearOrder () {
+	return function (dispatch: Dispatch) {
+		dispatch({type: CLEAR_ORDER});
 	}
 }
