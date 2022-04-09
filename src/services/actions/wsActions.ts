@@ -10,6 +10,7 @@ export const WS_SEND_MESSAGE:'WS_SEND_MESSAGE' = 'WS_SEND_MESSAGE';
 
 export type StartAction = {
     type: typeof WS_CONNECTION_START
+    payload : string
 }
 export type CloseAction = {
     type: typeof WS_CONNECTION_CLOSE
@@ -34,7 +35,10 @@ export type GetAction = {
 
 export type SendAction = {
     type: typeof WS_SEND_MESSAGE
+    payload : string
 }
+
+
 
 export type TWSActions =
     | StartAction
@@ -43,3 +47,7 @@ export type TWSActions =
     | ClosedAction
     | GetAction
     | SendAction;
+
+export type TWSActionNames = {
+    [key in TWSActions['type']] : key
+}

@@ -86,3 +86,7 @@ export type TMessage = {
 
 }
 
+export type TError = {
+    success: boolean;
+    message?: string
+}

@@ -62,6 +62,7 @@ export function  loginAction (state:any) {
                 if (res && res.success) {
                     const authToken = res.accessToken.split('Bearer ')[1];
                     const refreshToken = res.refreshToken;
+                    console.log('loginAction ok');
                     setCookie('token', authToken);
                     localStorage.setItem('refreshToken', refreshToken);
                     dispatch({
