@@ -1,9 +1,9 @@
 import * as config from '../../config';
-import {AppDispatch as Dispatch} from '../../types';
+import {AppDispatch as Dispatch, AppThunk} from '../../types';
 import {INGREDIENTS_LOAD} from '../actions';
 import {checkResponse} from "../../utils/api-requests";
 
-export function getIngredients() {
+export const getIngredients:AppThunk =() => {
 	return function(dispatch:Dispatch) {
 		fetch(config.getIngredientsUrl)
 			.then(checkResponse)

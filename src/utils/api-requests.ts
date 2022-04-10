@@ -91,7 +91,7 @@ const fetchWithRefreshToken = (url: string, options: RequestInit) => {
                             .then(res => {
                                 localStorage.setItem('refreshToken', res.refreshToken);
                                 const authToken = res.accessToken.split('Bearer ')[1];
-                                delCookie('token')
+                                //delCookie('token')
                                 setCookie('token', authToken);
                                 (options.headers as { [key: string]: string }).Authorization = res.accessToken;
                                 return fetch(url, options).then((res) => checkResponse(res))

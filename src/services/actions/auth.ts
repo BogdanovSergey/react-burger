@@ -5,8 +5,8 @@ import {
     logoutRequest,
     getUserRequest,
     updateUserRequest} from '../../utils/api-requests';
-import {setCookie, delCookie, getCookie} from "../../utils/cookie";
-import {AppDispatch as Dispatch} from '../../types';
+import {setCookie, delCookie, getCookie, deleteAllCookies} from "../../utils/cookie";
+import {AppDispatch as Dispatch, AppThunk, TUser} from '../../types';
 import { PayloadAction } from '@reduxjs/toolkit';
 
 export const LOGIN = 'LOGIN';
@@ -22,7 +22,7 @@ export const GET_USER_REQUEST = 'GET_USER_REQUEST';
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
 export const GET_USER_FAILED = 'GET_USER_FAILED';
 
-export const registerAction = (state:any) => {
+export const registerAction:AppThunk = (state:TUser) => {
     return function (dispatch:Dispatch) {
         registerRequest(state)
             .then((res) => {
@@ -52,18 +52,15 @@ export const registerAction = (state:any) => {
     }
 }
 
-export function  loginAction (state:any) {
+export const loginAction:AppThunk =(state:TUser) => {
     return function (dispatch:Dispatch) {
-        /*dispatch({
-            type: LOGIN,
-        });*/
         return loginRequest(state)
             .then((res) => {
                 if (res && res.success) {
                     const authToken = res.accessToken.split('Bearer ')[1];
                     const refreshToken = res.refreshToken;
                     console.log('loginAction ok');
-                    delCookie('token')
+                    deleteAllCookies();
                     setCookie('token', authToken);
                     localStorage.setItem('refreshToken', refreshToken);
                     dispatch({
@@ -77,12 +74,12 @@ export function  loginAction (state:any) {
                 }
             })
             .catch((err) => {
-                console.error('Error: ', err);
+                console.error('Error1: ', err);
             });
     };
 };
 
-export const refreshTokenAction = () => {
+export const refreshTokenAction:AppThunk = () => {
     return function (dispatch:Dispatch) {
         dispatch({
             type: REFRESH_TOKEN_REQUEST
@@ -103,12 +100,12 @@ export const refreshTokenAction = () => {
             dispatch({
                 type: REFRESH_TOKEN_FAILED
             });
-            console.error('Error: ', err);
+            console.error('Error2: ', err);
         });
     };
 }
 
-export const logoutAction = () => {
+export const logoutAction:AppThunk = () => {
     return function (dispatch:Dispatch) {
         logoutRequest()
             .then((res) => {
@@ -127,7 +124,7 @@ export const logoutAction = () => {
     };
 };
 
-export const getUserAction = () => {
+export const getUserAction:AppThunk = () => {
     return function (dispatch:Dispatch) {
         dispatch({
             type: GET_USER_REQUEST
@@ -142,7 +139,7 @@ export const getUserAction = () => {
                 }
             })
             .catch((err) => {
-                console.log('Error: ');
+                console.log('Error3: ');
                 dispatch({
                     type: GET_USER_FAILED
                 });
@@ -152,7 +149,7 @@ export const getUserAction = () => {
             });
     };
 };
-export const updateUserAction = (state:any) => {
+export const updateUserAction:AppThunk = (state:any) => {
     return function (dispatch:Dispatch) {
         dispatch({
             type: GET_USER_REQUEST
@@ -179,7 +176,7 @@ export const updateUserAction = (state:any) => {
                 });
             });
     }
-}
+};
 export interface ILoginAction { readonly type: typeof LOGIN; }
 export interface IRegSuccessAction { readonly type: typeof REGISTER_SUCCESS; }
 export interface IRegFailedAction { readonly type: typeof REGISTER_FAILED; }

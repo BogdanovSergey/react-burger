@@ -4,6 +4,7 @@ import {Logo, Input, Button } from '@ya.praktikum/react-developer-burger-ui-comp
 import css from './login.module.css';
 import {loginAction} from "../../services/actions/auth";
 import { useDispatch } from '../../hooks/hooks';
+import {deleteAllCookies} from "../../utils/cookie";
 
 export const LoginPage = () => {
     const dispatch = useDispatch();
@@ -20,23 +21,14 @@ export const LoginPage = () => {
         });
     };
 
-/*    type TResponse = {
-        success: boolean
-        user: {
-            email:string
-            name: string
-        }
-    } & Response*/
-
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
-        dispatch<any>(loginAction(state)) // Поясните, пожалуйста, как можно обойтись здесь без any?
+        dispatch<any>(loginAction(state))
             .then(() => {
                 console.log(location.state?.from?.pathname || '/');
                 history.replace({ pathname: location.state?.from?.pathname || '/' })
             });
     };
-
     return (
         <>
             <div className={css.login_box}>
