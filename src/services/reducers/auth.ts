@@ -72,8 +72,8 @@ export const authReducer = (state = initialState, action:AuthActions):AuthStore 
                 getUserRequest : true,
                 user: {
                     ...state.user,
-                    name : '',
-                    email: ''
+/*                    name : '',
+                    email: ''*/
                 }
             }
         }

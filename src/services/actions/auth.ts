@@ -24,12 +24,12 @@ export const GET_USER_FAILED = 'GET_USER_FAILED';
 
 export const registerAction:AppThunk = (state:TUser) => {
     return function (dispatch:Dispatch) {
+        console.log('registerAction');
         registerRequest(state)
             .then((res) => {
                 if (res && res.success) {
                     const authToken = res.accessToken.split('Bearer ')[1];
                     const refreshToken = res.refreshToken;
-                    delCookie('token');
                     setCookie('token', authToken);
                     localStorage.setItem('refreshToken', refreshToken);
                     dispatch({
@@ -54,13 +54,13 @@ export const registerAction:AppThunk = (state:TUser) => {
 
 export const loginAction:AppThunk =(state:TUser) => {
     return function (dispatch:Dispatch) {
+        console.log('loginAction');
         return loginRequest(state)
             .then((res) => {
                 if (res && res.success) {
                     const authToken = res.accessToken.split('Bearer ')[1];
                     const refreshToken = res.refreshToken;
                     console.log('loginAction ok');
-                    deleteAllCookies();
                     setCookie('token', authToken);
                     localStorage.setItem('refreshToken', refreshToken);
                     dispatch({
@@ -84,6 +84,7 @@ export const refreshTokenAction:AppThunk = () => {
         dispatch({
             type: REFRESH_TOKEN_REQUEST
         });
+        console.log('refreshTokenAction')
         refreshTokenRequest()
             .then((res) => {
             if (res && res.success) {
@@ -126,8 +127,10 @@ export const logoutAction:AppThunk = () => {
 
 export const getUserAction:AppThunk = () => {
     return function (dispatch:Dispatch) {
+        console.log('getUserAction: '+getCookie('token'))
         dispatch({
-            type: GET_USER_REQUEST
+            type:
+            GET_USER_REQUEST
         });
         return getUserRequest(getCookie('token'))
             .then((res) => {
@@ -150,6 +153,7 @@ export const getUserAction:AppThunk = () => {
     };
 };
 export const updateUserAction:AppThunk = (state:any) => {
+    console.log('-=updateUserAction=-');
     return function (dispatch:Dispatch) {
         dispatch({
             type: GET_USER_REQUEST

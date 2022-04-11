@@ -2,7 +2,7 @@ import React,{useState,SyntheticEvent} from 'react';
 import { Link, useHistory,useLocation } from 'react-router-dom';
 import {Logo, Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import css from './login.module.css';
-import {loginAction} from "../../services/actions/auth";
+import { loginAction } from "../../services/actions/auth";
 import { useDispatch } from '../../hooks/hooks';
 import {deleteAllCookies} from "../../utils/cookie";
 

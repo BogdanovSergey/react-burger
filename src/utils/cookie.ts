@@ -28,7 +28,7 @@ export const setCookie = (name:string, value:string, options?:any) => {
             updatedCookie += "=" + propValue;
         }
     }
-    document.cookie = updatedCookie;
+    document.cookie = updatedCookie;//+";path=/";
 };
 
 export const delCookie = (name:string) =>{
