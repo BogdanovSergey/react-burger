@@ -58,8 +58,9 @@ export const logoutRequest = () => {
 };
 
 
-export const getUserRequest = (token:string) => {
+export const getUserRequest_ = (token:string) => {
     //return fetch(config.userUrl, {
+    console.log( 'getUserRequest 1' );
     return fetchWithRefreshToken(config.userUrl,{
         method : 'GET',
         headers: {
@@ -69,9 +70,9 @@ export const getUserRequest = (token:string) => {
     })
         .then(checkResponse);
 };
-export const updateUserRequest = ({email, name, token}:TUserRequest) => {
-    return fetchWithRefreshToken(config.userUrl,{
-    //return fetch(config.userUrl, {
+export const updateUserRequest_ = ({email, name, token}:TUserRequest) => {
+    //return fetchWithRefreshToken2(config.userUrl,{
+    return fetch(config.userUrl, {
         method : 'PATCH',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -82,40 +83,69 @@ export const updateUserRequest = ({email, name, token}:TUserRequest) => {
         .then(checkResponse);
 };
 
+export const getUserRequest = (token:string) => {
+    //return fetch(config.userUrl, {
+    console.log( 'getUserRequest 2' );
+    return fetchWithRefreshToken2(()=>{
+        return myFetch2(config.userUrl, 'GET', token);
+    })//.then(checkResponse);
+};
+
+export const updateUserRequest = (params:TUserRequest) => {
+    console.log('updateUserRequest')
+    return fetchWithRefreshToken2(()=>{
+        return myFetch(config.userUrl, 'PATCH', params);
+    }).then(checkResponse);
+};
+const myFetch = (url: string, method:string, params: Record<string, any>|string ) => {
+    const authToken = localStorage.getItem('accessToken');
+    return fetch(url, {
+        method : method,
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            Authorization: 'Bearer ' + authToken
+        },
+        body: JSON.stringify(params)
+    })
+};
+const myFetch2 = (url: string, method:string, authToken: string ) => {
+    return fetch(url, {
+        method : method,
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            Authorization: 'Bearer ' + authToken
+        }
+    })
+};
 
 let cashPr: Promise<void> | null = null;
-const fetchWithRefreshToken2 = (url: string, options: RequestInit) => {
-
-    if (cashPr) { // если есть кеш то сразу вызываем нужный метод
+const fetchWithRefreshToken2 = (callback:()=>Promise<any>) => {
+    if (cashPr) {
         return cashPr.then(() => {
-            // вызов метода callback
-
+            return callback()
         })
     }
-    // если кеша нет то создаем его
-    // fetch для обновления токена
-    cashPr = fetchWithRefreshToken(url, options);
-
-    return cashPr.then(() => {
-        // вызов метода callback
-    })
-
-
-    return fetch(url, options).then((res) => checkResponse(res))
+    return callback().then((res) => checkResponse(res))
         .catch((res: Response) => {
             return res.json()
                 .then((err: TError) => {
                     if (err?.message === 'jwt expired') {
                         console.log('fetchWithRefreshToken');
-                        return refreshTokenRequest()
-                            .then(res => {
-                                localStorage.setItem('refreshToken', res.refreshToken);
-                                const authToken = res.accessToken.split('Bearer ')[1];
-                                //delCookie('token')
-                                setCookie('token', authToken);
-                                (options.headers as { [key: string]: string }).Authorization = res.accessToken;
-                                return fetch(url, options).then((res) => checkResponse(res))
-                            })
+                        if (!cashPr) {
+                            cashPr = refreshTokenRequest()
+                                .then(res => {
+                                    localStorage.setItem('refreshToken', res.refreshToken);
+                                    const authToken = res.accessToken.split('Bearer ')[1];
+                                    //delCookie('token')
+                                    setCookie('token', authToken);
+                                    //(options.headers as { [key: string]: string }).Authorization = res.accessToken;
+                                    //myFetch ?
+                                })
+                        }
+
+                        return cashPr.then(() => {
+                            return callback().then((res) => checkResponse(res))
+                        });
                     } else {
                         delCookie('token');
                         localStorage.removeItem('refreshToken');
@@ -124,7 +154,7 @@ const fetchWithRefreshToken2 = (url: string, options: RequestInit) => {
                         return Promise.reject(err)
                     }
                 })
-        })
+        });
 
 };
 

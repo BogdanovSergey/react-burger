@@ -143,6 +143,7 @@ export const getUserAction:AppThunk = () => {
             })
             .catch((err) => {
                 console.log('Error3: ');
+                console.log(err)
                 dispatch({
                     type: GET_USER_FAILED
                 });
