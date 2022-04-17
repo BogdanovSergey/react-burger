@@ -14,8 +14,8 @@ interface IProductListProps {
 export const ProductList:FunctionComponent<IProductListProps> = (props) => {
     const location = useLocation();
     return (
-       <>
-           <p className="text text_type_main-medium" id={props.id} ref={props.subRef}>
+       <div id={props.id}>
+           <p className="text text_type_main-medium" ref={props.subRef}>
 	           {props.children}
            </p>
            <div className={css.product_list}>
@@ -32,7 +32,7 @@ export const ProductList:FunctionComponent<IProductListProps> = (props) => {
                        </Link>)
                })}
            </div>
-       </>
+       </div>
     );
 }
 

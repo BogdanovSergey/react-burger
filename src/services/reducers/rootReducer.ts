@@ -50,7 +50,7 @@ export const ingredientsReducer = (state = initialState, action:Actions):TInitia
 		case INGREDIENTS_CHOOSE:
 			const item = action.item;
 			if (item.type === 'bun') {
-				console.log(item)
+				//console.log(item)
 				return {
 					...state,
 					burgerIngredients: {
@@ -73,7 +73,7 @@ export const ingredientsReducer = (state = initialState, action:Actions):TInitia
 			}
 		
 		case INGREDIENT_DELETE: {
-			console.log(action);
+			//console.log(action);
 			return {
 				...state,
 				burgerIngredients: {
@@ -83,7 +83,7 @@ export const ingredientsReducer = (state = initialState, action:Actions):TInitia
 			};
 		}
 		case COUNTER_DOWN: {
-			console.log(action);
+			//console.log(action);
 			if (action.typeItem !== 'bun') {
 				return {
 					...state,

@@ -1,6 +1,5 @@
 import css from "./modal-overlay.module.css";
-import React, {FunctionComponent, MouseEventHandler, SyntheticEvent} from "react";
-import {useHistory} from "react-router";
+import React, {FunctionComponent} from "react";
 
 type IModalOverlayProps = {
 	setModalActive ?: (e: boolean) => void

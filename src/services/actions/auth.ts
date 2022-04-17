@@ -5,9 +5,8 @@ import {
     logoutRequest,
     getUserRequest,
     updateUserRequest} from '../../utils/api-requests';
-import {setCookie, delCookie, getCookie, deleteAllCookies} from "../../utils/cookie";
+import {setCookie, delCookie, getCookie} from "../../utils/cookie";
 import {AppDispatch as Dispatch, AppThunk, TUser} from '../../types';
-import { PayloadAction } from '@reduxjs/toolkit';
 
 export const LOGIN = 'LOGIN';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';

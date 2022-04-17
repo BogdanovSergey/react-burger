@@ -59,9 +59,9 @@ export const authReducer = (state = initialState, action:AuthActions):AuthStore 
                 login: false,
                 authorized : false,
                 user: {
-                    ...state.user,
                     name : '',
-                    email: ''
+                    email: '',
+                    password : ''
                 }
             };
         }
@@ -71,9 +71,7 @@ export const authReducer = (state = initialState, action:AuthActions):AuthStore 
                 ...state,
                 getUserRequest : true,
                 user: {
-                    ...state.user,
-/*                    name : '',
-                    email: ''*/
+                    ...state.user
                 }
             }
         }
@@ -83,9 +81,9 @@ export const authReducer = (state = initialState, action:AuthActions):AuthStore 
                 getUserRequest : false,
                 authorized : true,
                 user: {
-                    ...state.user,
                     name : action?.user?.name,
-                    email: action?.user?.email
+                    email: action?.user?.email,
+                    password:''
                 }
             }
         }
@@ -95,9 +93,9 @@ export const authReducer = (state = initialState, action:AuthActions):AuthStore 
                 getUserRequest : false,
                 authorized: false,
                 user: {
-                    ...state.user,
                     name : '',
-                    email: ''
+                    email: '',
+                    password:''
                 }
             }
         }
