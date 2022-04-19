@@ -4,7 +4,6 @@ import {Logo, Input, Button } from '@ya.praktikum/react-developer-burger-ui-comp
 import css from './login.module.css';
 import { loginAction } from "../../services/actions/auth";
 import { useDispatch } from '../../hooks/hooks';
-import {deleteAllCookies} from "../../utils/cookie";
 
 export const LoginPage = () => {
     const dispatch = useDispatch();

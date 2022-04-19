@@ -21,7 +21,7 @@ export type SuccessAction = {
 
 export type ErrorAction = {
     type: typeof WS_CONNECTION_ERROR
-    payload: WebSocketEventMap
+    payload: WebSocketEventMap|null
 }
 
 export type ClosedAction = {

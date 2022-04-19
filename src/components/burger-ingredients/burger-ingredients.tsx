@@ -50,7 +50,7 @@ export const BurgerIngredients = () => {
                 <Tab value="sauce" active={current === 'sauce'} onClick={setTab}>Соусы</Tab>
             </div>
             <div className={css.scrollzone} ref={primaryRef} onScroll={handleScroll} >
-				{/* Пожалуйста помогите, я не понимаю совсем как это типизировать */}  {/*// @ts-ignore*/}
+				{/*// @ts-ignore*/}
 	            <ProductList apiData={listBun} id={'bun'} subRef={bunRef}>Булки</ProductList>{/*// @ts-ignore*/}
 	            <ProductList apiData={listMain} id={'main'} subRef={mainRef}>Начинки</ProductList>{/*// @ts-ignore*/}
 	            <ProductList apiData={listSauce} id={'sauce'} subRef={sauceRef} >Соусы</ProductList>

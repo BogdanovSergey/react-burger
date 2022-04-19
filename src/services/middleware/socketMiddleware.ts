@@ -3,7 +3,6 @@ import {
     TWSActionNames,
     TWSActions
 } from '../actions/wsActions';
-import {getCookie} from '../../utils/cookie';
 
 export const socketMiddleware = (wsActions: TWSActionNames) => {
     return (store: { dispatch: Dispatch<TWSActions> }) => {
