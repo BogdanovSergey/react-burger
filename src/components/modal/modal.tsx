@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import ReactDOM from 'react-dom';
 import css from './modal.module.css';
-import closeImg from '../../images/close.svg';
 import {ModalOverlay} from "../modal-overlay";
 import { FunctionComponent } from 'react'
 
@@ -26,7 +26,7 @@ export const Modal : FunctionComponent<IModalProps> = (props) => {
 					{/*Заголовок портала*/}
 					<div className={css.modal_content_caption}>
 						<span className="text text_type_main-medium">{props.header}</span>
-						<img src={closeImg} alt={"Закрыть"} className={css.close_button} onClick={props.onClose}/>
+						<CloseIcon type="primary" onClick={props.onClose}/>
 					</div>
 					{/*Компонент-содержание*/}
 					{props.children}

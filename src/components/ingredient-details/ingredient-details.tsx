@@ -14,9 +14,8 @@ export const IngredientDetails = () => {
 	let item:TIngredient|EmptyObject = {};
 	let [ingredient, setIngredient] = useState<TIngredient| EmptyObject>({});
 
-    const ingredientId = history.location.pathname.slice(13);
-
-    console.log(ingredientId)
+    //const ingredientId = history.location.pathname.slice(13);
+    //console.log(ingredientId)
 	useEffect(()=>{
 		item = ingredients.find(el => el._id === id);  // id пустой!
 		setIngredient(item)

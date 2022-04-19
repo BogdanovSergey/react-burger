@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './modal.module.css';
-import imgDone from '../../images/done.svg';
+import imgDone from '../../images/done.png';
 import { useSelector } from '../../hooks/hooks';
 
 export const OrderDetails = () => {

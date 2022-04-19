@@ -46,7 +46,7 @@ export const App = () => {
             <div className={css.main_rect}>
                     <AppHeader/>
                     <Switch location={background || location}>
-                        <Route path='/' exact={true}>
+                        <Route path={['/','/react-burger']} exact={true}>
                             <main className={css.main_columns}>
                                 <DndProvider backend={HTML5Backend}>
                                     <BurgerIngredients/>
