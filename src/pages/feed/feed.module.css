@@ -1,0 +1,55 @@
+.content {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+.feed {
+    width: 600px;
+    max-height: 912px;
+    overflow-x: hidden;
+}
+.feed::-webkit-scrollbar {
+    background-color: #2F2F37;
+    width: 10px;
+    height: 8px;
+}
+.feed::-webkit-scrollbar-thumb {
+    background: #8585AD;
+}
+.done {
+    color: #00CCCC;
+}
+.feedInfo {
+    display: flex;
+    flex-direction: column;
+    min-width: 628px;
+}
+@media (max-width: 1227px) {
+    .feedInfo {
+        min-width: 588px;
+    }
+}
+@media (max-width: 1227px) {
+    .content {
+        justify-content: center;
+    }
+    .header h1 {
+        text-align: center;
+    }
+}
+.statusesWrapper {
+    display: flex;
+}
+.statuses {
+    width: 280px;
+    margin-right: 32px;
+}
+.statusesColumns {
+    display: flex;
+    flex-flow: row wrap;
+}
+.statusesColumn {
+    display: flex;
+    flex-flow: column wrap;
+    margin: 0 32px 32px 0;
+}

@@ -1,9 +1,9 @@
 .column{
-    /*border: 4px double green;*/
+    /*border: 4px solid green;*/
     position: relative;
     /*position: absolute;*/
     width: 600px;
-    height: 600px;
+    height: 650px;
 }
 .scrollzone {
     overflow: auto;
@@ -16,4 +16,8 @@
 }
 .scrollzone::-webkit-scrollbar-thumb {
     background: #8585AD;
+}
+
+.fl {
+    display: flex;
 }
