@@ -10,7 +10,7 @@ export const BurgerIngredients = () => {
     const [current, setCurrent] = React.useState<string>('bun');
 	const apiData = useSelector((store) => store.ingr.data);
 	const setTab = (tab:any) => {
-		console.log(tab);
+		//console.log(tab);
 		setCurrent(tab);
 		const element = document.getElementById(tab);
 		if (element) element.scrollIntoView({ behavior: "smooth" });

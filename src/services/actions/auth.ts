@@ -53,7 +53,7 @@ export const registerAction:AppThunk = (state:TUser) => {
 
 export const loginAction:AppThunk =(state:TUser) => {
     return function (dispatch:Dispatch) {
-        console.log('loginAction');
+        //console.log('loginAction');
         return loginRequest(state)
             .then((res) => {
                 if (res && res.success) {
